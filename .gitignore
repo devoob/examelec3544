@@ -1,0 +1,7 @@
+# Source course materials — not part of the website
+*.pdf
+lecturenotes.rtf
+
+# OS / tooling noise
+.DS_Store
+.playwright-mcp/

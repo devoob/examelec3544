@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DSFM Midterm Revision — ELEC3544</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f4e79'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+<!-- MathJax (CDN). If offline, formulas display as readable LaTeX text and nothing breaks. -->
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+    startup: {
+      typeset: false,
+      ready: function () {
+        MathJax.startup.defaultReady();
+        if (window.__dsfmTypeset) { try { window.__dsfmTypeset(); } catch (e) {} }
+      }
+    }
+  };
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+        onerror="window.__mathjaxFailed=true"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">DSFM Midterm Revision
+    <small>ELEC3544 · Data Science with Foundation Models · offline-friendly · build 2026-10-20h</small>
+  </div>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="#/dashboard">Dashboard</a>
+    <a href="#/browse">Lectures</a>
+    <a href="#/bank">Question Bank</a>
+    <a href="#/sets">MCQ Sets</a>
+    <a href="#/practice">Practice</a>
+    <a href="#/mock">Mock Exam</a>
+    <a href="#/midterm">Midterm Examples</a>
+    <a href="#/formulas">Formula Sheet</a>
+    <a href="#/stats">Stats</a>
+    <a href="#/settings">Settings</a>
+  </nav>
+  <button id="hide-all" class="btn small" type="button" title="Close every open solution on this page">Hide all solutions</button>
+  <span id="save-indicator">Ready — progress saves locally</span>
+</header>
+
+<main id="view" role="main"></main>
+
+<!-- Data: loaded explicitly so file:// works with plain scripts (no modules) -->
+<script src="js/data/helpers.js"></script>
+<script src="js/data/slides_l1.js"></script>
+<script src="js/data/slides_l2.js"></script>
+<script src="js/data/slides_l3.js"></script>
+<script src="js/data/slides_l4.js"></script>
+<script src="js/data/slides_l5.js"></script>
+<script src="js/data/slides_l6.js"></script>
+<script src="js/data/meta_l1.js"></script>
+<script src="js/data/meta_l2.js"></script>
+<script src="js/data/meta_l3.js"></script>
+<script src="js/data/meta_l4.js"></script>
+<script src="js/data/meta_l5.js"></script>
+<script src="js/data/meta_l6.js"></script>
+<script src="js/data/midterm.js"></script>
+<script src="js/data/questions_l1.js"></script>
+<script src="js/data/questions_l2.js"></script>
+<script src="js/data/questions_l3.js"></script>
+<script src="js/data/questions_l4.js"></script>
+<script src="js/data/questions_l5.js"></script>
+<script src="js/data/questions_l6.js"></script>
+<script src="js/data/questions_midterm.js"></script>
+<script src="js/data/questions_integrated.js"></script>
+<script src="js/data/questions_coverage.js"></script>
+<script src="js/data/questions_mcq_l1.js"></script>
+<script src="js/data/questions_mcq_l2.js"></script>
+<script src="js/data/questions_mcq_l3.js"></script>
+<script src="js/data/questions_mcq_l4.js"></script>
+<script src="js/data/questions_mcq_l5.js"></script>
+<script src="js/data/questions_mcq_l6.js"></script>
+<script src="js/data/concepts.js"></script>
+<script src="js/data/formulas.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
