@@ -1,0 +1,60 @@
+/* Formula sheet + key definitions (curated; the Formula Sheet view also auto-collects every
+   formula/table block stored on slides in the meta files). */
+window.DSFM_FORMULAS = [
+  /* Lecture 2 — Linear algebra */
+  { lec: "2", pg: 15, name: "Euclidean distance", latex: "d(x,y)=\\sqrt{\\sum_{j=1}^{p}(x_j-y_j)^2}", note: "Sensitive to scale; = 0 only if x = y; symmetric. Use when absolute magnitude matters.", tags: ["distance", "similarity"] },
+  { lec: "2", pg: 17, name: "Cosine similarity", latex: "\\cos(x,y)=\\frac{x\\cdot y}{\\lVert x\\rVert\\,\\lVert y\\rVert}", note: "Range [−1,1]: +1 same direction, 0 perpendicular, −1 opposite. Scale-invariant; not a true distance metric.", tags: ["similarity", "text"] },
+  { lec: "2", pg: 26, name: "Sample variance (Bessel's correction)", latex: "s^2=\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})^2", note: "n−1 = degrees of freedom because the mean was estimated from the same data.", tags: ["variance"] },
+  { lec: "2", pg: 28, name: "Sample covariance", latex: "\\mathrm{Cov}(X,Y)=\\frac{1}{n-1}\\sum_{i=1}^{n}(x_i-\\bar{x})(y_i-\\bar{y})", note: ">0 same-side deviations; <0 opposite; ≈0 little linear association (not independence). Cov(X,X) = Var(X).", tags: ["covariance"] },
+  { lec: "2", pg: 31, name: "Covariance matrix", latex: "\\Sigma=\\frac{1}{n-1}X_c^{\\top}X_c,\\qquad \\Sigma_{ij}=\\mathrm{Cov}(X_i,X_j)", note: "p×p; diagonal = variances; symmetric; positive semidefinite (eigenvalues ≥ 0).", tags: ["covariance", "PCA"] },
+  { lec: "2", pg: 46, name: "Eigenvalue equation", latex: "\\Sigma v=\\lambda v", note: "Eigenvectors are directions only stretched (never rotated); λ is the stretch factor.", tags: ["eigen", "PCA"] },
+  { lec: "2", pg: 50, name: "Variance along an eigenvector = eigenvalue", latex: "\\mathrm{Var}(Xv)=\\lambda", note: "Eigenvalues ARE the variances of the principal components. λ₁ ≥ λ₂ ≥ … ≥ λp ≥ 0.", tags: ["eigen", "PCA"] },
+  { lec: "2", pg: 55, name: "PCA step 2 — covariance of centered data", latex: "X_{centered} = X-\\mathbf{1}\\bar{x}^{\\top},\\qquad \\Sigma=\\frac{1}{n-1}X_{centered}^{\\top}X_{centered}", note: "Center before computing Σ — PCA directions must not depend on location.", tags: ["PCA"] },
+  { lec: "2", pg: 59, name: "PCA projection (scores)", latex: "Z = X_{centered}W_k,\\quad X_{centered}\\,(n\\times p),\\;W_k\\,(p\\times k),\\;Z\\,(n\\times k)", note: "Columns of Z are PC scores; row i is observation i in the new coordinates.", tags: ["PCA"] },
+  { lec: "2", pg: 59, name: "PC score and reconstruction", latex: "z_i = x\\cdot v_i,\\qquad \\hat{x} = \\sum_{i\\in \\text{kept}} (x\\cdot v_i)\\,v_i", note: "Used in Midterm 1(c)(iv): orthonormal vᵢ make reconstruction a simple sum of score·direction.", tags: ["PCA", "projection"] },
+  { lec: "2", pg: 67, name: "Explained variance ratio", latex: "EVR_i=\\frac{\\lambda_i}{\\sum_{j=1}^{p}\\lambda_j}", note: "All EVRs sum to 1. Choose the smallest k with cumulative EVR ≥ threshold (90% rule of thumb).", tags: ["PCA", "EVR"] },
+
+  /* Lecture 3 — Probability & statistics */
+  { lec: "3", pg: 13, name: "Standard deviation (sample)", latex: "s=\\sqrt{\\frac{1}{n-1}\\sum_{i=1}^n (x_i-\\bar{x})^2}", note: "Typical distance from the mean, in original units.", tags: ["spread"] },
+  { lec: "3", pg: 13, name: "Interquartile range", latex: "IQR=Q_3-Q_1", note: "Middle 50%; robust to outliers (Q3 minus Q1, always ≥ 0).", tags: ["spread"] },
+  { lec: "3", pg: 14, name: "Pearson correlation", latex: "r=\\frac{\\mathrm{Cov}(X,Y)}{s_x\\,s_y}", note: "Dimensionless; [−1, +1]; linear association only.", tags: ["correlation"] },
+  { lec: "3", pg: 10, name: "Complement rule", latex: "P(\\text{not }A)=1-P(A)", note: "Example: P(no rain) = 1 − 0.3 = 0.7.", tags: ["probability"] },
+  { lec: "3", pg: 10, name: "Addition rule", latex: "P(A\\cup B)=P(A)+P(B)-P(A\\cap B)", note: "Mutually exclusive events: P(A∪B) = P(A) + P(B).", tags: ["probability"] },
+  { lec: "3", pg: 10, name: "Multiplication rule", latex: "P(A\\cap B)=P(A)\\,P(B\\mid A)", note: "Independent events: P(A∩B) = P(A)P(B).", tags: ["probability"] },
+  { lec: "3", pg: 28, name: "Conditional probability", latex: "P(A\\mid B)=\\frac{P(A\\cap B)}{P(B)}", note: "Restrict the universe to cases where B occurred. P(A|B) ≠ P(B|A).", tags: ["probability", "conditional"] },
+  { lec: "3", pg: 30, name: "Law of total probability", latex: "P(A)=\\sum_i P(A\\mid B_i)\\,P(B_i)", note: "Two-bucket case: P(A) = P(A|B)P(B) + P(A|B')P(B').", tags: ["probability"] },
+  { lec: "3", pg: 31, name: "Bayes' rule", latex: "P(H\\mid E)=\\frac{P(E\\mid H)\\,P(H)}{P(E)}", note: "Posterior = likelihood × prior / evidence. The prior (base rate) dominates unlikely hypotheses.", tags: ["Bayes", "base rate"] },
+  { lec: "3", pg: 23, name: "Normal distribution", latex: "X\\sim N(\\mu,\\sigma^2);\\quad \\text{68-95-99.7: } 68\\%\\text{ within }1\\sigma,\\;95\\%\\text{ within }2\\sigma,\\;99.7\\%\\text{ within }3\\sigma", note: "Symmetric around µ; fully determined by two parameters; arises when many small independent effects add together (Central Limit Theorem).", tags: ["distribution"] },
+  { lec: "3", pg: 24, name: "Binomial distribution", latex: "X\\sim \\mathrm{Binomial}(n,p);\\quad \\mathbb{E}[X]=np,\\quad \\mathrm{Var}(X)=np(1-p)", note: "Fixed n independent trials; symmetric when p = 0.5.", tags: ["distribution"] },
+  { lec: "3", pg: 25, name: "Poisson distribution", latex: "X\\sim \\mathrm{Poisson}(\\lambda);\\quad \\mathbb{E}[X]=\\mathrm{Var}(X)=\\lambda", note: "Mean = variance (distinctive). Right-skewed for small λ.", tags: ["distribution"] },
+  { lec: "3", pg: 26, name: "Exponential distribution", latex: "X\\sim \\mathrm{Exponential}(\\lambda);\\quad \\mathbb{E}[X]=\\frac{1}{\\lambda},\\quad \\mathrm{Var}(X)=\\frac{1}{\\lambda^2}", note: "Waiting time in a Poisson process; memoryless: P(X > s+t | X > s) = P(X > t).", tags: ["distribution"] },
+  { lec: "3", pg: 38, name: "Confidence interval (mean)", latex: "\\bar{x}\\pm z^*\\frac{s}{\\sqrt{n}}", note: "z* = 1.96 (95%), 2.58 (99%); SE = s/√n. Larger n → narrower; higher confidence → wider.", tags: ["inference", "CI"] },
+  { lec: "3", pg: 47, name: "p-value definition", latex: "p=\\Pr(\\text{data this extreme or more}\\mid H_0\\text{ true})", note: "A probability about the DATA, not about H₀. p < α ⇒ reject H₀; else fail to reject (≠ accept).", tags: ["inference", "p-value"] },
+  { lec: "3", pg: 50, name: "Cohen's d (effect size)", latex: "d=\\frac{\\bar{x}_1-\\bar{x}_2}{s_{pooled}}", note: "Small ≈ 0.2, medium ≈ 0.5, large ≈ 0.8. Always ask for effect sizes alongside p-values.", tags: ["effect size"] },
+
+  /* Lecture 5 — Regression */
+  { lec: "5", pg: 8, name: "Simple linear regression", latex: "\\hat{y}=\\beta_0+\\beta_1 x", note: "β₀ intercept; β₁ = change in ŷ per one-unit increase in x.", tags: ["regression"] },
+  { lec: "5", pg: 13, name: "Multiple linear regression", latex: "\\hat{y}=\\beta_0+\\beta_1 x_1+\\beta_2 x_2+\\dots+\\beta_p x_p", note: "Each βⱼ is a partial effect: change in ŷ for +1 unit of xⱼ holding all other predictors constant.", tags: ["regression"] },
+  { lec: "5", pg: 9, name: "Residual", latex: "e_i=y_i-\\hat{y}_i", note: "Positive = under-predicted; negative = over-predicted.", tags: ["regression", "diagnostics"] },
+  { lec: "5", pg: 10, name: "OLS closed form", latex: "\\hat{\\beta}=(X^{\\top}X)^{-1}X^{\\top}y\\quad\\text{(minimises }\\|y-X\\beta\\|_2^2\\text{)}", note: "Valid when XᵀX is invertible (full column rank).", tags: ["regression", "OLS"] },
+  { lec: "5", pg: 27, name: "R² (coefficient of determination)", latex: "R^2=1-\\frac{SS_{res}}{SS_{tot}}=1-\\frac{\\sum_i (y_i-\\hat{y}_i)^2}{\\sum_i (y_i-\\bar{y})^2}", note: "Fraction of variance explained. Limitations: non-decreasing with features (training), can't detect wrong patterns, not comparable across datasets.", tags: ["regression", "metric"] },
+  { lec: "5", pg: 37, name: "RMSE", latex: "RMSE=\\sqrt{\\frac{1}{n}\\sum_i (y_i-\\hat{y}_i)^2}=\\sqrt{MSE}", note: "In target units — complements the unitless R².", tags: ["regression", "metric"] },
+  { lec: "5", pg: 33, name: "Expected squared error decomposition", latex: "\\mathbb{E}[(y-\\hat{f})^2]=\\mathrm{Bias}^2+\\mathrm{Variance}+\\sigma^2_{\\text{noise}}", note: "Bias = systematic offset (underfit); variance = sensitivity to training sample (overfit).", tags: ["bias-variance"] },
+  { lec: "5", pg: 42, name: "Regularized objective", latex: "\\hat{\\beta}=\\arg\\min_\\beta\\ \\sum_i (y_i-\\hat{y}_i)^2+\\lambda\\,\\mathrm{Penalty}(\\beta)", note: "λ (α in sklearn): 0 → OLS; small → light shrink; large → coefficients near 0.", tags: ["regularization"] },
+  { lec: "5", pg: 43, name: "Ridge penalty (L2)", latex: "\\mathrm{Penalty}(\\beta)=\\sum_j \\beta_j^2", note: "Shrinks coefficients; typically keeps them nonzero; stabilizes correlated features.", tags: ["regularization", "Ridge"] },
+  { lec: "5", pg: 44, name: "Lasso penalty (L1)", latex: "\\mathrm{Penalty}(\\beta)=\\sum_j |\\beta_j|", note: "Some coefficients become exactly zero — automatic feature selection (diamond corners).", tags: ["regularization", "Lasso"] },
+  { lec: "5", pg: 50, name: "Elastic Net penalty", latex: "\\lambda_1\\sum_j |\\beta_j|+\\lambda_2\\sum_j \\beta_j^2", note: "Selection from Lasso + stability from Ridge.", tags: ["regularization", "Elastic Net"] },
+
+  /* Lecture 6 — Classification */
+  { lec: "6", pg: 11, name: "Sigmoid function", latex: "\\sigma(z)=\\frac{1}{1+e^{-z}}", note: "Range (0,1); σ(0)=0.5; asymptotes at ±∞ — never exactly reaches 0/1.", tags: ["classification", "sigmoid"] },
+  { lec: "6", pg: 13, name: "Logistic regression — probability form", latex: "p(x)=\\sigma\\big(\\beta_0+\\beta_1 x_1+\\dots+\\beta_p x_p\\big)", note: "Outputs a probability, not a label; coefficients minimise penalized negative log-likelihood.", tags: ["classification", "logistic"] },
+  { lec: "6", pg: 13, name: "Logistic regression — log-odds form", latex: "\\log\\frac{p}{1-p}=\\beta_0+\\beta_1 x_1+\\dots+\\beta_p x_p", note: "Coefficients live in log-odds space; exponentiate for odds ratios.", tags: ["classification", "logistic", "odds"] },
+  { lec: "6", pg: 16, name: "Odds and odds ratio", latex: "\\text{odds}=\\frac{p}{1-p},\\qquad \\text{OR}=e^{\\beta}", note: "β = −0.89 → OR ≈ 0.41 → ~59% lower odds. OR<1 lower, >1 higher, =1 no change. Associations, not causal effects.", tags: ["classification", "odds"] },
+  { lec: "6", pg: 24, name: "Precision", latex: "\\mathrm{Precision}=\\frac{TP}{TP+FP}", note: "Of flagged positives, how many are real. FP-costly settings.", tags: ["metric"] },
+  { lec: "6", pg: 25, name: "Recall (TPR, sensitivity)", latex: "\\mathrm{Recall}=\\frac{TP}{TP+FN}=TPR", note: "Of real positives, how many were caught. FN-costly settings.", tags: ["metric"] },
+  { lec: "6", pg: 30, name: "F1 score", latex: "F1=2\\times\\frac{\\mathrm{Precision}\\times\\mathrm{Recall}}{\\mathrm{Precision}+\\mathrm{Recall}}", note: "Harmonic mean — dominated by the smaller value (0.90/0.10 → 0.18, not 0.50).", tags: ["metric"] },
+  { lec: "6", pg: 33, name: "Accuracy", latex: "\\mathrm{Accuracy}=\\frac{TP+TN}{TP+FP+FN+TN}", note: "Weights the majority class proportionally when imbalanced — always report with precision/recall.", tags: ["metric"] },
+  { lec: "6", pg: 38, name: "False positive rate", latex: "FPR=\\frac{FP}{FP+TN}=1-\\mathrm{Specificity}", note: "Of actual negatives, the fraction incorrectly flagged.", tags: ["metric", "ROC"] },
+  { lec: "6", pg: 40, name: "AUC — probabilistic form", latex: "AUC=P(s^+>s^-)+\\tfrac{1}{2}P(s^+=s^-)", note: "Pairwise ranking credit: correct = 1, tie = ½, wrong = 0. 1.0 perfect; 0.5 chance; 0.0 perfectly wrong.", tags: ["metric", "AUC"] },
+  { lec: "6", pg: 27, name: "Cost-weighted utility", latex: "U=c_{TP}\\,TP+c_{FP}\\,FP+c_{FN}\\,FN+c_{TN}\\,TN", note: "Illustrative churn payoffs: U = 450·TP − 50·FP − 500·FN. Payoffs are business inputs, not data quantities.", tags: ["threshold", "utility"] }
+];
