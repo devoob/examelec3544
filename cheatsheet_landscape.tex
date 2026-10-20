@@ -1,0 +1,320 @@
+% ELEC3544 Midterm Cheatsheet — built from lecture01-06 + Mid-term Exam Example Questions
+% Compile: pdflatex cheatsheet.tex (twice not needed)
+\documentclass[a4paper,fontsize=8pt]{scrartcl}
+\usepackage[landscape,top=0.7cm,bottom=0.7cm,left=0.75cm,right=0.75cm,columnsep=0.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{2.5pt}
+\renewcommand{\arraystretch}{0.95}
+\pagestyle{empty}
+
+\newcounter{cnlist}
+\newenvironment{ul}{\begin{list}{\textbullet}{\setlength{\leftmargin}{1.05em}\setlength{\labelwidth}{0.6em}\setlength{\labelsep}{0.35em}\setlength{\itemsep}{0.2pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0.5pt}\setlength{\partopsep}{0pt}}}{\end{list}}
+\newenvironment{ol}{\begin{list}{\arabic{cnlist}.}{\usecounter{cnlist}\setlength{\leftmargin}{1.25em}\setlength{\labelwidth}{0.8em}\setlength{\labelsep}{0.35em}\setlength{\itemsep}{0.2pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0.5pt}\setlength{\partopsep}{0pt}}}{\end{list}}
+
+\definecolor{hdrN}{RGB}{20,40,90}
+\definecolor{hdrR}{RGB}{140,20,30}
+\definecolor{hdrG}{RGB}{20,90,45}
+\definecolor{hdrB}{RGB}{20,80,120}
+
+\newcommand{\secA}[1]{\vspace{2.4pt}{\colorbox{hdrN}{\color{white}\bfseries\sffamily\scriptsize\ #1\ }}\par\vspace{1.4pt}}
+\newcommand{\secR}[1]{\vspace{2.4pt}{\colorbox{hdrR}{\color{white}\bfseries\sffamily\scriptsize\ #1\ }}\par\vspace{1.4pt}}
+\newcommand{\secG}[1]{\vspace{2.4pt}{\colorbox{hdrG}{\color{white}\bfseries\sffamily\scriptsize\ #1\ }}\par\vspace{1.4pt}}
+\newcommand{\secB}[1]{\vspace{2.4pt}{\colorbox{hdrB}{\color{white}\bfseries\sffamily\scriptsize\ #1\ }}\par\vspace{1.4pt}}
+\newcommand{\mt}{{\color{red}\textbf{$\bigstar$}}}
+
+\begin{document}
+
+% ================= PAGE 1 =================
+{\centering\bfseries\sffamily\small ELEC3544 Midterm Cheatsheet — Side 1 \quad·\quad \normalfont\footnotesize Geometry \& PCA (L2, basis of Q1) · Probability \& Stats (L3) · Wrangling (L4) · exam patterns\par}
+\vspace{3pt}
+\begin{multicols*}{4}
+
+\secA{L2 · DATA MATRIX / VECTORS}
+\begin{ul}
+\item $X$: $n$ rows = observations, $p$ cols = features; each row = a point in $\mathbb{R}^p$.
+\item \textbf{Center} before geometry/PCA: $X_c=X-\mathbf{1}\bar{x}^{\top}$ (subtract each feature mean). Separates location from shape.
+\item Distance/similarity operate on the \emph{vectors} (feature values), not on labels.
+\end{ul}
+
+\secA{L2 · EUCLIDEAN DISTANCE \mt}
+\[d(x,y)=\sqrt{\textstyle\sum_{j=1}^{p}(x_j-y_j)^2}\]
+\begin{ul}
+\item Uses \textbf{actual magnitudes} $\Rightarrow$ \textbf{scale/magnitude-sensitive}; $=0$ iff $x=y$; symmetric; true metric.
+\item Use when \textbf{absolute magnitude/position matters}: physical measurements, pixels, k-NN, clustering. Units and feature ranges dominate.
+\end{ul}
+
+\secA{L2 · COSINE SIMILARITY \mt}
+\[\cos(x,y)=\frac{x\cdot y}{\lVert x\rVert\,\lVert y\rVert}\]
+\begin{ul}
+\item Angle only; $\in[-1,1]$: $+1$ same direction, $0$ perpendicular, $-1$ opposite. \textbf{Scale-invariant}: $\cos(cx,y)=\cos(x,y)$, $c>0$. NOT a distance (ignores length).
+\item Use when \textbf{direction matters}: text word-counts, sparse vectors, embeddings.
+\end{ul}
+
+\secA{L2 · WHICH METRIC? (exam 1a) \mt}
+\footnotesize
+\begin{tabular}{@{}p{1.05cm}p{2.2cm}p{2.2cm}@{}}
+& \textbf{Euclidean} & \textbf{Cosine}\\
+Measures & position/magnitude & angle/direction\\
+Doubling $x$ & distance grows & unchanged\\
+Use for & physical, k-NN, images & text, embeddings\\
+Watch & scale \& units & magnitude ignored\\
+\end{tabular}\\
+
+\vspace{2pt}
+\textbf{Worked (MT 1a-iii).} $A=(2,2,1)$, $B=(8,9,6)$, $C=(6,11,4)$ over (data, model, accuracy).
+$d(A,B)=\sqrt{36+49+25}=\sqrt{110}\approx10.49$; $d(B,C)=\sqrt{4+4+4}=\sqrt{12}\approx3.46$.
+$\cos(A,B)=\frac{40}{3\sqrt{181}}\approx0.991$; $\cos(B,C)=\frac{171}{\sqrt{181}\sqrt{173}}\approx0.966$.
+\begin{ul}
+\item Euclidean: $B$--$C$ closest — but only because $B$ is \emph{long} (length inflates distance).
+\item Cosine: $A$--$B$ most similar $\Rightarrow$ \textbf{cosine matches human topic judgment} for text (direction = topic mix).
+\end{ul}
+
+\secA{L2 · VARIANCE \& COVARIANCE \mt}
+\[s^2=\frac{1}{n-1}\sum (x_i-\bar{x})^2\]
+\[\mathrm{Cov}(X,Y)=\frac{1}{n-1}\sum (x_i-\bar{x})(y_i-\bar{y})\]
+\begin{ul}
+\item $n-1$ = Bessel correction/d.o.f. — mean estimated from same data (with $n$: biased low). $E[s^2]=\sigma^2$.
+\item \textbf{Cov sign = dominant co-deviation}: $>0$ same-side deviations; $<0$ opposite; $\approx 0$ no \emph{linear} association.
+\item $\mathrm{Cov}(X,X)=\mathrm{Var}(X)$. Scale-dependent $\Rightarrow$ standardize to $r=\dfrac{\mathrm{Cov}(X,Y)}{s_x s_y}\in[-1,1]$, dimensionless.
+\item \textbf{Zero covariance $\neq$ independence}: $Y=X^2$, $X$ symmetric around 0 $\Rightarrow Y$ fully depends on $X$ yet $\mathrm{Cov}\approx0$ (nonlinear invisible).
+\item Exam T/F (MT 1b-ii): $\mathrm{Cov}>0$ $\Rightarrow$ $x>\bar x$ tends to pair with $y>\bar y$ — \textbf{True} (``tends'' allows exceptions).
+\end{ul}
+
+\secA{L2 · COVARIANCE MATRIX \mt}
+\[\Sigma=\frac{1}{n-1}X_c^{\top}X_c,\qquad \Sigma_{ij}=\mathrm{Cov}(X_i,X_j)\quad (p\times p)\]
+\textbf{3 defining properties (exam 1b-iii checks these):}
+\begin{ol}
+\item \textbf{Symmetric}: $\Sigma_{ij}=\Sigma_{ji}$ (since $\mathrm{Cov}(X,Y)=\mathrm{Cov}(Y,X)$).
+\item \textbf{Diagonal = variances} (non-negative).
+\item \textbf{Positive semidefinite}: all eigenvalues $\ge 0$ ($\lambda<0$ = impossible negative variance). For PD: all leading principal minors $>0$.
+\end{ol}
+\textbf{Matrix validity test order:} symmetry first (fast), then eigenvalues / leading minors.
+\textbf{MT 1b-iii:} I $=\left[\begin{smallmatrix}2&1&-0.5\\1&3&0.2\\-0.5&0.2&1\end{smallmatrix}\right]$ \textbf{valid} (sym; minors $2>0$, $5>0$, det $=3.97>0$; eigs $0.625,1.753,3.621$).\\
+II: $(1,2)=1\ne(2,1)=0$ \textbf{asymmetric} $\Rightarrow$ invalid.\\
+III: diagonal $-2$ negative variance (eig $\approx-2.05$) $\Rightarrow$ invalid.\\
+\textbf{Negative off-diagonal is allowed} (negative covariance). Diagonal cannot be negative.
+Interpret: bright cells = features move together; diagonal = spread of each feature.
+
+\secA{L2 · EIGENVECTORS / VALUES \mt}
+\[\Sigma v=\lambda v\]
+\begin{ul}
+\item Eigenvector $v$: direction that is \textbf{only stretched, never rotated} by $\Sigma$; $\lambda$ = stretch factor.
+\item \textbf{Variance along unit eigenvector $v$ = $\lambda$}. Eigenvalues of $\Sigma$ \emph{are} the PC variances; $\lambda_1\ge\lambda_2\ge\dots\ge0$; eigenvectors orthogonal (symmetric $\Sigma$).
+\end{ul}
+
+\secA{L2 · PCA — 4 STEPS (memorize order) \mt}
+\begin{ol}
+\item \textbf{Center} $X_c = X-\mathbf{1}\bar x^\top$ (location must not affect directions; standardization if units differ).
+\item \textbf{Covariance matrix} $\Sigma=\frac{1}{n-1}X_c^\top X_c$.
+\item \textbf{Eigen-decompose} $\Sigma$, sort $\lambda$ descending; top $k$ unit eigenvectors $W_k$ = principal directions.
+\item \textbf{Project} $Z=X_cW_k$: row $i$ = observation $i$ in new coords.
+\end{ol}
+Goal: reduce dims preserving \emph{most variance}; PCs are uncorrelated, ordered by variance.
+
+\secA{L2 · SCORES \& RECONSTRUCTION \mt}
+\[\text{score}_i\; z_i = x\cdot v_i\qquad \hat{x}=\!\!\sum_{i\,\in\,\text{kept}}\!\! (x\cdot v_i)\,v_i\]
+\begin{ul}
+\item Score = dot product with \textbf{unit} eigenvector (coordinate in new basis). Residual $=x-\hat x$.
+\item Both $v_1\perp v_2$ orthonormal $\Rightarrow$ reconstruction is the simple sum; if $x$ lies in kept subspace the projection is \emph{lossless}.
+\item \textbf{MT 1c-iv:} $v_1=(\frac{1}{\sqrt2},\frac{1}{\sqrt2},0)$, $v_2=(\frac{1}{\sqrt6},-\frac{1}{\sqrt6},\frac{2}{\sqrt6})$, $x=(3,1,2)$:
+$z_1=\frac{4}{\sqrt2}=2\sqrt2\approx2.83$;\quad $z_2=\frac{3-1+4}{\sqrt6}=\sqrt6\approx2.45$.
+$\hat x=(2,2,0)+(1,-1,2)=(3,1,2)=x$ $\Rightarrow$ \textbf{zero residual} (already in PC1--PC2 plane). Don't forget: scores are dot products, projection is a \emph{vector sum} (not addition of scores).
+\end{ul}
+
+\secA{L2 · EVR \& 90\% RULE \mt}
+\[\mathrm{EVR}_i=\frac{\lambda_i}{\sum_j\lambda_j}\qquad \text{cum}_k=\frac{\lambda_1+\dots+\lambda_k}{\sum_j\lambda_j}\]
+\begin{ul}
+\item All EVRs sum to 1. $\mathrm{EVR}$ = share of total variance captured; same info as scree plot (elbow, but rule is explicit).
+\item \textbf{90\% rule}: keep the \emph{smallest} $k$ with cumulative $\ge 90\%$ (80\% compression, 95\% conservative). Heuristic — task decides; for prediction select by task validation.
+\end{ul}
+\textbf{MT 1c:} $\lambda=(4,1.5,0.3,0.2)$, total $=6$. $\mathrm{EVR}$: $4/6=66.67\%$; $1.5/6=25\%$; $0.3/6=5\%$; $0.2/6=3.33\%$.
+Cum PC1+2 $=91.67\%\ge90\%$ $\Rightarrow$ \textbf{keep 2} (PC1 alone $66.67\%<90\%$).\\
+Iris (standardized): $72.96\%/22.85\%/3.67\%/0.52\%$ $\Rightarrow$ 2 comps keep 95.81\%. Wine: needs 8/13 for 90\% — data-dependent.\\
+\textbf{Caveats}: standardize before PCA when units/ranges differ (else big-variance feature hijacks PC1); PCA = linear subspace, unsupervised (ignores labels); max-variance $\ne$ task-relevant signal.
+
+\secA{L2 · PCA PRACTICE NOTES}
+\begin{ul}
+\item Fit \emph{everything} (scaler, PCA) on \textbf{training data only}; transform test with training parameters — else leakage.
+\item $k\le p$ components exist; you \emph{choose} $k$ (EVR/scree/task). Components are linear combinations of original features, mutually orthogonal/uncorrelated.
+\item Standardize when units differ; skip when all features share meaningful units and you want the raw variance structure (choice depends on units + task).
+\item Components are linear combinations of original features, mutually orthogonal/uncorrelated — \emph{creates}, not selects. LDA is supervised; nonlinear structure may need more components / other methods.
+\end{ul}
+
+\secA{L2 · TRUE/FALSE TRAPS \mt}
+\begin{ul}
+\item ``Cosine is a distance'' — \textbf{False}: similarity in $[-1,1]$, not a metric.
+\item ``Negative off-diagonal entry $\Rightarrow$ invalid covariance matrix'' — \textbf{False}: negative covariance is allowed; only diagonal (variances) must be $\ge0$.
+\item ``Cov $\approx0$ means independent'' — \textbf{False}: only rules out linear association.
+\item ``EVR$_i$ = $\lambda_i/p$'' — \textbf{False}: divide by $\sum_j\lambda_j$.
+\item ``Keep 3 PCs because 96.7\%>90\%'' — wrong mindset: keep the \emph{smallest} $k$ that reaches 90\%.
+\item ``PCA drops original features'' — \textbf{False}: it \emph{creates} new linear combinations (Lasso selects originals).
+\item ``High EVR $\Rightarrow$ good predictions'' — \textbf{False}: variance explained $\ne$ task quality; validate on the task.
+\item ``Projection must differ from $x$'' — \textbf{False}: if $x$ lies in the kept subspace, $\hat x=x$ exactly.
+\end{ul}
+
+\secB{L3 · PROBABILITY \& STATS QUICK}
+\begin{ul}
+\item Rules: $P(\bar A)=1-P(A)$; $P(A\cup B)=P(A)+P(B)-P(A\cap B)$; $P(A\cap B)=P(A)P(B|A)$; independent $\Rightarrow P(A)P(B)$.
+\item $P(A|B)=\frac{P(A\cap B)}{P(B)}$ — \textbf{order matters}: $P(A|B)\ne P(B|A)$ (P(rain|wet) vs P(wet|rain)).
+\item \textbf{Total probability}: $P(A)=\sum_i P(A|B_i)P(B_i)$.
+\item \textbf{Bayes} $P(H|E)=\frac{P(E|H)P(H)}{P(E)}$ (posterior $=$ likelihood $\times$ prior $/$ evidence) — counting version: 10{,}000 people, prevalence 1\% $\to$ 100 sick; sens.\ 99\% $\to$ 99 TP; FPR 5\% $\to$ 495 FP; total pos.\ 594 $\Rightarrow$ \textbf{$P(D|+)=99/594\approx16.7\%$}. Low base rate $\Rightarrow$ most positives are false.
+\item Notation: Greek $=$ population ($\mu,\sigma$), Roman $=$ sample ($\bar x,s$) — classic trap.
+\item Distributions (match story$\to$shape): \textbf{PMF} for discrete ($P(X{=}x)$) vs \textbf{PDF} for continuous (relative likelihood); Normal $N(\mu,\sigma^2)$: 68/95/99.7\% within $1/2/3\sigma$, CLT. Binomial$(n,p)$: $\mathbb E=np$, Var$=np(1-p)$. Poisson$(\lambda)$: mean$=$var$=\lambda$ (rare events). Exponential$(\lambda)$: $\mathbb E=1/\lambda$, waiting times, memoryless.
+\item \textbf{CI}: $\bar x\pm z^*\frac{s}{\sqrt n}$ ($z^*=1.96$ for 95\%, $2.58$ for 99\%). Correct reading: 95\% of intervals from repeated sampling cover $\mu$ — NOT ``$P(\mu\in\text{interval})=0.95$'' (exam-revealed: 18/20 intervals captured $\mu$). Wider: higher confidence, smaller $n$.
+\item Test: $H_0$ default/no effect; \textbf{$p=P(\text{data this extreme}\mid H_0)$ — probability about the DATA}; $p<\alpha$ reject, else \textbf{fail to reject ($\ne$ accept)}. Procedure: state $H_0/H_1$ → choose $\alpha$ (0.05) → compute $T$ → $p$-value → decide. Significant $\ne$ important $\Rightarrow$ effect size Cohen's $d$: $0.2/0.5/0.8$ small/med/large.
+\item \textbf{Anscombe}: identical stats ($\bar x\approx9.0$, $r\approx0.816$), completely different plots $\Rightarrow$ always visualize. Mean+SD sensitive to outliers; median+IQR robust ($IQR=Q3-Q1$; fences $\pm1.5\,IQR$).
+\end{ul}
+
+\secB{EXAM PATTERNS (from example paper)}
+\textbf{Q1 (L2) flow:} T/F + one reason (distance/similarity appropriateness, covariance sign) $\to$ count vectors; compute Euclidean \& cosine, interpret which matches humans $\to$ covariance-matrix validity (symmetry, PSD, negative variance) $\to$ EVR per component + cumulative $\to$ 90\% rule (smallest $k$) $\to$ PC scores (dot products) + projection/reconstruction.\\
+\textbf{Q2 (L5) flow:} means $\to$ OLS by hand $(X^\top X)^{-1}X^\top y$ (show $\sum$ quantities) $\to$ $SS_{res}$, $SS_{tot}$ $\to$ $R^2$, RMSE (state $/n$ convention) $\to$ add a point and recompute (watch when slope is unchanged: $x_{new}=\bar x$) $\to$ why $R^2$ alone is insufficient $\to$ choose complexity at validation minimum; why training-$R^2$ maximisation overfits.\\
+\textbf{Presentation:} formulas + substituted numbers + units; explicit \textbf{True/False} + brief reason; justify with the computed numbers, not just words.
+
+\secG{L4/L1 · WRANGLING QUICK}
+\begin{ul}
+\item \textbf{Four checks}: structural (dims/dtypes) $\to$ completeness (missing) $\to$ validity (ranges/duplicates/inconsistent categories/cross-field) $\to$ distributional (shapes); report \emph{before} cleaning.
+\item \textbf{Missing mechanisms}: \textbf{MCAR} unrelated to anything $\to$ deletion can be unbiased; \textbf{MAR} explained by \emph{observed} variables $\to$ conditional imputation; \textbf{MNAR} depends on hidden value $\to$ no simple fix. Mechanism = judgment (not derivable from data alone).
+\item Missingness rules: $<$5\% manageable, 5--30\% careful strategy, $>$30\% consider dropping column; check sentinels (blank, ``N/A'', $-999$) not just NaN.
+\item \textbf{Scaling}: z-score $\frac{x-\mu}{\sigma}$ or min-max $[0,1]$; matters for distance/gradient methods (PCA, k-NN, SVM, logistic, NN); not for trees/Gaussian NB. \textbf{Fit on train only} (pipeline: impute $\to$ encode $\to$ scale; no leakage).
+\item Encoding: one-hot for nominal (watch unseen categories), ordinal for ordered; label encoding only for trees.
+\item Outliers: flag $|z|>3$ or $1.5\times IQR$ fences ($Q1-1.5IQR$, $Q3+1.5IQR$) $\to$ investigate (error vs genuine) $\to$ document decision; never auto-delete.
+\item \textbf{Toolkit}: deletion (safest MCAR), constant (missing has meaning), statistical (mean/median — distorts variance), conditional (MAR), model-based (KNN/iterative).
+\item \textbf{EDA cycle}: visualize → notice → hypothesize → investigate → act (assessment = systematic, find problems; EDA = question-driven, find patterns). Feature engineering e.g.\ avg monthly charge, \#services, tenure bins.
+\item \textbf{Quality report}: overview → findings by check type → prioritized issues → recommended actions. Corr.\ $\ne$ causation; chart by purpose: histogram (1 var), scatter (2 vars), box (outliers), bar (categories), line (time).
+\end{ul}
+
+\end{multicols*}
+
+\newpage
+% ================= PAGE 2 =================
+{\centering\bfseries\sffamily\small ELEC3544 Midterm Cheatsheet — Side 2 \quad·\quad \normalfont\footnotesize Regression (L5, basis of Q2) · Classification (L6) · L1 basics \& AI · final traps · {\color{red}$\bigstar$} = seen in example exam\par}
+\vspace{3pt}
+\begin{multicols*}{4}
+
+\secR{L5 · REGRESSION \& OLS}
+\begin{ul}
+\item Simple: $\hat y=\beta_0+\beta_1x$. Multiple: $\hat y=\beta_0+\beta_1x_1+\dots+\beta_px_p$.
+\item $\beta_j$ = \textbf{partial effect}: change in $\hat y$ per $+1$ unit $x_j$ holding all others constant. Direction + magnitude (in units) + association $\ne$ causation.
+\item \textbf{OLS}: $\hat\beta=\arg\min_\beta\lVert y-X\beta\rVert_2^2$, closed form
+\[\hat\beta=(X^{\top}X)^{-1}X^{\top}y\]
+$X$: first column of 1s. Normal equations $X^\top X\hat\beta=X^\top y$. Properties: $\sum e_i=0$, $\sum x_i e_i=0$; line passes through $(\bar x,\bar y)$.
+\end{ul}
+
+\secR{L5 · WORKED OLS (MT Q2b) \mt}
+Gym data $x=(2,4,6,8,10)$, $y=(2,3,5,7,8)$, $n=5$.
+$\sum x=30$, $\sum x^2=220$, $\sum y=25$, $\sum xy=182$; $\bar x=6$, $\bar y=5$.
+\[X^{\top}X=\left[\begin{smallmatrix}5&30\\30&220\end{smallmatrix}\right],\quad
+X^{\top}y=\left[\begin{smallmatrix}25\\182\end{smallmatrix}\right],\quad
+\det=200\]
+\[(X^{\top}X)^{-1}=\tfrac{1}{200}\left[\begin{smallmatrix}220&-30\\-30&5\end{smallmatrix}\right]
+\;\Rightarrow\; \hat\beta=\left[\begin{smallmatrix}0.2\\0.8\end{smallmatrix}\right]\]
+\textbf{Shortcuts:} $\hat\beta_1=\frac{\sum(x-\bar x)(y-\bar y)}{\sum(x-\bar x)^2}=\frac{32}{40}=0.8$;\;
+$\hat\beta_0=\bar y-\hat\beta_1\bar x=5-4.8=0.2$.
+\[\hat y=0.2+0.8x\ (\text{kg per hr})\]
+\textbf{Add member F} $(x=6,y=4)$: $n=6$, $\sum x=36$, $\sum y=29$, $\sum x^2=256$, $\sum xy=206$.
+Since $x_F=\bar x$: \textbf{slope unchanged} $0.8$; $\hat\beta_0=\frac{29}{6}-0.8(6)=\frac{1}{30}\approx0.033$.
+$\hat y=0.033+0.8x$.
+
+\secR{L5 · METRICS: R² / RMSE \mt}
+$e_i=y_i-\hat y_i$;\quad $SS_{res}=\sum e_i^2$;\quad $SS_{tot}=\sum(y_i-\bar y)^2$.
+\[R^2=1-\frac{SS_{res}}{SS_{tot}},\qquad \mathrm{RMSE}=\sqrt{\frac{SS_{res}}{n}}\]
+\begin{ul}
+\item $R^2$: fraction of label variance explained — $1$ perfect, $0$ = no better than $\bar y$ (can go negative on test); RMSE in \textbf{target units}.
+\end{ul}
+\textbf{MT Q2c--d (5 pts):} $\hat y=(1.8,3.4,5.0,6.6,8.2)$, $e=(0.2,-0.4,0,0.4,-0.2)$:
+$SS_{res}=0.4$, $SS_{tot}=26$. $R^2=1-\frac{0.4}{26}\approx0.9846$ ($98.5\%$); RMSE $=\sqrt{0.4/5}\approx0.283$ kg.\\
+\textbf{MT Q2e (6 pts):} after adding F: $SS_{res}=1.2333$, $SS_{tot}=26.8333$ $\Rightarrow$ $R^2\approx0.954$; RMSE $=\sqrt{1.2333/6}\approx0.453$ kg. Slope same but fit worsened — metric describes \emph{this sample}.
+
+\secR{L5 · WHY R² ISN'T ENOUGH (MT 2e-iv) \mt}
+\begin{ol}
+\item \textbf{Dataset-relative}: depends on $SS_{tot}$ of this sample (noisy vs clean data not comparable).
+\item \textbf{Blind to pattern}: wrong functional form (curve fit with a line) can still show decent $R^2$ — check residual plots.
+\item \textbf{Complexity reward}: any feature (even noise) never lowers training $R^2$ under OLS $\Rightarrow$ maximising it drives overfitting.
+\item \textbf{Not generalisable}: says nothing about held-out performance (here slope stayed $0.8$ yet $R^2$ fell $0.985\to0.954$).
+\end{ol}
+Fix: report $R^2$ \emph{with} RMSE + residual plots + test-set evaluation, and interpret in context (finance $R^2=0.05$ can still be valuable).
+
+\secR{L5 · OVERFITTING / BIAS--VARIANCE \mt}
+\begin{ul}
+\item Train error falls monotonically with complexity; validation error is \textbf{U-shaped}: underfit (high bias) $\to$ sweet spot $\to$ overfit (high variance).
+\item \textbf{Best stopping point = minimum of validation curve} (exam 2f-i: circle the lowest point of the dashed validation curve). Training-error minimum is wrong (that's maximal complexity).
+\item Decomposition: $\mathbb{E}[(y-\hat f)^2]=\mathrm{Bias}^2+\mathrm{Variance}+\sigma^2_{noise}$. More flexibility: bias $\downarrow$, variance $\uparrow$. Dartboard: tight+off $=$ bias (underfit); spread+centred $=$ variance (overfit).
+\item \textbf{Train/test split inside the workflow} (70--80/20--30, random, no leakage); never evaluate on training data; test once at the end. Auto MPG: 3$\to$16 coefficients: train RMSE $4.31\to4.03$ but \emph{test} $4.52\to6.95$.
+\item Train $R^2$ never decreases with more features — complexity is not evidence of quality.
+\end{ul}
+
+\secR{L5 · COEFFICIENT TRUST \& MULTICOLLINEARITY}
+\begin{ul}
+\item Chain: \textbf{estimate $\beta$ $\to$ SE (re-fit uncertainty) $\to$ $t=\hat\beta/$SE (signal/noise) $\to$ $p$-value + 95\% CI} ($\approx\hat\beta\pm2\,$SE).
+\item \textbf{Multicollinearity}: predictors share information $\Rightarrow$ coefficients unstable (shift/sign flips), \textbf{SEs inflated}. Diagnose: corr matrix $|r|>0.7$--$0.8$; \;VIF$_j=1/(1-R_j^2)$. VIF: $=1$ none; $1$--$5$ moderate; $>5$ investigate; $\mathbf{>10}$ \textbf{act}. Remedies: \textbf{Remove} / \textbf{Combine} / \textbf{Regularize}. \emph{Predictions can still be accurate — the damage is to interpretation} (goal-dependent).
+\item \textbf{Residual patterns}: random $\checkmark$; funnel $=$ heteroscedasticity; curve $=$ wrong functional form; clusters $=$ missing categorical/grouping variable.
+\item \textbf{Regularization}: $\min\sum(y-\hat y)^2+\lambda\,\mathrm{Penalty}(\beta)$; $\lambda=0$ OLS. \textbf{Ridge} L2 $\sum\beta^2$: shrinks all, keeps nonzero, stabilises correlated features. \textbf{Lasso} L1 $\sum|\beta|$: exact zeros $\Rightarrow$ feature selection (diamond corner geometry). Elastic Net: mix. \textbf{Always standardize first} (fit scaler on train only); choose $\lambda$ by validation.
+\end{ul}
+\footnotesize
+\begin{tabular}{@{}p{0.95cm}p{2.35cm}p{2.35cm}@{}}
+& \textbf{Ridge} & \textbf{Lasso}\\
+Penalty & $\lambda\sum\beta_j^2$ (L2) & $\lambda\sum|\beta_j|$ (L1)\\
+Effect & shrink, none exactly 0 & some hit exactly 0\\
+Use when & many small, correlated & few strong features\\
+\end{tabular}\normalsize\\
+Elastic Net $=$ both penalties; try options, validate, pick.
+
+\secR{L5 · WORKFLOW ORDER}
+1 Split train/test (before fitting) $\to$ 2 fit scaler + model on train $\to$ 3 evaluate: $R^2$/RMSE + residual plots $\to$ 4 diagnose (multicollinearity, nonlinearity, heteroscedasticity) $\to$ 5 regularize/tune on validation $\to$ 6 final test once $\to$ interpret coefficients.
+
+\secR{L6 · CLASSIFICATION ESSENTIALS}
+\begin{ul}
+\item Linear regression fails on binary $y$: predictions outside $[0,1]$; not a valid probability model.
+\item $\sigma(z)=\frac{1}{1+e^{-z}}\in(0,1)$, $\sigma(0)=0.5$; $p=\sigma(\beta_0+\beta_1x_1+\dots)$ (probability, not label); fit by minimising penalised negative log-likelihood.
+\item \textbf{Log-odds form}: $\log\frac{p}{1-p}=\beta_0+\beta_1x_1+\dots$; odds $=\frac{p}{1-p}$ (e.g.\ $p=0.75\to$ odds $3{:}1\to$ log-odds $\approx1.10$); \textbf{OR}$=e^{\beta}$. $\beta=-0.89\Rightarrow$ OR $=e^{-0.89}\approx0.41$ $\Rightarrow$ $\approx$59\% lower odds. OR$_j$ = multiplicative change in odds per $+1$ unit; $1$ = no effect. Association, not causation.
+\end{ul}
+
+\secR{L6 · CONFUSION MATRIX / METRICS}
+Pos.\ class = churn $=1$; threshold $\theta$: predict 1 if $P\ge\theta$.\\
+$\text{Precision}=\frac{TP}{TP+FP}$\quad $\text{Recall}=\frac{TP}{TP+FN}=TPR$\quad $F1=2\frac{P\cdot R}{P+R}$\quad $\text{Accuracy}=\frac{TP+TN}{N}$
+\begin{ul}
+\item Precision: of flagged, how many real (FP cost). Recall: of real, how many caught (FN cost). F1 harmonic — \textbf{smaller value dominates} (0.9/0.1 $\to$ 0.18).
+\item \textbf{Worked (2000 customers, 400 churners):} TP$=180$, FN$=220$, FP$=120$, TN$=1480$: Precision $=180/300=0.60$; Recall $=180/400=0.45$; Acc $=1660/2000=0.83$; F1$=2(0.6)(0.45)/1.05\approx0.51$; \textbf{AUC $\approx0.84$} (majority baseline $0.80/0.00/0.00$).
+\item \textbf{Imbalance trap}: always-negative gives 73.5--80\% accuracy with \textbf{0 recall} — never report accuracy alone.
+\item \textbf{Threshold is a choice}: $\theta=0.3$ aggressive / 0.5 default / 0.7 conservative. Lowering $\theta$ \emph{cannot} decrease recall. Choose by utility: $U=c_{TP}TP+c_{FP}FP+c_{FN}FN+c_{TN}TN$ ($\theta{=}0.3$: $U=54{,}400$, best of the three); costs are human inputs, tune on validation, test once.
+\item \textbf{ROC / AUC}: ROC plots TPR vs FPR $=\frac{FP}{FP+TN}=1-$specificity over all thresholds; landmarks: $(0,1)$ perfect, diagonal $=$ random, $(1,1)$ flag-all. AUC $=P(s^+>s^-)+\frac12P(\text{tie})$: $1.0$ perfect / $0.5$ random / $0.0$ perfectly wrong, threshold-free. PR curve: baseline = prevalence — prefer PR under strong imbalance.
+\end{ul}
+\footnotesize
+\begin{tabular}{@{}p{1.05cm}p{4.85cm}@{}}
+\textbf{Need} & \textbf{Metric}\\
+FP costly & Precision (at a chosen threshold)\\
+FN costly & Recall\\
+Both & F1, or PR curve + explicit costs\\
+Ranking & AUC (threshold-free); PR curve if imbalanced\\
+\end{tabular}\normalsize\\
+\textbf{Model choice}: logistic = linear boundary (scaling recommended); decision trees = piecewise, no scaling needed, interpretable (if--then rules) but overfit-prone without depth limits — compare metrics on validation, judgement call.
+
+\secG{L1 · DATA SCIENCE + AI BASICS}
+\begin{ul}
+\item \textbf{DS} $=$ domain expertise $+$ programming $+$ statistics. \textbf{Workflow (memorize)}: \textbf{Question → Collect → Clean → Analyze → Model → Communicate} — rarely linear, universal across domains.
+\item Types: categorical / ordinal / numerical / text. Sources: primary / secondary (Kaggle, UCI) / APIs / scraping. Formats: CSV / JSON / Excel / Parquet.
+\item \textbf{Quality issues (6)}: missing values, wrong types, duplicates, inconsistent formats, outliers, invalid values. GIGO; cleaning $\approx$80\% of the work.
+\item \textbf{FM} $=$ AI trained on massive data, adaptable to many tasks (ChatGPT/Claude/DeepSeek); LLMs \textbf{predict the next token} (no math); context shapes output.
+\item \textbf{4 AI failure modes}: hallucinations (confident false), math errors, outdated knowledge (cutoff), bias/stereotypes $\Rightarrow$ always verify.
+\item Prompting: be specific, give context, iterate, verify; techniques: chain-of-thought, role prompting, structured output. Refine: basic → context → format → edge cases.
+\item \textbf{VERIFY} — L1: Validate, Execute, Reason, Inspect, Fix, Yours / L2: Validate, Examine, Refine, Investigate, Find Sources, Yield. Know both.
+\end{ul}
+
+\vspace{2pt}
+\secG{RAPID-FIRE TRAPS (final review)}
+\begin{ul}
+\item $n-1$ (not $n$) for sample variance/covariance; RMSE divides $SS_{res}$ by $n$ (state convention).
+\item $R^2$: unitless, can rise with useless features (train), not comparable across datasets; pair with RMSE + residual plots + test set.
+\item Train/test split BEFORE fitting; fit scaler/PCA/imputer on train only (no leakage).
+\item Multicollinearity inflates SE $\Rightarrow$ unreliable coefficients; VIF $>10$ act — predictions may still be fine.
+\item $p$-value $=P(\text{data}\mid H_0)$; CI $=$ long-run coverage; significance $\ne$ importance; correlation $\ne$ causation; OR $=$ association, not intervention effect.
+\end{ul}
+
+\end{multicols*}
+
+\end{document}

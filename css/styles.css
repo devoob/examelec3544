@@ -242,6 +242,11 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .option { display: flex; gap: .5rem; align-items: flex-start; padding: .35rem .5rem; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: .9rem; }
 .option:hover { background: var(--code-bg); }
 .option input { margin-top: .25rem; }
+.option.opt-correct { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 14%, var(--panel)); }
+.option.opt-correct::after { content: ' ✓'; color: var(--ok); font-weight: 700; margin-left: auto; }
+.option.opt-wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--panel)); }
+.option.opt-wrong::after { content: ' ✗'; color: var(--bad); font-weight: 700; margin-left: auto; }
+.opt-hint { font-size: .72rem; margin-top: .25rem; }
 .answer-input { width: 100%; padding: .45rem .6rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
 .answer-textarea { width: 100%; padding: .55rem .65rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: inherit; }
 .immediate-feedback .fb { display: inline-block; margin-top: .35rem; font-size: .88rem; }
@@ -261,9 +266,7 @@ details.solution summary { cursor: pointer; color: var(--accent); font-size: .88
 .sol-steps, .sol-exp, .sol-mistakes { margin: .5rem 0; font-size: .9rem; }
 .sol-mistakes ul { margin: .2rem 0 .2rem 1.1rem; padding: 0; }
 .sol-ref { color: var(--muted); font-size: .8rem; margin-top: .5rem; }
-.self-grade { display: flex; gap: .4rem; align-items: center; margin-top: .6rem; flex-wrap: wrap; }
-.sg-label { font-size: .8rem; color: var(--muted); }
-.sg-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.retry-note { background: color-mix(in srgb, var(--warn) 12%, var(--panel)); border: 1px solid var(--warn); border-radius: 8px; padding: .45rem .6rem; font-size: .84rem; }
 .auto-result { margin: -.6rem 0 .9rem 0; }
 
 /* blocks (formulas, tables, callouts, figures, code) */
@@ -344,7 +347,7 @@ code { background: var(--code-bg); padding: .05rem .3rem; border-radius: 4px; fo
 
 /* print */
 @media print {
-  .topbar, .slide-actions, .sidebar, .slide-side, .row-btns, .self-grade, .filters { display: none !important; }
+  .topbar, .slide-actions, .sidebar, .slide-side, .row-btns, .filters { display: none !important; }
   body { background: #fff; }
   .panel, .q-card, .mt-card { box-shadow: none; border: 1px solid #999; }
   a { color: #000; }

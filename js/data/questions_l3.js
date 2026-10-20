@@ -3,28 +3,10 @@
 (function () {
   var L = 3;
 
-  Q({ id: "L3-3-Q1", lec: L, pg: [3], tp: "AI collaboration", sb: "Human judgment", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What are the three things AI can't do for you, per slide 3?",
-    op: [
-      "Compute statistics; run simulations; generate visualizations",
-      "Know your context; ask the right questions; judge what matters",
-      "Write code; debug code; explain code",
-      "Estimate parameters; test hypotheses; build confidence intervals"
-    ], an: 1,
-    at: "Know your context (domain/stakeholders/constraints); ask the right questions (wrong question → right answer to the wrong question); judge what matters (statistical significance ≠ worth caring about).",
-    sl: "Slide 3 lists exactly these three; the closing line: 'Today's lecture builds the judgment you need to supervise AI statistical analysis.'",
-    ex: "The three items map to the session themes: misleading stats, base rates, uncertainty interpretation.",
-    mt: "Listing computational tasks (which AI does well) instead of judgment tasks." });
-
-  Q({ id: "L3-4-Q1", lec: L, pg: [4], tp: "Overview", sb: "Roadmap", df: "easy", ty: "short", so: "lecture",
-    pr: "List the five skills of today's roadmap and their associated habits (slide 4).",
-    at: "Recognize misleading stats ('always ask for visuals') → match processes to shapes ('sanity-check AI assumptions') → think about base rates ('ask about prevalence') → interpret uncertainty ('know what CIs mean') → supervise AI analysis ('probe and judge').",
-    sl: "Slide 4 [FIGURE F1] five connected arrows with habit annotations.",
-    ex: "These five skills are mirrored in the five key takeaways (slide 51).",
-    mt: "Omitting the habits — the exam may ask the pairing." });
-
+  
+  
   Q({ id: "L3-5-Q1", lec: L, pg: [5], tp: "Probability", sb: "Interpretations", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which pairing of probability interpretations is correct (slide 5)?",
+    pr: "Which pairing of probability interpretations is correct?",
     op: [
       "Frequentist: degree of belief; Subjective: long-run frequency",
       "Frequentist: long-run frequency over repeated trials; Subjective: degree of belief/confidence (Bayesian thinking)",
@@ -44,7 +26,7 @@
     mt: "Forgetting X can be 0; treating heads/tails as continuous." });
 
   Q({ id: "L3-7-Q1", lec: L, pg: [7], tp: "Population/sample", sb: "Parameters vs statistics", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which naming convention is correct (slide 7)?",
+    pr: "Which naming convention is correct?",
     op: [
       "Population: Roman letters (x̄, s); Sample: Greek letters (µ, σ)",
       "Population: Greek letters (µ, σ) — true parameters; Sample: Roman letters (x̄, s) — statistics",
@@ -57,7 +39,7 @@
     mt: "Reversing Greek/Roman assignment." });
 
   Q({ id: "L3-8-Q1", lec: L, pg: [8], tp: "Notation", sb: "Symbol table", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which notation pairing is correct (slide 8)?",
+    pr: "Which notation pairing is correct?",
     op: [
       "n = sample size; x̄ = sample mean; s = sample std dev; P(A|B) = probability of A given B",
       "n = population size; s = sample mean",
@@ -91,7 +73,7 @@
     mt: "Using 26/52 for 'red face card' style questions without adjusting the denominator." });
 
   Q({ id: "L3-12-Q1", lec: L, pg: [12], tp: "Descriptives", sb: "Mean vs median", df: "medium", ty: "mcq", so: "lecture",
-    pr: "When should you prefer the median over the mean (slide 12)?",
+    pr: "When should you prefer the median over the mean?",
     op: [
       "When the distribution is symmetric",
       "For skewed distributions or when outliers are present (e.g., income, housing prices); use the mean for roughly symmetric data without outlier concerns",
@@ -104,7 +86,7 @@
     mt: "Using the mean for income-like skewed data — the classic domain example." });
 
   Q({ id: "L3-13-Q1", lec: L, pg: [13], tp: "Descriptives", sb: "Spread measures", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which spread pairing is correct (slide 13)?",
+    pr: "Which spread pairing is correct?",
     op: [
       "Mean + std dev go together (both sensitive to outliers); median + IQR go together (both resistant)",
       "Mean + IQR; median + std dev",
@@ -117,7 +99,7 @@
     mt: "Writing IQR = Q1 − Q3 (must be Q3 − Q1, non-negative)." });
 
   Q({ id: "L3-14-Q1", lec: L, pg: [14], tp: "Covariance/correlation", sb: "Units problem", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Why do we standardize covariance into correlation (slide 14)?",
+    pr: "Why do we standardize covariance into correlation?",
     op: [
       "Because covariance is always negative",
       "Because covariance magnitude depends on units — dividing by the standard deviations removes unit dependence, giving dimensionless r",
@@ -130,7 +112,7 @@
     mt: "Claiming r ∈ [0,1] — it is [−1,1]." });
 
   Q({ id: "L3-15-Q1", lec: L, pg: [15], tp: "Correlation", sb: "Limitations", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which of the three critical limitations of correlation is stated on slide 15?",
+    pr: "Which of the three critical limitations of correlation is stated?",
     op: [
       "Correlation measures nonlinear association perfectly",
       "Correlation only measures LINEAR association — a perfect curved relationship can have r ≈ 0; correlation does not imply causation; identical correlations can hide completely different data structures",
@@ -143,7 +125,7 @@
     mt: "Believing r = 0 rules out any relationship — only linear ones." });
 
   Q({ id: "L3-16-Q1", lec: L, pg: [16], tp: "Visualization", sb: "Three tools", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which chart reveals 'linear vs nonlinear, clusters, outliers, strength' (slide 16)?",
+    pr: "Which chart reveals 'linear vs nonlinear, clusters, outliers, strength'?",
     op: ["Histogram", "Box plot", "Scatter plot", "Bar chart"], an: 2,
     at: "Scatter plot — relationship between two variables; reveals linear vs nonlinear, clusters, outliers, strength.",
     sl: "Slide 16: Histogram (distribution of one variable; symmetry, skewness, modality, outliers); Box plot (five-number summary; outliers beyond 1.5×IQR); Scatter plot (association between X and Y).",
@@ -151,9 +133,9 @@
     mt: "Using a histogram for bivariate association." });
 
   Q({ id: "L3-17-Q1", lec: L, pg: [17], tp: "Anscombe", sb: "Dataset", df: "medium", ty: "short", so: "lecture",
-    pr: "What is special about the four datasets presented on slide 17?",
-    at: "They look like different numbers but have nearly identical summary statistics — Anscombe's quartet (created 1973). They share x̄ ≈ 9.0, ȳ ≈ 7.5, sₓ ≈ 3.3, sᵧ ≈ 2.0, r ≈ 0.816, yet their scatter plots are completely different.",
-    sl: "Slide 17 four data tables (I–IV) of 11 points each; the reveal on slide 19 shows the shared statistics.",
+    pr: "Anscombe's quartet: four datasets share almost identical means, standard deviations, and correlations (r ≈ 0.82) but look completely different when plotted. Describe the structure of each dataset (I, II, III, IV).",
+    at: "Dataset I: linear. II: curved (quadratic). III: linear with one outlier. IV: vertical set plus one extreme point. Identical statistics: x̄ ≈ 9.0, ȳ ≈ 7.5, sₓ ≈ 3.3, sᵧ ≈ 2.0, r ≈ 0.816.",
+    sl: "Four 11-point datasets sharing x̄ ≈ 9.0, ȳ ≈ 7.5, sₓ ≈ 3.3, sᵧ ≈ 2.0, r ≈ 0.816 — identical statistics, different structures.",
     ex: "Anscombe's purpose: show statisticians they need to look at their data — 'The lesson is MORE relevant in 2026: AI computes what you ask for, not what you need to see.'",
     mt: "Mixing up which dataset has which shape: I linear; II quadratic; III linear+outlier; IV vertical+extreme point.",
     mr: "MT-2f-ii" });
@@ -166,33 +148,16 @@
     mt: "Claiming one of the four has a different r — all ≈ 0.816." });
 
   Q({ id: "L3-20-Q1", lec: L, pg: [20], tp: "Anscombe", sb: "Why it matters now", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What is the key insight of slide 20 about AI and summary statistics?",
-    op: [
-      "AI computes statistics incorrectly, so verify everything numerically",
-      "The AI computed every number correctly, but if you only asked for summary statistics you'd wrongly conclude the datasets are essentially the same",
-      "Summary statistics are always sufficient",
-      "Anscombe's quartet disproves correlation"
-    ], an: 1,
-    at: "The AI computed these statistics correctly. But summary-only analysis concludes the datasets are the same. Anscombe (1973): statisticians need to look at their data. Lesson: AI computes what you ask for, not what you need to see.",
-    sl: "Slide 20 key insight + per-dataset reveals + 1973 history note.",
+    pr: "Four different datasets share nearly identical means, standard deviations, and correlation (r ≈ 0.82) but look completely different when plotted. What is the correct lesson?",
+    op: ["Summary statistics are sufficient for comparing datasets", "Identical summary statistics can hide completely different structures — always visualize before concluding", "The correlation must be wrong", "The datasets must contain data-entry errors"], an: 1,
+    at: "Descriptive statistics summarize but do not reveal structure: the same means, standard deviations, and correlation accompanied four completely different datasets (Anscombe, 1973). Always pair statistics with visualization.",
+    sl: "Summary-only analysis concludes the datasets are the same; plots reveal linear / quadratic / outlier-driven / vertical structures.",
     ex: "This is the canonical 'ask for the right thing' lesson for AI supervision.",
     mt: "Blaming AI arithmetic — the failure is in the request, not computation." });
 
-  Q({ id: "L3-21-Q1", lec: L, pg: [21], tp: "Prompting", sb: "First habit", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What is 'your first prompting habit' and the three-part template (slide 21)?",
-    op: [
-      "Always request summary statistics AND appropriate visualizations: (1) summary stats incl. mean, median, SD, correlation; (2) appropriate visualizations — histogram for distributions, scatter for relationships; (3) patterns or anomalies noticed",
-      "Always ask for raw data export",
-      "Always request p-values before plots",
-      "Only request visualizations, never statistics"
-    ], an: 0,
-    at: "Request both summary statistics and visualizations, plus a patterns/anomalies section.",
-    sl: "Slide 21 example template with three numbered items + VERIFY: Validate (cross-check quantitative outputs against visual evidence; investigate when they disagree).",
-    ex: "This habit directly prevents the Anscombe failure.",
-    mt: "Requesting only charts (missing numbers) or only numbers (missing structure)." });
-
+  
   Q({ id: "L3-22-Q1", lec: L, pg: [22], tp: "Distributions", sb: "PMF vs PDF", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which definitions of PMF and PDF are correct (slide 22)?",
+    pr: "Which definitions of PMF and PDF are correct?",
     op: [
       "PMF for continuous variables; PDF for discrete",
       "PMF gives P(X = x) for each possible value of a discrete RV; PDF describes relative likelihood for a continuous RV",
@@ -205,7 +170,7 @@
     mt: "Saying a PDF value IS a probability — for continuous variables point probabilities are zero." });
 
   Q({ id: "L3-23-Q1", lec: L, pg: [23], tp: "Distributions", sb: "Normal", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which properties of the normal distribution are listed on slide 23?",
+    pr: "Which properties of the normal distribution are listed?",
     op: [
       "Symmetric around µ; 68-95-99.7 rule (68% within 1σ, 95% within 2σ, 99.7% within 3σ); fully determined by µ and σ",
       "Right-skewed for small µ",
@@ -225,7 +190,7 @@
     mt: "Using np for variance; forgetting trials must be independent with constant p." });
 
   Q({ id: "L3-25-Q1", lec: L, pg: [25], tp: "Distributions", sb: "Poisson", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What is the distinctive feature of the Poisson distribution (slide 25)?",
+    pr: "What is the distinctive feature of the Poisson distribution?",
     op: [
       "Mean equals variance (Var(X) = E[X] = λ)",
       "It has two parameters",
@@ -238,7 +203,7 @@
     mt: "Giving Poisson a variance of λ² — that is the exponential's variance." });
 
   Q({ id: "L3-26-Q1", lec: L, pg: [26], tp: "Distributions", sb: "Exponential", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which properties belong to the exponential distribution (slide 26)?",
+    pr: "Which properties belong to the exponential distribution?",
     op: [
       "Mean 1/λ; variance 1/λ²; memoryless: P(X > s+t | X > s) = P(X > t); always right-skewed",
       "Mean λ; variance λ; symmetric",
@@ -258,7 +223,7 @@
     mt: "Dividing by the full sample space (52) instead of the condition (12)." });
 
   Q({ id: "L3-29-Q1", lec: L, pg: [29], tp: "Conditional probability", sb: "The trap", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which example illustrates the P(A|B) ≠ P(B|A) trap on slide 29?",
+    pr: "Which example illustrates the P(A|B) ≠ P(B|A) trap?",
     op: [
       "P(wet ground | rain) is high; P(rain | wet ground) is lower (sprinklers, dew, spills)",
       "P(rain | cloudy) = P(cloudy | rain)",
@@ -278,7 +243,7 @@
     mt: "Multiplying 0.8 by 0.4 (wrong complement); forgetting to weight by class priors." });
 
   Q({ id: "L3-31-Q1", lec: L, pg: [31], tp: "Bayes", sb: "Terms", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which naming of Bayes' rule terms is correct (slide 31)?",
+    pr: "Which naming of Bayes' rule terms is correct?",
     op: [
       "P(H|E) prior; P(E|H) posterior",
       "P(H|E) posterior (updated belief); P(E|H) likelihood; P(H) prior; P(E) evidence",
@@ -291,7 +256,7 @@
     mt: "Writing the rule upside-down (P(H|E) as prior)." });
 
   Q({ id: "L3-32-Q1", lec: L, pg: [32], tp: "Bayes", sb: "Counting approach", df: "medium", ty: "short", so: "lecture",
-    pr: "Describe the four counting steps used to make Bayes intuitive (slide 32).",
+    pr: "Describe the four counting steps used to make Bayes intuitive.",
     at: "Imagine 1000 people; Step 1: start with base rate — how many have the disease? Step 2: apply sensitivity — of those, how many test positive? Step 3: apply false positive rate — of those without disease, how many test positive? Step 4: count — true positives / all positives = P(D | T+).",
     sl: "Slide 32 setup + four steps; 'the natural frequency approach makes Bayes intuitive — no formula memorization needed. Just count people in each category.'",
     ex: "Used in the next slide's 10,000-person medical test computation.",
@@ -312,21 +277,9 @@
     ex: "This is the classic '1-in-6' medical test result — memorize the arithmetic.",
     mt: "Forgetting that 5% of 9,900 = 495 (the healthy populating dominates)." });
 
-  Q({ id: "L3-36-Q1", lec: L, pg: [36], tp: "Bayes", sb: "Base rates counter-intuitive", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What warning does slide 36 give for AI outputs about rare events?",
-    op: [
-      "AI cannot compute conditional probabilities",
-      "When AI reports 'high confidence' in a rare event, always ask: what's the base rate? AI computes P(evidence | hypothesis) correctly — but you need P(hypothesis | evidence)",
-      "Always trust AI's confidence statements",
-      "Rare events should be ignored in decision making"
-    ], an: 1,
-    at: "Ask for the base rate. The psychological trap: focusing on test accuracy (99%) while ignoring prevalence. Real-world domains: medical screening, airport security, fraud detection, spam filters.",
-    sl: "Slide 36 psychological trap + math explanation (low base rate + small FP rate applied to huge healthy population) + four domains + warning box.",
-    ex: "The two conditionals are not the same thing, and the base rate connects them.",
-    mt: "Confusing P(evidence|hypothesis) (which AI computes) with P(hypothesis|evidence) (what you need)." });
-
+  
   Q({ id: "L3-37-Q1", lec: L, pg: [37], tp: "Confidence intervals", sb: "Point vs interval", df: "easy", ty: "mcq", so: "lecture",
-    pr: "What is the problem with point estimates, and what do intervals add (slide 37)?",
+    pr: "What is the problem with point estimates, and what do intervals add?",
     op: [
       "Point estimates are always biased; intervals remove bias",
       "A sample mean gives a single best guess, but different samples give different estimates — intervals capture uncertainty; narrow = precise, wide = uncertain",
@@ -346,7 +299,7 @@
     mt: "Using s instead of s/√n (dividing by the standard error); using z*=2.58 for 95%." });
 
   Q({ id: "L3-39-Q1", lec: L, pg: [39], tp: "Confidence intervals", sb: "Correct interpretation", df: "hard", ty: "mcq", so: "lecture",
-    pr: "What is the correct frequentist interpretation of a 95% CI (slide 39)?",
+    pr: "What is the correct frequentist interpretation of a 95% CI?",
     op: [
       "There is a 95% probability the true mean is in this specific interval",
       "The true parameter µ is fixed; the interval varies by sample. If we repeated sampling many times, about 95% of constructed intervals would contain µ",
@@ -359,34 +312,16 @@
     mt: "Saying the parameter has 95% probability of being inside — probability is about the procedure, not the fixed parameter." });
 
   Q({ id: "L3-40-Q1", lec: L, pg: [40], tp: "Confidence intervals", sb: "Misconception", df: "medium", ty: "short", so: "lecture",
-    pr: "Why is the statement 'There's a 95% probability that the true mean is in this interval' wrong, and why does it matter (slide 40)?",
+    pr: "Why is the statement 'There's a 95% probability that the true mean is in this interval' wrong, and why does it matter?",
     at: "Once you've computed a specific interval from your data, there's nothing random left — the true mean is either inside or not; you just don't know which. It matters because the misconception leads to overconfidence: your interval might be one of the 5% that misses entirely, and you'd have no way of knowing. The correct interpretation keeps you appropriately humble.",
     sl: "Slide 40 WRONG statement + two explanation blocks.",
     ex: "Pairs with the simulation demo (slide 42: many intervals from repeated sampling).",
     mt: "Thinking the misconception is harmless semantics — it drives overconfidence." });
 
-  Q({ id: "L3-42-Q1", lec: L, pg: [42], tp: "Confidence intervals", sb: "CTA demo", df: "medium", ty: "short", so: "lecture",
-    pr: "What three-turn demo does CTA Demo C use for confidence intervals (slide 42)?",
-    at: "Turn 1: 'Explain what a 95% confidence interval means.' Turn 2: 'Is it correct to say there's a 95% probability the true value is in the interval?' (WRONG.) Turn 3: 'Demonstrate with a simulation showing many intervals from repeated sampling.' Pattern: Iterative Refinement.",
-    sl: "Slide 42 demo staging with the three turns.",
-    ex: "The simulation visualizes the coverage property — about 95% of intervals cover µ.",
-    mt: "Accepting the Turn-2 statement; it is the exact misconception the demo tests." });
-
-  Q({ id: "L3-43-Q1", lec: L, pg: [43], tp: "Confidence intervals", sb: "AI-generated intervals", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which three questions should you ask when AI gives you a confidence interval (slide 43)?",
-    op: [
-      "What assumptions were made? Is the interval for a mean, proportion, or something else? What's the practical significance of the width?",
-      "What is the p-value? What is the R²? What is the sample median?",
-      "Is the AI a large model? Is the context window big? Is the API fast?",
-      "None — confidence intervals from AI can be used directly"
-    ], an: 0,
-    at: "1) What assumptions were made (normality? independence? sufficient sample size?); 2) interval for mean, proportion, or something else (different formulas); 3) practical significance of the width.",
-    sl: "Slide 43 three questions + example clarity prompt + VERIFY: Inspect (examine intermediate results and assumptions) + closing line: 'A narrow interval from a biased sample is worse than a wide interval from a representative sample.'",
-    ex: "The closing line is a likely true/false or short-answer item.",
-    mt: "Equating narrow interval with trustworthy — bias beats precision." });
-
+  
+  
   Q({ id: "L3-45-Q1", lec: L, pg: [45], tp: "Hypothesis testing", sb: "Key terms", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which term definitions are correct (slide 45)?",
+    pr: "Which term definitions are correct?",
     op: [
       "H₀: what we're trying to prove; p-value: P(H₀ true)",
       "H₀: default assumption (no effect); H₁: what we seek evidence for; T: test statistic; p: P(data this extreme or more | H₀ true); α: threshold (typically 0.05)",
@@ -399,14 +334,14 @@
     mt: "Equating failing to reject with proving H₀ true." });
 
   Q({ id: "L3-46-Q1", lec: L, pg: [46], tp: "Hypothesis testing", sb: "Procedure", df: "medium", ty: "short", so: "lecture",
-    pr: "List the five steps of hypothesis testing and apply the setup to the fair-coin example (slide 46).",
+    pr: "List the five steps of hypothesis testing and apply the setup to the fair-coin example.",
     at: "1) State H₀ and H₁; 2) choose α (typically 0.05); 3) collect data and compute the test statistic; 4) calculate the p-value; 5) decision: p < α ⇒ reject H₀ else fail to reject. Coin example: H₀: p = 0.5 (fair); H₁: p ≠ 0.5 (biased); data: 100 flips, 65 heads; question: is 65/100 surprising enough under a fair coin?",
     sl: "Slide 46 five steps + coin example bullets.",
     ex: "α = 0.05 means willing to be wrong 5% of the time.",
     mt: "Writing H₁ as 'the coin is fair' — H₁ is the alternative being evidenced." });
 
   Q({ id: "L3-47-Q1", lec: L, pg: [47], tp: "P-values", sb: "Definition", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What does a p-value actually mean (slide 47)?",
+    pr: "What does a p-value actually mean?",
     op: [
       "P(H₀ is true)",
       "P(observing data this extreme or more extreme | H₀ is true) — a probability about the DATA, not about the hypothesis",
@@ -419,7 +354,7 @@
     mt: "Flipping the conditional — the single most common p-value error." });
 
   Q({ id: "L3-49-Q1", lec: L, pg: [49], tp: "P-values", sb: "Three misconceptions", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which of the three p-value misconceptions and corrections is stated correctly (slide 49)?",
+    pr: "Which of the three p-value misconceptions and corrections is stated correctly?",
     op: [
       "p = 0.03 means 97% chance of replication — TRUE",
       "p < 0.05 means the effect is important — TRUE",
@@ -438,17 +373,5 @@
     ex: "Large n makes tiny effects significant — significance alone doesn't imply importance.",
     mt: "Concluding the drug works because p < 0.001; effect size is what matters clinically." });
 
-  Q({ id: "L3-51-Q1", lec: L, pg: [51], tp: "Summary", sb: "Five skills", df: "medium", ty: "short", so: "lecture",
-    pr: "List the five key takeaways of Lecture 3 (slide 51).",
-    at: "1) Always visualize (statistics hide structure — Anscombe); 2) know your distributions (match generative story to shape); 3) remember base rates (P(H|E) ≠ P(E|H); priors matter enormously); 4) interpret intervals correctly (95% is about the procedure, not the parameter); 5) distinguish significance types (statistical ≠ practical; ask for effect sizes).",
-    sl: "Slide 51 five takeaways + unifying theme: 'AI computes correctly; your job is to ask the right questions and interpret wisely.'",
-    ex: "This is the exam skeleton for all L3 questions.",
-    mt: "Forgetting any of the five — each maps to one section of the lecture." });
-
-  Q({ id: "L3-52-Q1", lec: L, pg: [52], tp: "Prompting", sb: "Habits summary", df: "medium", ty: "short", so: "lecture",
-    pr: "List the five prompting habits developed today and the meta-habit (slide 52).",
-    at: "1) 'Provide summary statistics AND appropriate visualizations.' 2) 'Explain what assumptions you're making and whether they're reasonable.' 3) 'Show me the calculation step by step using natural frequencies/counting.' 4) 'What is the effect size, not just the p-value?' 5) 'Is this result practically significant in the context of [your domain]?' Meta-habit: always ask the CTA to explain its reasoning, not just give answers. Trust but VERIFY.",
-    sl: "Slide 52 five habits + meta-habit + closing 'AI is a powerful tool, not an oracle.'",
-    ex: "These habits operationalize the whole lecture's judgment themes.",
-    mt: "Omitting assumptions checking (habit 2) or effect sizes (habit 4)." });
-})();
+  
+  })();

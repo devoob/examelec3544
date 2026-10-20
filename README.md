@@ -14,9 +14,15 @@ An offline-friendly revision website built from the seven source PDFs:
 
 All 395 pages are represented page-by-page with extracted slide content, an embedded slide
 image (shown large at the top of each slide), midterm relevance, common mistakes, and linked
-questions. The question bank contains **639 questions** (lecture, midterm-linked, variants,
-integrated, plus an expanded MCQ bank), each with a model answer, step-by-step solution,
+questions. The question bank contains **584 questions** (lecture, midterm-linked, variants,
+integrated, plus concept MCQs), each with a model answer, step-by-step solution,
 explanation, common mistakes and a source page reference.
+
+**Question policy — concepts and methods only:** every question reads as a standalone
+exam-style item. Slide-framing questions ("what is the opening question of Session 1…",
+"what does slide N say…") and all course-structure, logistics, demo-narration and
+slide-trivia recall are excluded; any numbers needed for a calculation are given inside
+the question. Provenance (Lecture X, p. N) appears only under the solution.
 
 Key extras:
 
@@ -34,6 +40,12 @@ Key extras:
 * **Review by concept, not only per slide.** All 388 lecture pages are grouped into **38 concepts**
   (lecture → concept → page in the sidebar). A concept and all its pages can be marked reviewed
   as one unit.
+* **Double-click to reveal (MCQ/True-False):** double-click any choice and the correct option turns
+  green (✓) while your wrong pick turns red (✗) and the solution opens automatically — instant
+  feedback without hunting for the button.
+* **Automatic results + wrong-answer retry:** answering an objective question saves the result
+  (correct/wrong) immediately — no self-grading buttons. Wrong questions stay in a persistent
+  "retry list" (Dashboard, Stats, Practice) until you answer them correctly, whenever that happens.
 * **Keyboard shortcuts on slides:** `b` = mark reviewed, `Shift+B` = mark the whole concept
   reviewed **and jump to the next concept** (chains across lectures: L1 C7 → L2 C1), `c` = open
   the concept's combined view anchored at this page, `k` = bookmark, `← →` = previous/next page.
@@ -41,7 +53,7 @@ Key extras:
   `← →` or `n / p` switch concept. Clicking a **marked** concept unmarks it and stays put
   (the auto-advance only happens when you *mark* it), so the flow is: read → Shift+B → next.
 * **MCQ Sets** (`MCQ Sets` page): objective sets of **50 / 100 / 150 / 200 / 300 / 400** drawn
-  from a 443-question objective pool in one deterministic shuffled order (so a 100-set contains
+  from a 404-question objective pool in one deterministic shuffled order (so a 100-set contains
   its first 50-set). When every question in a set is answered it gets a **✓ completion mark with
   date — while remaining fully answerable afterwards** (the mark stays even if you change answers).
   Live progress shows answered/correct counts per set; “Reshuffle” draws a fresh order.
@@ -86,11 +98,11 @@ You can also disable math rendering in Settings.
 3. **Slide viewer** — large slide image at top (click for full size), structured formula/table/callout blocks in LaTeX, concept panel with progress, "Midterm relevance", "Common mistakes / pitfalls", linked questions, collapsible raw slide text (small), notes box, bookmark, mark reviewed / mark whole concept (or press `b` / `Shift+B`), prev/next.
 4. **Question Bank** — 639 questions filterable by lecture, topic, difficulty, type, source; full-text search; paginated 40/page. Solutions hidden by default.
 5. **MCQ Sets** — objective sets of 50/100/150/200/300/400 with live progress, sticky completion marks, reshuffle.
-6. **Practice Mode** — one question at a time, optional instant feedback, self-grading.
-7. **Mock Exam Mode** — random set by lecture, optional timer, answer collection, submit → auto-score for objective types + self-grade for open types, attempt history saved.
+6. **Practice Mode** — one question at a time, instant feedback, automatic result saving, and a **Retry wrong** run that keeps missed questions until answered correctly.
+7. **Mock Exam Mode** — random set by lecture, optional timer, answer collection, submit → auto-score for objective types + open answers compared against model answers, attempt history saved.
 8. **Midterm Examples** — every question and subpart from the example exam PDF reproduced with page references and full worked solutions (hidden by default).
 9. **Formula Sheet** — curated formulas plus every formula block stored on the slides, grouped by lecture with page links.
-10. **Stats** — reviewed slides, questions attempted, correct/partial/wrong self-grades, per-concept progress with mark buttons, weak areas, mock history.
+10. **Stats** — reviewed slides, questions attempted, auto-graded correct/wrong counts, retry-wrong button, per-concept progress, weak topics (from wrong answers), mock history.
 11. **Settings** — dark mode, font size, math rendering, slide images, export/import/reset.
 
 ## Local saving (localStorage)
@@ -106,7 +118,7 @@ The saved object contains:
 | Field | Contents |
 |---|---|
 | `answers` | your answer per question id (`{value, ts}`) |
-| `selfGrades` | Correct / Partially correct / Wrong per question |
+| `questionProgress.result` | auto-saved `correct` / `wrong` per objective question (drives the retry list; `selfGrades` from older versions is ignored) |
 | `questionProgress` | attempted flags + timestamps |
 | `notes` | per-slide notes |
 | `bookmarks` | bookmarked pages |

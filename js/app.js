@@ -288,13 +288,18 @@
         if (saved !== null && saved !== undefined && String(saved) === String(i)) input.checked = true;
         input.addEventListener('change', function () {
           setAnswer(q.id, i);
-          if (opts.immediate) showImmediateFeedback(q, wrap, i);
+          if (!opts.suppressFeedback) showImmediateFeedback(q, wrap, i);
         });
         label.appendChild(input);
         label.appendChild(el('span', 'option-text', esc(opt)));
         group.appendChild(label);
       });
+      group.addEventListener('dblclick', function (e) {
+        e.preventDefault();
+        revealMcqAnswer(q, wrap, group);
+      });
       wrap.appendChild(group);
+      wrap.appendChild(el('div', 'opt-hint muted', 'Double-click a choice to reveal the answer — green = correct, red = your wrong pick.'));
     } else if (q.type === 'short') {
       var inp = document.createElement('input');
       inp.type = 'text';
@@ -314,16 +319,73 @@
     }
     var fb = el('div', 'immediate-feedback');
     wrap.appendChild(fb);
+    /* Show the stored auto-result immediately when a question loads with a saved answer. */
+    if ((q.type === 'mcq' || q.type === 'tf') && saved !== null && saved !== undefined && !opts.suppressFeedback) {
+      showImmediateFeedback(q, wrap, saved);
+    }
     return wrap;
   }
 
   function setAnswer(qid, value) {
     S.answers[qid] = { value: value, ts: new Date().toISOString() };
+    var q = byId(qid);
     var prog = S.questionProgress[qid] || {};
     prog.attempted = true; prog.ts = new Date().toISOString();
+    /* Auto-save the result for objective questions: correct / wrong.
+       Wrong ones stay in the retry list until answered correctly (later, anywhere). */
+    if (q && q.answerIndex !== null) {
+      var answered = value !== '' && value !== null && value !== undefined;
+      if (answered) prog.result = (String(value) === String(q.answerIndex)) ? 'correct' : 'wrong';
+      else delete prog.result;
+    }
     S.questionProgress[qid] = prog;
     save();
     if (window.__dsfmAfterAnswer) { try { window.__dsfmAfterAnswer(qid); } catch (e) {} }
+  }
+
+  /* Questions currently marked wrong (objective types only — open answers cannot be auto-graded). */
+  function wrongQuestions() {
+    return DSFM_QUESTIONS.filter(function (q) {
+      return q.answerIndex !== null && S.questionProgress[q.id] && S.questionProgress[q.id].result === 'wrong';
+    });
+  }
+
+  /* Start a practice run containing exactly the wrong questions (shuffled).
+     Answering one correctly anywhere removes it from the list automatically. */
+  function startWrongRetry() {
+    var pool = wrongQuestions().slice();
+    if (!pool.length) return;
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    S.filters.practice = S.filters.practice || {};
+    S.filters.practice.lec = '';
+    S.filters.practice.concept = '';
+    S.filters.practice.retry = true;
+    S.filters.practice.order = pool.map(function (q) { return q.id; });
+    S.filters.practice.idx = 0;
+    save();
+    navigate('#/practice');
+    render();
+  }
+
+  /* Double-click a choice: green the correct option, red any wrong selection, and open the solution. */
+  function revealMcqAnswer(q, wrap, group) {
+    var labels = group.querySelectorAll('label.option');
+    labels.forEach(function (lab, idx) {
+      lab.classList.remove('opt-correct', 'opt-wrong');
+      if (idx === q.answerIndex) lab.classList.add('opt-correct');
+      else {
+        var input = lab.querySelector('input');
+        if (input && input.checked) lab.classList.add('opt-wrong');
+      }
+    });
+    var card = wrap.closest ? wrap.closest('.q-card') : null;
+    if (card) {
+      var det = card.querySelector('details.solution');
+      if (det) det.open = true;
+    }
   }
 
   function showImmediateFeedback(q, wrap, chosen) {
@@ -334,23 +396,6 @@
     fb.innerHTML = ok
       ? '<span class="fb ok">✓ Correct</span>'
       : '<span class="fb bad">✗ Not quite — correct answer: ' + esc(q.answer) + '</span>';
-  }
-
-  function renderSelfGrade(q, host) {
-    var g = S.selfGrades[q.id] ? S.selfGrades[q.id].grade : null;
-    var bar = el('div', 'self-grade');
-    bar.innerHTML = '<span class="sg-label">Self-grade:</span>';
-    [['correct', 'Correct'], ['partial', 'Partially correct'], ['wrong', 'Wrong']].forEach(function (pair) {
-      var b = el('button', 'btn sg-btn' + (g === pair[0] ? ' active' : ''), esc(pair[1]));
-      b.addEventListener('click', function () {
-        S.selfGrades[q.id] = { grade: pair[0], ts: new Date().toISOString() };
-        save();
-        host.querySelectorAll('.sg-btn').forEach(function (x) { x.classList.remove('active'); });
-        b.classList.add('active');
-      });
-      bar.appendChild(b);
-    });
-    host.appendChild(bar);
   }
 
   function renderQuestionCard(q, mode) {
@@ -365,7 +410,7 @@
       (q.source === 'integrated' ? '<span class="tag tag-int">Integrated</span>' : '');
     card.appendChild(head);
     card.appendChild(el('div', 'q-prompt', esc(q.prompt)));
-    card.appendChild(renderAnswerWidget(q, { immediate: mode === 'practice' && q.type !== 'long' && q.type !== 'calc' }));
+    card.appendChild(renderAnswerWidget(q, {}));
 
     var solHtml =
       '<div class="sol-grid">' +
@@ -377,10 +422,6 @@
       (q.mistakes ? '<div class="sol-mistakes"><h5>Common mistakes</h5>' + richText(q.mistakes) + '</div>' : '') +
       '<div class="sol-ref">Source: ' + esc(q.ref) + (q.midterm ? ' · links to ' + esc(q.midterm) : '') + '</div>';
     card.insertAdjacentHTML('beforeend', solutionBlock(solHtml, 'Show solution'));
-
-    var gradeHost = el('div', '');
-    card.appendChild(gradeHost);
-    renderSelfGrade(q, gradeHost);
     return card;
   }
 
@@ -489,13 +530,25 @@
     var answered = Object.keys(S.answers).length;
     var setsDone = SET_SIZES.filter(function (s) { return S.mcqSets.sizes[s] && S.mcqSets.sizes[s].completed; }).length;
 
+    var wrongN = wrongQuestions().length;
     var stats = el('div', 'stat-grid');
     stats.innerHTML =
       statCard('Slides reviewed', reviewed + ' / ' + total) +
       statCard('Questions answered', String(answered)) +
+      statCard('Wrong to retry', String(wrongN)) +
       statCard('MCQ sets completed', setsDone + ' / ' + SET_SIZES.length) +
       statCard('Mock attempts', String(S.mockExamAttempts.length));
     h.appendChild(stats);
+
+    if (wrongN > 0) {
+      var retryPanel = el('div', 'panel');
+      retryPanel.innerHTML = '<h3>Wrong questions to redo <span class="muted">(' + wrongN + ')</span></h3>' +
+        '<p class="muted">Answered wrong before — they stay here until you answer them correctly (red → green). Retrying marks them correct automatically when you get them right.</p>';
+      var retryBtn = el('button', 'btn btn-primary', '↻ Retry these ' + wrongN + ' now');
+      retryBtn.addEventListener('click', function () { startWrongRetry(); });
+      retryPanel.appendChild(retryBtn);
+      h.appendChild(retryPanel);
+    }
 
     var prog = el('div', 'panel');
     prog.innerHTML = '<h3>Lecture progress</h3>';
@@ -514,8 +567,8 @@
 
     var weak = computeWeakTopics();
     var weakPanel = el('div', 'panel');
-    weakPanel.innerHTML = '<h3>Weak topics <span class="muted">(self-graded Wrong / Partial)</span></h3>';
-    if (!weak.length) weakPanel.appendChild(el('p', 'muted', 'No weak topics yet — self-grade some questions to see them here.'));
+    weakPanel.innerHTML = '<h3>Weak topics <span class="muted">(auto-graded: wrong answers)</span></h3>';
+    if (!weak.length) weakPanel.appendChild(el('p', 'muted', 'No wrong answers recorded yet — answer some questions and mistakes will show up here.'));
     else {
       var ul = el('ul', 'weak-list');
       weak.slice(0, 8).forEach(function (w) {
@@ -559,13 +612,13 @@
 
   function computeWeakTopics() {
     var byTopic = {};
-    Object.keys(S.selfGrades).forEach(function (qid) {
+    Object.keys(S.questionProgress).forEach(function (qid) {
       var q = byId(qid);
-      if (!q) return;
-      var g = S.selfGrades[qid].grade;
+      var prog = S.questionProgress[qid];
+      if (!q || !prog || !prog.result) return;
       byTopic[q.topic] = byTopic[q.topic] || { bad: 0, total: 0 };
       byTopic[q.topic].total++;
-      if (g === 'wrong' || g === 'partial') byTopic[q.topic].bad++;
+      if (prog.result === 'wrong') byTopic[q.topic].bad++;
     });
     return Object.keys(byTopic).map(function (t) {
       return { topic: t, bad: byTopic[t].bad, total: byTopic[t].total };
@@ -1076,7 +1129,7 @@
     var h = el('div', '');
     h.appendChild(el('h1', '', 'Practice Mode'));
     var panel = el('div', 'panel');
-    panel.innerHTML = '<p class="muted">One question at a time with optional instant feedback. Pick a lecture (or all), then answer and self-grade.</p>';
+    panel.innerHTML = '<p class="muted">One question at a time with instant feedback and automatic result saving. Wrong answers are kept in the retry list until you get them right — use the retry button below or the one on the Dashboard.</p>';
 
     var sel = document.createElement('select');
     sel.className = 'filter-select';
@@ -1110,7 +1163,12 @@
     instant.appendChild(chk);
     instant.appendChild(el('span', '', 'Instant feedback'));
     var startBtn = el('button', 'btn btn-primary', 'Start / reshuffle');
-    panel.appendChild(sel); panel.appendChild(csel); panel.appendChild(instant); panel.appendChild(startBtn);
+    var wrongN = wrongQuestions().length;
+    var wrongBtn = el('button', 'btn', '↻ Retry wrong questions (' + wrongN + ')');
+    wrongBtn.disabled = !wrongN;
+    wrongBtn.title = 'Practice only the questions you answered wrong; answering one correctly removes it from the list.';
+    wrongBtn.addEventListener('click', function () { startWrongRetry(); });
+    panel.appendChild(sel); panel.appendChild(csel); panel.appendChild(instant); panel.appendChild(startBtn); panel.appendChild(wrongBtn);
     h.appendChild(panel);
 
     var host = el('div', '');
@@ -1128,7 +1186,7 @@
       return pool;
     }
     startBtn.addEventListener('click', function () {
-      f.lec = sel.value; S.filters.practice = f; save();
+      f.lec = sel.value; f.retry = false; S.filters.practice = f; save();
       var pool = buildPool().slice();
       for (var i = pool.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = pool[i]; pool[i] = pool[j]; pool[j] = t; }
       f.order = pool.map(function (q) { return q.id; });
@@ -1145,6 +1203,16 @@
     var q = byId(f.order[idx]);
     if (!q) { host.appendChild(el('p', '', 'Question missing — reshuffle.')); viewEl.appendChild(h); return; }
     host.appendChild(el('div', 'muted', 'Question ' + (idx + 1) + ' of ' + f.order.length));
+    if (f.retry) {
+      var retryNote = el('p', 'retry-note', '↻ Retrying wrong questions — answering one correctly removes it from the list automatically. Still wrong: ' + wrongQuestions().length);
+      host.appendChild(retryNote);
+      window.__dsfmAfterAnswer = function () {
+        var n = wrongQuestions().length;
+        retryNote.textContent = n === 0
+          ? '🎉 All wrong questions cleared from the retry list!'
+          : '↻ Retrying wrong questions — answering one correctly removes it from the list automatically. Still wrong: ' + n;
+      };
+    }
     host.appendChild(renderQuestionCard(q, 'practice'));
     var nav = el('div', 'row-btns');
     var prevB = el('button', 'btn', '← Previous');
@@ -1293,7 +1361,7 @@
     attempts.innerHTML = '<h3>Past attempts</h3>';
     if (!S.mockExamAttempts.length) attempts.appendChild(el('p', 'muted', 'No attempts yet.'));
     S.mockExamAttempts.slice().reverse().forEach(function (a) {
-      attempts.appendChild(el('p', '', '<a href="#/mock/' + a.id + '">' + new Date(a.ts).toLocaleString() + '</a> — ' + a.qids.length + ' questions · auto ' + a.autoScore + '/' + a.autoTotal + ' correct · self-graded: ' + (a.selfSummary || '—')));
+      attempts.appendChild(el('p', '', '<a href="#/mock/' + a.id + '">' + new Date(a.ts).toLocaleString() + '</a> — ' + a.qids.length + ' questions · auto ' + a.autoScore + '/' + a.autoTotal + ' correct · ' + esc(a.openSummary || '')));
     });
     h.appendChild(attempts);
 
@@ -1344,7 +1412,7 @@
           '<span class="tag tag-lec">' + (q.lec ? 'L' + q.lec : 'MT') + '</span>' +
           '<span class="tag">' + esc(TYPE_LABEL[q.type]) + '</span></div>';
         card.appendChild(el('div', 'q-prompt', esc(q.prompt)));
-        card.appendChild(renderAnswerWidget(q, {}));
+        card.appendChild(renderAnswerWidget(q, { suppressFeedback: true }));
         box.appendChild(card);
       });
       h.appendChild(box);
@@ -1370,7 +1438,7 @@
       var res = el('div', 'panel');
       res.innerHTML = '<h3>Result</h3>' +
         '<p><strong>Auto-scored:</strong> ' + a.autoScore + ' / ' + a.autoTotal + ' objective questions correct (' + (a.autoTotal ? Math.round(100 * a.autoScore / a.autoTotal) : 0) + '%).</p>' +
-        '<p><strong>Self-graded (open types):</strong> ' + esc(a.selfSummary || 'none yet') + '</p>' +
+        '<p><strong>' + esc(a.openSummary || a.selfSummary || '') + '</strong></p>' +
         '<p class="muted">Completed ' + new Date(a.ts).toLocaleString() + (a.durationUsed ? ' · took ~' + a.durationUsed + ' min' : '') + '</p>';
       h.appendChild(res);
 
@@ -1386,7 +1454,7 @@
           var ok = val !== null && String(val) === String(q.answerIndex);
           auto.innerHTML = '<span class="fb ' + (ok ? 'ok' : 'bad') + '">' + (ok ? '✓ Auto-graded: correct' : '✗ Auto-graded: incorrect (you: ' + esc(currentAnswerText(q)) + ')') + '</span>';
         } else {
-          auto.innerHTML = '<span class="fb neutral">Open question — self-grade above.</span>';
+          auto.innerHTML = '<span class="fb neutral">Open question — compare your working with the model answer above (not auto-graded).</span>';
         }
         wrap.appendChild(auto);
         box2.appendChild(wrap);
@@ -1396,23 +1464,23 @@
   }
 
   function submitMock(a) {
-    var autoScore = 0, autoTotal = 0;
-    var sg = { correct: 0, partial: 0, wrong: 0, none: 0 };
+    var autoScore = 0, autoTotal = 0, openAnswered = 0, openTotal = 0;
     a.qids.forEach(function (qid) {
       var q = byId(qid);
       if (!q) return;
+      var val = S.answers[qid] ? S.answers[qid].value : null;
+      var answered = val !== null && val !== undefined && val !== '';
       if (q.answerIndex !== null) {
         autoTotal++;
-        var val = S.answers[qid] ? S.answers[qid].value : null;
-        if (val !== null && String(val) === String(q.answerIndex)) autoScore++;
+        if (answered && String(val) === String(q.answerIndex)) autoScore++;
       } else {
-        var g = S.selfGrades[qid] ? S.selfGrades[qid].grade : null;
-        if (g) sg[g] = (sg[g] || 0) + 1; else sg.none++;
+        openTotal++;
+        if (answered) openAnswered++;
       }
     });
     a.autoScore = autoScore; a.autoTotal = autoTotal; a.submitted = true;
     if (a.startTs) a.durationUsed = Math.round((Date.now() - new Date(a.startTs).getTime()) / 60000);
-    a.selfSummary = 'correct ' + sg.correct + ', partial ' + sg.partial + ', wrong ' + sg.wrong + (sg.none ? ', ungraded ' + sg.none : '');
+    a.openSummary = 'open questions answered ' + openAnswered + '/' + openTotal + ' (compare with the model answers)';
     saveNow();
     render();
   }
@@ -1503,17 +1571,30 @@
     h.appendChild(el('h1', '', 'Progress & Stats'));
     var reviewed = Object.keys(S.slideProgress).filter(function (k) { return S.slideProgress[k].reviewed; }).length;
     var attempted = Object.keys(S.questionProgress).length;
-    var g = { correct: 0, partial: 0, wrong: 0 };
-    Object.keys(S.selfGrades).forEach(function (k) { var x = S.selfGrades[k].grade; if (g[x] !== undefined) g[x]++; });
+    var g = { correct: 0, wrong: 0 };
+    Object.keys(S.questionProgress).forEach(function (k) {
+      var r = S.questionProgress[k].result;
+      if (r === 'correct') g.correct++;
+      if (r === 'wrong') g.wrong++;
+    });
     var stats = el('div', 'stat-grid');
     stats.innerHTML =
       statCard('Reviewed slides', String(reviewed)) +
       statCard('Questions attempted', String(attempted)) +
-      statCard('Self-graded correct', String(g.correct)) +
-      statCard('Partially correct', String(g.partial)) +
-      statCard('Wrong', String(g.wrong)) +
+      statCard('Auto-graded correct', String(g.correct)) +
+      statCard('Wrong — in retry list', String(g.wrong)) +
       statCard('MCQ sets completed', SET_SIZES.filter(function (s) { return S.mcqSets.sizes[s] && S.mcqSets.sizes[s].completed; }).length + ' / ' + SET_SIZES.length);
     h.appendChild(stats);
+
+    var retryP = el('div', 'panel');
+    retryP.innerHTML = '<h3>Retry wrong questions</h3>' +
+      (g.wrong ? '<p class="muted">' + g.wrong + ' question(s) answered wrong. They stay in the list until answered correctly.</p>'
+               : '<p class="muted">No wrong answers stored right now. 🎉</p>');
+    var rBtn = el('button', 'btn btn-primary', '↻ Retry wrong questions (' + g.wrong + ')');
+    rBtn.disabled = !g.wrong;
+    rBtn.addEventListener('click', function () { startWrongRetry(); });
+    retryP.appendChild(rBtn);
+    h.appendChild(retryP);
 
     var cp = el('div', 'panel');
     cp.innerHTML = '<h3>Concept progress <span class="muted">(mark a concept reviewed as one unit)</span></h3>';
@@ -1554,7 +1635,7 @@
     hist.innerHTML = '<h3>Mock exam history</h3>';
     if (!S.mockExamAttempts.length) hist.appendChild(el('p', 'muted', 'No attempts yet.'));
     S.mockExamAttempts.slice().reverse().forEach(function (a) {
-      hist.appendChild(el('p', '', '<a href="#/mock/' + a.id + '">' + new Date(a.ts).toLocaleString() + '</a> — auto ' + a.autoScore + '/' + a.autoTotal + ' · ' + esc(a.selfSummary || '')));
+      hist.appendChild(el('p', '', '<a href="#/mock/' + a.id + '">' + new Date(a.ts).toLocaleString() + '</a> — auto ' + a.autoScore + '/' + a.autoTotal + ' · ' + esc(a.openSummary || '')));
     });
     h.appendChild(hist);
     viewEl.appendChild(h);

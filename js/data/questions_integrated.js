@@ -168,9 +168,9 @@
     ref: "Integrated — L2 p. 17–21" });
 
   Q({ id: "INT-20", lec: L, pg: [], tp: "PCA", sb: "Explain-variance vs task", df: "hard", ty: "long", so: "integrated",
-    pr: "PC1 captures 90% of variance but doesn't separate classes; PC3 captures 2% and separates them perfectly. (a) What does PCA guarantee and what doesn't it? (b) What should you do for a classification task? (c) Connect this to any other lecture theme.",
-    at: "(a) PCA guarantees maximizing retained variance (linear, unsupervised) — not task relevance; high-variance directions can be noise; low-variance directions can carry label signal. (b) Validate PCA on the actual task (classification accuracy/reconstruction error); consider supervised alternatives (LDA) or keep more components; possibly follow the L6 evaluation discipline to compare. (c) Mirrors the L1/L3/L6 themes: metrics are proxies — validate against the real objective (like R² vs task, or accuracy vs class imbalance).",
-    sl: "L2 p. 72 (variance limitation + classification example), p. 75 (four PCA limitations incl. unsupervised/LDA).",
+    pr: "PC1 captures 90% of variance but doesn't separate classes; PC3 captures 2% and separates them perfectly. (a) What does PCA guarantee and what doesn't it? (b) What should you do for a classification task? (c) State the general principle this illustrates about evaluation proxies.",
+    at: "(a) PCA guarantees maximizing retained variance (linear, unsupervised) — not task relevance; high-variance directions can be noise; low-variance directions can carry label signal. (b) Validate PCA on the actual task (classification accuracy/reconstruction error); consider supervised alternatives (LDA) or keep more components. (c) General principle: metrics are proxies for the real objective — validate against the task (like R² vs downstream task, or accuracy vs class imbalance).",
+    sl: "PCA maximises retained variance, not task relevance; validate on the actual task; LDA is the supervised alternative.",
     ex: "A judgment question — the answer is process, not a number.",
     mt: "Assuming 90% variance is 'safe' for every downstream task.",
     ref: "Integrated — L2 p. 72–75; connects to L5/L6 evaluation" });
@@ -282,20 +282,7 @@
     mt: "Recomputing ȳ incorrectly for part (c); reporting accuracy as 'good' without baseline.",
     ref: "Integrated — Midterm Q2 style + L6 p. 24–33" });
 
-  Q({ id: "INT-32", lec: L, pg: [], tp: "AI collaboration", sb: "VERIFY application", df: "medium", ty: "mcq", so: "integrated",
-    pr: "The CTA writes a covariance-matrix function that returns a non-symmetric 4×4 matrix. Which VERIFY step catches this first, and what should you do?",
-    op: [
-      "Validate — check against a trusted reference/documented property (covariance matrices are symmetric); then investigate the code/transpose issue (Execute/Inspect)",
-      "Ignore it — small asymmetry is acceptable",
-      "Submit the CTA's output directly",
-      "Yours — rewrite by hand"
-    ], an: 0,
-    at: "Validate (property check: symmetry + positive diagonal + 4×4) then Execute/Inspect the code (commonly a missing .T with np.cov).",
-    sl: "L2 p. 34–36: verification steps for covariance output (run; symmetric? positive diagonal? sanity vs scatter expectations); Demo 2's n vs n−1 discrepancy lesson.",
-    ex: "The transpose issue ('np.cov expects features as rows') is the classic root cause (L2 p. 57).",
-    mt: "Skipping the structural property checks when outputs 'look plausible'.",
-    ref: "Integrated — L2 p. 34–36, 57" });
-
+  
   Q({ id: "INT-33", lec: L, pg: [], tp: "Probability + regression", sb: "CI of a coefficient", df: "hard", ty: "calc", so: "integrated",
     pr: "A regression coefficient is β̂ = 0.8 with SE = 0.2 (n = 25, approximate 95% CI via ±1.96×SE). (a) Compute the 95% CI. (b) Interpret it. (c) The feature's p-value: since the interval excludes 0, what verdict follows at α = 0.05? (d) Why does the L5 chain say 'SE inflation is what multicollinearity causes'?",
     at: "(a) 0.8 ± 1.96(0.2) = [0.408, 1.192]. (b) Plausible range of the true coefficient across repeated sampling procedures. (c) Excluding 0 ⇒ p < 0.05 ⇒ reject H₀: β = 0 (evidence the feature matters), though practical significance still needs the effect size. (d) Correlated predictors share information; the coefficient becomes unstable and its standard error inflates — shifting the whole chain (estimate → SE → t → verdict) toward non-significance.",
@@ -305,9 +292,9 @@
     ref: "Integrated — L3 p. 37–43; L5 p. 19–22" });
 
   Q({ id: "INT-34", lec: L, pg: [], tp: "Workflow", sb: "End-to-end scenario", df: "hard", ty: "long", so: "integrated",
-    pr: "You inherit a churn project: raw data with missing TotalCharges, an object-typed numeric column, and severe imbalance; your predecessor reported 91% accuracy. Outline the correct end-to-end workflow and where each course lecture applies.",
-    at: "1) Quality assessment — four checks (L4): dtypes, sentinel-aware missingness, validity, distributions. 2) Cleaning — reason about the mechanism (MAR for tenure=0), conditional imputation, type conversion, encoding decisions, outlier policy (L4). 3) EDA — discovery cycle: churn by contract/tenure/charges; visualize (L4/L3). 4) Split — train/test before any fitting; pipeline with fit-on-train-only (L4/L5). 5) Model — logistic regression with scaled features; interpret odds ratios with causal care (L6/L5). 6) Evaluate — precision/recall/F1/AUC vs majority baseline; the 91% number is presumably majority-class accuracy (73.5% here) — exposed as useless by recall/F1 (L6). 7) Threshold — choose by cost function on validation; test once (L6). 8) Iterate — residual/metric diagnostics, regularization, model selection judgment (L5/L6).",
-    sl: "Map every step to its lecture: L4 (assess/clean/EDA/prepare), L5 (modeling/evaluation/regularization), L6 (classification metrics/thresholds), L3 (visualization, significance), L2 (feature space thinking), L1 (VERIFY).",
+    pr: "You inherit a churn project: raw data with missing TotalCharges, an object-typed numeric column, and severe imbalance; your predecessor reported 91% accuracy. Outline the correct end-to-end workflow.",
+    at: "1) Quality assessment: structure/dtypes, sentinel-aware missingness, validity, distributions. 2) Cleaning: reason about the missingness mechanism (missing TotalCharges at tenure 0 ≈ MAR), conditional imputation, type conversion, encoding, outlier policy. 3) EDA: discovery cycle (churn by contract/tenure/charges). 4) Split: train/test before fitting; fit preprocessing on train only. 5) Model: logistic regression on scaled features; odds ratios read as associations, not causation. 6) Evaluate: precision/recall/F1/AUC against the majority-class baseline — 91% accuracy with zero positive recall is the always-negative trap. 7) Threshold: choose via an explicit cost function on validation; test once. 8) Iterate: diagnostics, regularisation, model-selection judgment.",
+    sl: "Pipeline: assess → clean → EDA → split → model → evaluate → threshold → iterate. The declared 91% is the imbalance trap (majority-class accuracy), not evidence of a useful classifier.",
     ex: "The single best synthesis question — prepare a structured answer like this for the long-answer section.",
     mt: "Reporting accuracy without class distribution; cleaning before diagnosing; ignoring the accuracy trap in the inherited result.",
     ref: "Integrated — L1–L6 workflow synthesis" });
