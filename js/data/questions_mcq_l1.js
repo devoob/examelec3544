@@ -6,22 +6,8 @@
   
   
   
-  Q({ id: "L1-MCQ-05", lec: L, pg: [13], tp: "Definitions", sb: "Pillars", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which combination completes the data science definition 'domain expertise + ___ + ___'?",
-    op: ["programming skills; statistical knowledge", "AI tools; big data", "SQL; machine learning", "visualization; reporting"],
-    an: 0, at: "Domain expertise + programming skills + statistical knowledge.",
-    sl: "Slide 13: 'extracting meaningful insights from data using a combination of domain expertise, programming skills, and statistical knowledge.'",
-    ex: "The three pillars mirror the three panels: context, tools at scale, valid conclusions.",
-    mt: "Inserting AI into the definition — the slide's definition has no AI term." });
-
-  Q({ id: "L1-MCQ-06", lec: L, pg: [14], tp: "Definitions", sb: "Venn", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which circle of the Venn diagram is described by 'industry knowledge, business context'?",
-    op: ["Mathematics and Statistics", "Computer Science", "Domain Expertise", "Data Engineering"],
-    an: 2, at: "Domain Expertise — industry knowledge, business context.",
-    sl: "Slide 14 circles: Math/Stats (probability, inference, modeling); CS (programming, algorithms, data structures); Domain Expertise (industry knowledge, business context).",
-    ex: "Data science lives at the intersection — you need all three.",
-    mt: "Assigning business context to computer science." });
-
+  
+  
   Q({ id: "L1-MCQ-07", lec: L, pg: [15], tp: "Definitions", sb: "Related fields", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which field's key distinction is 'mathematical foundations'?",
     op: ["Data Science", "Machine Learning", "Statistics", "Business Analytics"],
@@ -104,14 +90,7 @@
     ex: "Critical question: why is the data missing? Random vs systematic changes the strategy.",
     mt: "Calling constant fills 'bias-free' — the slide warns they may introduce bias." });
 
-  Q({ id: "L1-MCQ-19", lec: L, pg: [36], tp: "Data cleaning", sb: "Outlier detection", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which two statistical rules for outlier detection are given?",
-    op: ["Z-score > 3 and IQR method (1.5×IQR)", "Z-score > 2 and range method", "Tukey fence 2×IQR", "Standard error > 1"],
-    an: 0, at: "Z-score > 3; IQR (1.5×IQR).",
-    sl: "Slide 36 HOW TO DETECT: visual (box/scatter/histogram), statistical (Z-score > 3, 1.5×IQR), domain knowledge.",
-    ex: "What to do: error → fix/remove; genuine → keep or cap; consider robust methods.",
-    mt: "Using Z-score > 2 as the slide's threshold." });
-
+  
   
   Q({ id: "L1-MCQ-21", lec: L, pg: [38], tp: "Preprocessing", sb: "Normalization", df: "medium", ty: "mcq", so: "lecture",
     pr: "When is min-max normalization preferred over z-score standardization?",
@@ -153,14 +132,7 @@
     ex: "Warning: correlation ≠ causation.",
     mt: "Choosing r = 0 for a negative relationship." });
 
-  Q({ id: "L1-MCQ-26", lec: L, pg: [46], tp: "Visualization", sb: "Chart choice", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which chart is recommended for 'distribution + outliers + comparison'?",
-    op: ["Histogram", "Box plot", "Pie chart", "Line chart"],
-    an: 1, at: "Box plot — distribution + outliers + comparison (e.g., sleep by year level).",
-    sl: "Slide 46: histogram (one-variable distribution); box plot (distribution+outliers+comparison); pie (parts of whole — sparingly); bar (categories); scatter (relationship); line (trends over time).",
-    ex: "Choose based on the question, not what looks prettiest.",
-    mt: "Using a histogram to compare groups." });
-
+  
   
   Q({ id: "L1-MCQ-28", lec: L, pg: [50], tp: "Foundation models", sb: "Definition", df: "easy", ty: "mcq", so: "lecture",
     pr: "Which property of foundation models is 'learned from billions of text examples before you use it'?",

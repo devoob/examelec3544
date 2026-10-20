@@ -288,7 +288,11 @@
         if (saved !== null && saved !== undefined && String(saved) === String(i)) input.checked = true;
         input.addEventListener('change', function () {
           setAnswer(q.id, i);
-          if (!opts.suppressFeedback) showImmediateFeedback(q, wrap, i);
+          /* Result is saved silently — the answer is only revealed on double-click. */
+          if (!opts.suppressFeedback) {
+            var fbe = wrap.querySelector('.immediate-feedback');
+            if (fbe) fbe.innerHTML = '<span class="fb neutral">Answer saved — double-click a choice to check it.</span>';
+          }
         });
         label.appendChild(input);
         label.appendChild(el('span', 'option-text', esc(opt)));
@@ -319,9 +323,9 @@
     }
     var fb = el('div', 'immediate-feedback');
     wrap.appendChild(fb);
-    /* Show the stored auto-result immediately when a question loads with a saved answer. */
+    /* If an answer is already stored, confirm it neutrally — never reveal correctness on load. */
     if ((q.type === 'mcq' || q.type === 'tf') && saved !== null && saved !== undefined && !opts.suppressFeedback) {
-      showImmediateFeedback(q, wrap, saved);
+      fb.innerHTML = '<span class="fb neutral">Answer saved — double-click a choice to check it.</span>';
     }
     return wrap;
   }
@@ -370,17 +374,25 @@
     render();
   }
 
-  /* Double-click a choice: green the correct option, red any wrong selection, and open the solution. */
+  /* Double-click a choice: green the correct option, red any wrong selection, show the verdict and open the solution. */
   function revealMcqAnswer(q, wrap, group) {
     var labels = group.querySelectorAll('label.option');
+    var selected = null;
     labels.forEach(function (lab, idx) {
       lab.classList.remove('opt-correct', 'opt-wrong');
       if (idx === q.answerIndex) lab.classList.add('opt-correct');
       else {
         var input = lab.querySelector('input');
-        if (input && input.checked) lab.classList.add('opt-wrong');
+        if (input && input.checked) { lab.classList.add('opt-wrong'); selected = idx; }
       }
+      if (lab.querySelector('input') && lab.querySelector('input').checked && selected === null) selected = idx;
     });
+    var fb = wrap.querySelector('.immediate-feedback');
+    if (fb) {
+      if (selected === null) fb.innerHTML = '<span class="fb neutral">Correct option shown in green.</span>';
+      else if (String(selected) === String(q.answerIndex)) fb.innerHTML = '<span class="fb ok">✓ Correct</span>';
+      else fb.innerHTML = '<span class="fb bad">✗ Wrong — correct answer: ' + esc(q.answer) + '</span>';
+    }
     var card = wrap.closest ? wrap.closest('.q-card') : null;
     if (card) {
       var det = card.querySelector('details.solution');
@@ -388,15 +400,7 @@
     }
   }
 
-  function showImmediateFeedback(q, wrap, chosen) {
-    var fb = wrap.querySelector('.immediate-feedback');
-    if (!fb) return;
-    if (q.answerIndex === null) { fb.innerHTML = ''; return; }
-    var ok = String(chosen) === String(q.answerIndex);
-    fb.innerHTML = ok
-      ? '<span class="fb ok">✓ Correct</span>'
-      : '<span class="fb bad">✗ Not quite — correct answer: ' + esc(q.answer) + '</span>';
-  }
+  
 
   function renderQuestionCard(q, mode) {
     var card = el('article', 'q-card');
@@ -840,12 +844,17 @@
       sideCol.appendChild(cP);
     }
 
+    var hasPit = !!(meta.p && meta.p.length);
     var metaPanel = el('div', 'panel meta-panel');
     metaPanel.innerHTML =
-      '<h3>Exam context</h3>' +
+      '<details class="exam-context"' + (hasPit ? ' open' : '') + '>' +
+      '<summary><strong>Exam context</strong>' +
+      (meta.m ? '<span class="ec-preview"> — ' + esc(meta.m.length > 90 ? meta.m.slice(0, 88) + '…' : meta.m) + '</span>' : '') +
+      '<span class="ec-count">' + (hasPit ? ' · ' + meta.p.length + ' pitfall' + (meta.p.length > 1 ? 's' : '') : ' · no pitfalls') + '</span>' +
+      '</summary>' +
       '<div class="meta-row"><strong>Midterm relevance:</strong> ' + esc(meta.m || 'Not specified.') + '</div>' +
-      '<div class="meta-row"><strong>Common mistakes / pitfalls:</strong>' +
-      ((meta.p && meta.p.length) ? '<ul>' + meta.p.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : ' <span class="muted">None listed for this page.</span>') + '</div>';
+      (hasPit ? '<div class="meta-row"><strong>Common mistakes / pitfalls:</strong><ul>' + meta.p.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>' : '') +
+      '</details>';
     sideCol.appendChild(metaPanel);
     grid2.appendChild(sideCol);
     main.appendChild(grid2);
@@ -1154,21 +1163,13 @@
     csel.addEventListener('change', function () { f.concept = csel.value; S.filters.practice = f; save(); });
     sel.addEventListener('change', function () { f.lec = sel.value; f.concept = ''; S.filters.practice = f; save(); render(); });
 
-    var instant = document.createElement('label');
-    instant.className = 'check';
-    var chk = document.createElement('input');
-    chk.type = 'checkbox';
-    chk.checked = f.instant !== false;
-    chk.addEventListener('change', function () { f.instant = chk.checked; S.filters.practice = f; save(); });
-    instant.appendChild(chk);
-    instant.appendChild(el('span', '', 'Instant feedback'));
     var startBtn = el('button', 'btn btn-primary', 'Start / reshuffle');
     var wrongN = wrongQuestions().length;
     var wrongBtn = el('button', 'btn', '↻ Retry wrong questions (' + wrongN + ')');
     wrongBtn.disabled = !wrongN;
     wrongBtn.title = 'Practice only the questions you answered wrong; answering one correctly removes it from the list.';
     wrongBtn.addEventListener('click', function () { startWrongRetry(); });
-    panel.appendChild(sel); panel.appendChild(csel); panel.appendChild(instant); panel.appendChild(startBtn); panel.appendChild(wrongBtn);
+    panel.appendChild(sel); panel.appendChild(csel); panel.appendChild(startBtn); panel.appendChild(wrongBtn);
     h.appendChild(panel);
 
     var host = el('div', '');

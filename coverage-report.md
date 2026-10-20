@@ -2,33 +2,33 @@
 
 Generated from the data files themselves. Sources: lecture01–06.pdf and Mid-term Exam Example Questions.pdf. Each lecture page entry contains the full extracted slide text (verbatim, collapsed in the UI), an embedded slide image, midterm relevance, pitfalls, and linked question counts.
 
-**Question policy — concepts and methods only.** Every question is written as a standalone exam-style item. Removed entirely: course-structure questions (module/session/lecture framing, objectives, roadmaps, recaps, takeaways listings), logistics, AI-collaboration meta, demo narration, "what did slide N say" phrasing, and slide-trivia recall (dataset counts, label lists, slide-specific figures). Prompts contain no slide/lecture references; any numeric data needed for a calculation is given inside the question. Provenance (Lecture X, p. N) appears only in the source line under each solution.
+**Question policy — concepts and methods only.** Every question is a standalone exam-style item: no slide/lecture/session/demo framing, no course logistics, no slide-trivia recall. Duplicate questions have been removed and replaced by fresh number-variant drills: no exact-prompt duplicates remain, and no two same-topic questions share near-identical answers (verified programmatically: 0 pairs with answer similarity ≥ 0.8).
 
 ## Summary
 
 | Source | Pages in PDF | Pages included | Full extraction | Partial (check image) | Image-only | Questions |
 |---|---|---|---|---|---|---|
-| lecture01.pdf (Lecture 1) | 73 | 73 | 59 | 12 | 2 | 70 |
-| lecture02.pdf (Lecture 2) | 80 | 80 | 73 | 7 | 0 | 111 |
-| lecture03.pdf (Lecture 3) | 56 | 56 | 51 | 5 | 0 | 99 |
-| lecture04.pdf (Lecture 4) | 66 | 66 | 60 | 6 | 0 | 76 |
-| lecture05.pdf (Lecture 5) | 58 | 58 | 54 | 4 | 0 | 89 |
-| lecture06.pdf (Lecture 6) | 55 | 55 | 52 | 2 | 1 | 82 |
+| lecture01.pdf (Lecture 1) | 73 | 73 | 59 | 12 | 2 | 71 |
+| lecture02.pdf (Lecture 2) | 80 | 80 | 73 | 7 | 0 | 94 |
+| lecture03.pdf (Lecture 3) | 56 | 56 | 51 | 5 | 0 | 104 |
+| lecture04.pdf (Lecture 4) | 66 | 66 | 60 | 6 | 0 | 80 |
+| lecture05.pdf (Lecture 5) | 58 | 58 | 54 | 4 | 0 | 91 |
+| lecture06.pdf (Lecture 6) | 55 | 55 | 52 | 2 | 1 | 83 |
 | Mid-term Exam Example Questions.pdf | 7 | 7 | 7 (reproduced) | — | — | 24 |
 | Integrated (cross-lecture) | — | — | — | — | — | 33 |
-| **Total question bank** | | | | | | **584** |
+| **Total question bank** | | | | | | **580** |
 
 ## Question bank breakdown
 
 | Type | Count | | Difficulty | Count | | Source | Count |
 |---|---|---|---|---|---|---|---|
-| mcq | 401 | | easy | 66 | | lecture | 527 |
-| calc | 118 | | medium | 361 | | integrated | 33 |
-| long | 20 | | hard | 157 | | midterm example | 24 |
-| short | 42 | |  |  | |  |  |
+| mcq | 402 | | easy | 78 | | lecture | 523 |
+| calc | 114 | | medium | 349 | | integrated | 33 |
+| long | 20 | | hard | 153 | | midterm example | 24 |
+| short | 41 | |  |  | |  |  |
 | tf | 3 | |  |  | |  |  |
 
-Objective (MCQ + True/False) pool for MCQ Sets: **404** questions — covers all set sizes up to 400.
+Objective (MCQ + True/False) pool for MCQ Sets: **405** questions — covers all set sizes up to 400.
 
 ## Concept map (review-by-concept)
 
@@ -93,9 +93,9 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L1 | 9 | Grading Breakdown | full | yes | 0 |  |  |
 | L1 | 10 | What Success Looks Like | full | yes | 0 |  |  |
 | L1 | 11 | Today's Journey (section divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
-| L1 | 12 | What is Data Science? (section divider) | partial | yes | 2 | L1-CC-11 L1-CC-20 | Short extraction (divider/administrative or figure slide) — image provided. |
-| L1 | 13 | Defining Data Science | full | yes | 2 | L1-13-Q1 L1-MCQ-05 |  |
-| L1 | 14 | The Data Science Venn Diagram | full | yes | 2 | L1-14-Q1 L1-MCQ-06 |  |
+| L1 | 12 | What is Data Science? (section divider) | partial | yes | 3 | L1-CC-11 L1-CC-20 L1-DR-07 | Short extraction (divider/administrative or figure slide) — image provided. |
+| L1 | 13 | Defining Data Science | full | yes | 1 | L1-13-Q1 |  |
+| L1 | 14 | The Data Science Venn Diagram | full | yes | 1 | L1-14-Q1 |  |
 | L1 | 15 | Data Science vs. Related Fields | full | yes | 2 | L1-15-Q1 L1-MCQ-07 |  |
 | L1 | 16 | The Data Science Workflow | full | yes | 3 | L1-CC-18 L1-16-Q1 L1-MCQ-08 |  |
 | L1 | 17 | Data Types You'll Encounter | full | yes | 3 | L1-CC-16 L1-17-Q1 L1-MCQ-09 |  |
@@ -117,17 +117,17 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L1 | 33 | Common Data Quality Issues | full | yes | 4 | L1-CC-19 L1-CC-21 L1-33-Q1 L1-MCQ-17 |  |
 | L1 | 34 | Your Raw Survey Data | full | yes | 1 | L1-34-Q1 |  |
 | L1 | 35 | Handling Missing Values | full | yes | 3 | L1-CC-08 L1-35-Q1 L1-MCQ-18 |  |
-| L1 | 36 | Dealing with Outliers | full | yes | 4 | L1-CC-07 L1-CC-12 L1-36-Q1 L1-MCQ-19 |  |
+| L1 | 36 | Dealing with Outliers | full | yes | 3 | L1-CC-07 L1-CC-12 L1-36-Q1 |  |
 | L1 | 37 | AI-Assisted Data Cleaning | full | yes | 0 |  |  |
-| L1 | 38 | Data Normalization and Standardization | full | yes | 5 | L1-CC-02 L1-CC-03 L1-38-Q1 L1-38-Q2 L1-MCQ-21 |  |
+| L1 | 38 | Data Normalization and Standardization | full | yes | 5 | L1-DR-01 L1-DR-02 L1-38-Q1 L1-38-Q2 L1-MCQ-21 |  |
 | L1 | 39 | Data Analysis (section divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
 | L1 | 40 | Exploratory Data Analysis (EDA) | full | yes | 2 | L1-40-Q1 L1-MCQ-22 |  |
-| L1 | 41 | Descriptive Statistics: Summarizing Your Data | full | yes | 9 | L1-CC-01 L1-CC-04 L1-CC-09 L1-CC-13 L1-CC-14 L1-CC-15 L1-CC-17 L1-41-Q1 L1-MCQ-23 |  |
+| L1 | 41 | Descriptive Statistics: Summarizing Your Data | full | yes | 12 | L1-CC-01 L1-CC-04 L1-CC-09 L1-CC-13 L1-CC-14 L1-CC-15 L1-CC-17 L1-DR-03 L1-DR-04 L1-DR-05 L1-41-Q1 L1-MCQ-23 |  |
 | L1 | 42 | Your Survey Statistics | full | yes | 0 |  |  |
 | L1 | 43 | Understanding Distributions | full | yes | 3 | L1-CC-06 L1-43-Q1 L1-MCQ-24 |  |
-| L1 | 44 | Correlation: Measuring Relationships | full | yes | 4 | L1-CC-05 L1-CC-10 L1-44-Q1 L1-MCQ-25 |  |
+| L1 | 44 | Correlation: Measuring Relationships | full | yes | 5 | L1-CC-05 L1-CC-10 L1-DR-06 L1-44-Q1 L1-MCQ-25 |  |
 | L1 | 45 | Data Visualization: Seeing Your Data | full | yes | 1 | L1-45-Q1 |  |
-| L1 | 46 | Choosing the Right Chart | full | yes | 2 | L1-46-Q1 L1-MCQ-26 |  |
+| L1 | 46 | Choosing the Right Chart | full | yes | 1 | L1-46-Q1 |  |
 | L1 | 47 | Visualizing Your Survey Data | full | yes | 0 |  |  |
 | L1 | 48 | AI for Analyzing Text Responses | full | yes | 0 |  |  |
 | L1 | 49 | Foundation Models (AI Agents) (section divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
@@ -169,25 +169,25 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L2 | 12 | Extending to Higher Dimensions | full | yes | 0 |  |  |
 | L2 | 13 | Why This View Matters | full | yes | 1 | L2-13-Q1 |  |
 | L2 | 14 | Measuring Relationships (divider) | partial | yes | 1 | L2-CC-25 | Short extraction (divider/administrative or figure slide) — image provided. |
-| L2 | 15 | Euclidean Distance: The Straight Line | full | yes | 4 | L2-CC-01 L2-CC-03 L2-15-Q1 L2-MCQ-03 |  |
+| L2 | 15 | Euclidean Distance: The Straight Line | full | yes | 4 | L2-CC-03 L2-DR-01 L2-15-Q1 L2-MCQ-03 |  |
 | L2 | 16 | Euclidean Distance Example | full | yes | 2 | L2-16-Q1 L2-MCQ-04 |  |
-| L2 | 17 | Cosine Similarity: The Angle | full | yes | 4 | L2-CC-02 L2-CC-04 L2-17-Q1 L2-MCQ-05 |  |
+| L2 | 17 | Cosine Similarity: The Angle | full | yes | 4 | L2-CC-02 L2-CC-04 L2-DR-02 L2-17-Q1 |  |
 | L2 | 18 | Cosine Similarity Example | full | yes | 4 | L2-CC-20 L2-CC-26 L2-18-Q1 L2-MCQ-06 |  |
 | L2 | 19 | Euclidean vs. Cosine: Visual Comparison | full | yes | 2 | L2-CC-16 L2-19-Q1 |  |
-| L2 | 20 | When to Use Which? | full | yes | 4 | L2-CC-05 L2-CC-30 L2-20-Q1 L2-MCQ-07 |  |
+| L2 | 20 | When to Use Which? | full | yes | 3 | L2-CC-05 L2-20-Q1 L2-MCQ-07 |  |
 | L2 | 21 | The Choice Matters | full | yes | 3 | L2-21-Q1 L2-MCQ-08 L2-MCQ-09 |  |
 | L2 | 22 | CTA Demo 1: Iterative Refinement | full | yes | 0 |  |  |
 | L2 | 23 | LIVE DEMO — Exploring distance metrics | full | yes | 0 |  |  |
 | L2 | 24 | Demo 1 Takeaways | full | yes | 0 |  |  |
-| L2 | 25 | Relationships Between Features | full | yes | 2 | L2-25-Q1 L2-MCQ-11 |  |
-| L2 | 26 | Variance: Spread of One Feature | full | yes | 3 | L2-CC-06 L2-26-Q1 L2-MCQ-12 |  |
+| L2 | 25 | Relationships Between Features | full | yes | 1 | L2-25-Q1 |  |
+| L2 | 26 | Variance: Spread of One Feature | full | yes | 2 | L2-26-Q1 L2-MCQ-12 |  |
 | L2 | 27 | Why Divide by n−1? (image-only slide — content verified from the slide image) | partial | yes | 1 | L2-27-Q1 | Image-only in extraction; content transcribed by hand: Bessel correction proof + repeated-sampling table. |
-| L2 | 28 | Covariance: Two Features Together | full | yes | 5 | L2-CC-07 L2-CC-08 L2-CC-21 L2-28-Q1 L2-MCQ-13 |  |
-| L2 | 29 | Visualizing Covariance | full | yes | 2 | L2-29-Q1 L2-MCQ-14 |  |
+| L2 | 28 | Covariance: Two Features Together | full | yes | 6 | L2-CC-07 L2-CC-08 L2-CC-21 L2-DR-03 L2-DR-04 L2-28-Q1 |  |
+| L2 | 29 | Visualizing Covariance | full | yes | 1 | L2-29-Q1 |  |
 | L2 | 30 | Visualizing Covariance | full | yes | 0 |  |  |
-| L2 | 31 | The Covariance Matrix | full | yes | 5 | L2-CC-09 L2-CC-10 L2-CC-27 L2-31-Q1 L2-MCQ-15 |  |
-| L2 | 32 | Reading the Covariance Matrix | full | yes | 2 | L2-32-Q1 L2-MCQ-16 |  |
-| L2 | 33 | The Shape of Data | full | yes | 2 | L2-33-Q1 L2-MCQ-17 |  |
+| L2 | 31 | The Covariance Matrix | full | yes | 4 | L2-CC-10 L2-CC-27 L2-DR-09 L2-31-Q1 |  |
+| L2 | 32 | Reading the Covariance Matrix | full | yes | 1 | L2-32-Q1 |  |
+| L2 | 33 | The Shape of Data | full | yes | 1 | L2-33-Q1 |  |
 | L2 | 34 | CTA Demo 2: Verifying Code from the CTA | full | yes | 0 |  |  |
 | L2 | 35 | LIVE DEMO — Verifying covariance | full | yes | 0 |  |  |
 | L2 | 36 | Demo 2 Takeaways | full | yes | 1 | L2-MCQ-19 |  |
@@ -196,24 +196,24 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L2 | 39 | Finding What Matters — Principal Component Analysis (divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
 | L2 | 40 | The Problem with High Dimensions | full | yes | 0 |  |  |
 | L2 | 41 | The Curse of Dimensionality | full | yes | 2 | L2-41-Q1 L2-MCQ-22 |  |
-| L2 | 42 | The Need to Reduce | full | yes | 2 | L2-42-Q1 L2-MCQ-23 |  |
-| L2 | 43 | The Goal: Preserve What Matters | full | yes | 2 | L2-43-Q1 L2-MCQ-24 |  |
+| L2 | 42 | The Need to Reduce | full | yes | 1 | L2-42-Q1 |  |
+| L2 | 43 | The Goal: Preserve What Matters | full | yes | 1 | L2-43-Q1 |  |
 | L2 | 44 | The Key Question | full | yes | 0 |  |  |
-| L2 | 45 | Matrix Transformations | full | yes | 2 | L2-45-Q1 L2-MCQ-25 |  |
-| L2 | 46 | Special Directions: Eigenvectors | full | yes | 3 | L2-CC-11 L2-CC-22 L2-46-Q1 |  |
-| L2 | 47 | Eigenvalues: The Stretch Factor | full | yes | 3 | L2-CC-12 L2-47-Q1 L2-MCQ-26 |  |
+| L2 | 45 | Matrix Transformations | full | yes | 1 | L2-45-Q1 |  |
+| L2 | 46 | Special Directions: Eigenvectors | full | yes | 4 | L2-CC-11 L2-CC-22 L2-DR-05 L2-46-Q1 |  |
+| L2 | 47 | Eigenvalues: The Stretch Factor | full | yes | 2 | L2-CC-12 L2-47-Q1 |  |
 | L2 | 48 | Visual: Eigenvectors in Action | full | yes | 0 |  |  |
-| L2 | 49 | Eigenvectors of the Covariance Matrix | full | yes | 3 | L2-CC-17 L2-49-Q1 L2-MCQ-27 |  |
+| L2 | 49 | Eigenvectors of the Covariance Matrix | full | yes | 2 | L2-CC-17 L2-49-Q1 |  |
 | L2 | 50 | The Connection to Variance | full | yes | 3 | L2-CC-29 L2-50-Q1 L2-MCQ-28 |  |
-| L2 | 51 | Eigenvectors Define Principal Directions | full | yes | 2 | L2-51-Q1 L2-MCQ-29 |  |
+| L2 | 51 | Eigenvectors Define Principal Directions | full | yes | 1 | L2-51-Q1 |  |
 | L2 | 52 | Visual: PCA on 2D Data | full | yes | 0 |  |  |
-| L2 | 53 | Eigenvectors as a New Coordinate System | full | yes | 2 | L2-53-Q1 L2-MCQ-30 |  |
+| L2 | 53 | Eigenvectors as a New Coordinate System | full | yes | 1 | L2-53-Q1 |  |
 | L2 | 54 | The PCA Algorithm (divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
-| L2 | 55 | The Four Steps of PCA | full | yes | 3 | L2-CC-13 L2-55-Q1 L2-MCQ-31 |  |
-| L2 | 56 | Step 1: Center the Data | full | yes | 3 | L2-CC-23 L2-56-Q1 L2-MCQ-32 |  |
+| L2 | 55 | The Four Steps of PCA | full | yes | 1 | L2-55-Q1 |  |
+| L2 | 56 | Step 1: Center the Data | full | yes | 2 | L2-CC-23 L2-56-Q1 |  |
 | L2 | 57 | Step 2: Compute Covariance Matrix | full | yes | 2 | L2-57-Q1 L2-MCQ-33 |  |
-| L2 | 58 | Step 3: Find Eigenvectors | full | yes | 2 | L2-58-Q1 L2-MCQ-34 |  |
-| L2 | 59 | Step 4: Project the Data | full | yes | 3 | L2-CC-15 L2-CC-28 L2-59-Q1 |  |
+| L2 | 58 | Step 3: Find Eigenvectors | full | yes | 1 | L2-58-Q1 |  |
+| L2 | 59 | Step 4: Project the Data | full | yes | 5 | L2-CC-15 L2-CC-28 L2-DR-08 L2-DR-10 L2-59-Q1 |  |
 | L2 | 60 | Complete PCA Implementation | full | yes | 1 | L2-MCQ-35 |  |
 | L2 | 61 | PCA on Iris: Step by Step | full | yes | 1 | L2-61-Q1 |  |
 | L2 | 62 | Iris PCA Visualization | full | yes | 1 | L2-MCQ-37 |  |
@@ -221,12 +221,12 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L2 | 64 | LIVE DEMO — Debugging PCA understanding | full | yes | 0 |  |  |
 | L2 | 65 | Demo 3 Takeaways | full | yes | 1 | L2-65-Q1 |  |
 | L2 | 66 | Selecting Components (divider) | full | yes | 1 | L2-66-Q1 |  |
-| L2 | 67 | Explained Variance Ratio | full | yes | 3 | L2-CC-14 L2-67-Q1 L2-MCQ-39 |  |
-| L2 | 68 | The Scree Plot | full | yes | 3 | L2-CC-18 L2-68-Q1 L2-MCQ-40 |  |
-| L2 | 69 | Cumulative Explained Variance | full | yes | 1 | L2-MCQ-41 |  |
-| L2 | 70 | The 90% Rule of Thumb | full | yes | 4 | L2-CC-19 L2-CC-24 L2-70-Q1 L2-MCQ-42 |  |
+| L2 | 67 | Explained Variance Ratio | full | yes | 3 | L2-CC-14 L2-DR-06 L2-67-Q1 |  |
+| L2 | 68 | The Scree Plot | full | yes | 2 | L2-CC-18 L2-68-Q1 |  |
+| L2 | 69 | Cumulative Explained Variance | full | yes | 0 |  |  |
+| L2 | 70 | The 90% Rule of Thumb | full | yes | 4 | L2-CC-19 L2-CC-24 L2-DR-07 L2-70-Q1 |  |
 | L2 | 71 | Applying to Real Data: Wine Dataset | full | yes | 0 |  |  |
-| L2 | 72 | But Is Variance Always Right? | full | yes | 3 | L2-CC-31 L2-72-Q1 L2-MCQ-44 |  |
+| L2 | 72 | But Is Variance Always Right? | full | yes | 2 | L2-CC-31 L2-72-Q1 |  |
 | L2 | 73 | CTA Demo 4: Challenging for Completeness | full | yes | 0 |  |  |
 | L2 | 74 | LIVE DEMO — When does variance fail? | full | yes | 0 |  |  |
 | L2 | 75 | Demo 4 Takeaways | full | yes | 1 | L2-MCQ-45 |  |
@@ -244,11 +244,11 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L3 | 7 | Population vs. Sample — The Fundamental Distinction | full | yes | 2 | L3-7-Q1 L3-MCQ-03 |  |
 | L3 | 8 | Notation We'll Use Today | full | yes | 2 | L3-8-Q1 L3-MCQ-04 |  |
 | L3 | 9 | From Random Variables to Events | full | yes | 2 | L3-9-Q1 L3-MCQ-05 |  |
-| L3 | 10 | Three Fundamental Probability Rules | full | yes | 9 | L3-CC-01 L3-CC-02 L3-CC-03 L3-CC-17 L3-CC-23 L3-CC-28 L3-10-Q1 L3-MCQ-06 L3-MCQ-07 |  |
+| L3 | 10 | Three Fundamental Probability Rules | full | yes | 10 | L3-CC-01 L3-CC-02 L3-CC-03 L3-CC-17 L3-CC-23 L3-CC-28 L3-DR-01 L3-10-Q1 L3-MCQ-06 L3-MCQ-07 |  |
 | L3 | 11 | The Counting Perspective | full | yes | 1 | L3-11-Q1 |  |
 | L3 | 12 | Summary Statistics — Measuring Location | full | yes | 2 | L3-12-Q1 L3-MCQ-09 |  |
 | L3 | 13 | Summary Statistics — Measuring Spread | full | yes | 3 | L3-CC-27 L3-13-Q1 L3-MCQ-10 |  |
-| L3 | 14 | Summary Statistics — Measuring Relationships | full | yes | 2 | L3-14-Q1 L3-MCQ-11 |  |
+| L3 | 14 | Summary Statistics — Measuring Relationships | full | yes | 1 | L3-14-Q1 |  |
 | L3 | 15 | Correlation — Properties and Limitations | full | yes | 2 | L3-15-Q1 L3-MCQ-12 |  |
 | L3 | 16 | The Tools — Visualizations | full | yes | 2 | L3-16-Q1 L3-MCQ-13 |  |
 | L3 | 17 | A Test of Our Tools | full | yes | 1 | L3-17-Q1 |  |
@@ -256,23 +256,23 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L3 | 19 | The Reveal | full | yes | 2 | L3-19-Q1 L3-MCQ-14 |  |
 | L3 | 20 | Why This Matters Now | full | yes | 1 | L3-20-Q1 |  |
 | L3 | 21 | Your First Prompting Habit | full | yes | 0 |  |  |
-| L3 | 22 | Why Distributions Matter | full | yes | 3 | L3-CC-16 L3-22-Q1 L3-MCQ-17 |  |
-| L3 | 23 | Normal Distribution — The Bell Curve | full | yes | 5 | L3-CC-14 L3-CC-21 L3-23-Q1 L3-MCQ-18 L3-MCQ-19 |  |
-| L3 | 24 | Binomial Distribution — Counting Successes | full | yes | 4 | L3-CC-08 L3-CC-19 L3-24-Q1 L3-MCQ-20 |  |
-| L3 | 25 | Poisson Distribution — Counting Rare Events | full | yes | 5 | L3-CC-09 L3-CC-20 L3-CC-26 L3-25-Q1 L3-MCQ-21 |  |
+| L3 | 22 | Why Distributions Matter | full | yes | 2 | L3-22-Q1 L3-MCQ-17 |  |
+| L3 | 23 | Normal Distribution — The Bell Curve | full | yes | 6 | L3-CC-14 L3-CC-21 L3-DR-07 L3-23-Q1 L3-MCQ-18 L3-MCQ-19 |  |
+| L3 | 24 | Binomial Distribution — Counting Successes | full | yes | 5 | L3-CC-08 L3-CC-19 L3-DR-05 L3-24-Q1 L3-MCQ-20 |  |
+| L3 | 25 | Poisson Distribution — Counting Rare Events | full | yes | 6 | L3-CC-09 L3-CC-20 L3-CC-26 L3-DR-06 L3-25-Q1 L3-MCQ-21 |  |
 | L3 | 26 | Exponential Distribution — Waiting Times | full | yes | 3 | L3-CC-10 L3-26-Q1 L3-MCQ-22 |  |
 | L3 | 27 | Reasoning Under Uncertainty (divider) | full | yes | 0 |  |  |
-| L3 | 28 | Conditional Probability — The Foundation | full | yes | 3 | L3-CC-04 L3-28-Q1 L3-MCQ-23 |  |
+| L3 | 28 | Conditional Probability — The Foundation | full | yes | 4 | L3-CC-04 L3-DR-02 L3-28-Q1 L3-MCQ-23 |  |
 | L3 | 29 | The Conditional Probability Trap | full | yes | 3 | L3-CC-05 L3-29-Q1 L3-MCQ-24 |  |
-| L3 | 30 | The Law of Total Probability | full | yes | 3 | L3-CC-07 L3-30-Q1 L3-MCQ-25 |  |
-| L3 | 31 | Bayes' Rule — Updating Beliefs with Evidence | full | yes | 3 | L3-CC-06 L3-31-Q1 L3-MCQ-26 |  |
+| L3 | 30 | The Law of Total Probability | full | yes | 4 | L3-CC-07 L3-DR-04 L3-30-Q1 L3-MCQ-25 |  |
+| L3 | 31 | Bayes' Rule — Updating Beliefs with Evidence | full | yes | 4 | L3-CC-06 L3-DR-03 L3-31-Q1 L3-MCQ-26 |  |
 | L3 | 32 | Bayes' Rule — The Counting Perspective | full | yes | 3 | L3-CC-18 L3-32-Q1 L3-MCQ-27 |  |
 | L3 | 33 | CTA Demo B: The Medical Test Problem | full | yes | 1 | L3-33-Q1 |  |
 | L3 | 34 | The Medical Test: Bayes' Rule | full | yes | 0 |  |  |
-| L3 | 35 | The Base Rate Reveal | full | yes | 2 | L3-35-Q1 L3-MCQ-28 |  |
+| L3 | 35 | The Base Rate Reveal | full | yes | 1 | L3-MCQ-28 |  |
 | L3 | 36 | Why Base Rates Are Counter-intuitive | full | yes | 1 | L3-MCQ-29 |  |
 | L3 | 37 | From Point Estimates to Intervals | full | yes | 1 | L3-37-Q1 |  |
-| L3 | 38 | Constructing a Confidence Interval | full | yes | 6 | L3-CC-11 L3-CC-12 L3-CC-22 L3-38-Q1 L3-MCQ-30 L3-MCQ-31 |  |
+| L3 | 38 | Constructing a Confidence Interval | full | yes | 6 | L3-CC-12 L3-CC-22 L3-DR-08 L3-38-Q1 L3-MCQ-30 L3-MCQ-31 |  |
 | L3 | 39 | What "95% Confidence" Really Means | full | yes | 2 | L3-39-Q1 L3-MCQ-32 |  |
 | L3 | 40 | The Common Misconception | full | yes | 2 | L3-CC-15 L3-40-Q1 |  |
 | L3 | 41 | The Common Misconception (image-only slide — content verified from the slide image) | partial | yes | 1 | L3-41-Q1 | Image-only in extraction; simulation figure transcribed by hand. |
@@ -280,7 +280,7 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L3 | 43 | Interpreting AI-Generated Intervals | full | yes | 1 | L3-MCQ-34 |  |
 | L3 | 44 | Making Decisions with Data (divider) | full | yes | 1 | L3-44-Q1 |  |
 | L3 | 45 | The Logic of Hypothesis Testing | full | yes | 2 | L3-45-Q1 L3-MCQ-35 |  |
-| L3 | 46 | The Hypothesis Testing Procedure | full | yes | 3 | L3-CC-25 L3-46-Q1 L3-MCQ-36 |  |
+| L3 | 46 | The Hypothesis Testing Procedure | full | yes | 4 | L3-CC-25 L3-DR-09 L3-46-Q1 L3-MCQ-36 |  |
 | L3 | 47 | What the p-Value Actually Means | full | yes | 2 | L3-CC-13 L3-47-Q1 |  |
 | L3 | 48 | CTA Demo D: P-Value Misconceptions | full | yes | 0 |  |  |
 | L3 | 49 | The P-Value Misconception Reveal | full | yes | 2 | L3-49-Q1 L3-MCQ-37 |  |
@@ -319,9 +319,9 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L4 | 26 | PART 2 — Professional Data Wrangling (divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
 | L4 | 27 | The Professional Data Wrangling Workflow | full | yes | 2 | L4-27-Q1 L4-MCQ-17 |  |
 | L4 | 28 | Meet the Telco Dataset | full | yes | 2 | L4-28-Q1 L4-MCQ-18 |  |
-| L4 | 29 | Step 1: Systematic Data Quality Assessment | full | yes | 4 | L4-CC-01 L4-CC-17 L4-CC-23 L4-29-Q1 |  |
+| L4 | 29 | Step 1: Systematic Data Quality Assessment | full | yes | 3 | L4-CC-17 L4-CC-23 L4-29-Q1 |  |
 | L4 | 30 | Structural Assessment | full | yes | 2 | L4-30-Q1 L4-MCQ-20 |  |
-| L4 | 31 | Completeness Assessment | full | yes | 5 | L4-CC-02 L4-CC-10 L4-CC-21 L4-31-Q1 L4-MCQ-21 |  |
+| L4 | 31 | Completeness Assessment | full | yes | 7 | L4-CC-02 L4-CC-10 L4-CC-21 L4-DR-01 L4-DR-05 L4-31-Q1 L4-MCQ-21 |  |
 | L4 | 32 | Validity Assessment | full | yes | 3 | L4-CC-09 L4-32-Q1 L4-MCQ-22 |  |
 | L4 | 33 | Distributional Assessment | full | yes | 2 | L4-33-Q1 L4-MCQ-23 |  |
 | L4 | 34 | CTA Demo — Automated profiling with human interpretation | full | yes | 0 |  |  |
@@ -329,9 +329,9 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L4 | 36 | CTA Demo 2: What the Human Catches | full | yes | 0 |  |  |
 | L4 | 37 | VERIFY in Action: Data Quality Assessment | full | yes | 0 |  |  |
 | L4 | 38 | The Data Quality Report as Professional Deliverable | full | yes | 1 | L4-MCQ-27 |  |
-| L4 | 39 | Why is Data Missing? Three Mechanisms | full | yes | 6 | L4-CC-03 L4-CC-13 L4-CC-16 L4-CC-24 L4-39-Q1 L4-MCQ-28 |  |
+| L4 | 39 | Why is Data Missing? Three Mechanisms | full | yes | 7 | L4-CC-03 L4-CC-13 L4-CC-16 L4-CC-24 L4-DR-04 L4-39-Q1 L4-MCQ-28 |  |
 | L4 | 40 | Why is Data Missing? Three Mechanisms | partial | yes | 0 |  | Image-only diagram of MCAR/MAR/MNAR; definitions on p. 39 (full). |
-| L4 | 41 | Why Mechanisms Matter for Cleaning | full | yes | 4 | L4-CC-04 L4-CC-25 L4-41-Q1 L4-MCQ-29 |  |
+| L4 | 41 | Why Mechanisms Matter for Cleaning | full | yes | 3 | L4-CC-25 L4-41-Q1 L4-MCQ-29 |  |
 | L4 | 42 | Cleaning Strategy Toolkit | full | yes | 3 | L4-CC-05 L4-42-Q1 L4-MCQ-30 |  |
 | L4 | 43 | CTA Demo — Consequences of cleaning choices | full | yes | 0 |  |  |
 | L4 | 44 | CTA Demo 3: Three Strategies Compared | full | yes | 2 | L4-44-Q1 L4-MCQ-31 |  |
@@ -344,9 +344,9 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L4 | 51 | EDA in Practice: Telco Dataset | full | yes | 1 | L4-51-Q1 |  |
 | L4 | 52 | CTA Demo — Discovery workflow | full | yes | 0 |  |  |
 | L4 | 53 | CTA Demo 4: The Discovery Thread | full | yes | 0 |  |  |
-| L4 | 54 | Categorical Encoding | full | yes | 6 | L4-CC-06 L4-CC-14 L4-CC-18 L4-CC-22 L4-54-Q1 L4-MCQ-36 |  |
+| L4 | 54 | Categorical Encoding | full | yes | 8 | L4-CC-06 L4-CC-14 L4-CC-18 L4-CC-22 L4-DR-02 L4-DR-06 L4-54-Q1 L4-MCQ-36 |  |
 | L4 | 55 | Encoding the Telco Data | full | yes | 2 | L4-55-Q1 L4-MCQ-37 |  |
-| L4 | 56 | Scaling Review: When and Why | full | yes | 5 | L4-CC-07 L4-CC-12 L4-CC-19 L4-56-Q1 L4-MCQ-38 |  |
+| L4 | 56 | Scaling Review: When and Why | full | yes | 6 | L4-CC-07 L4-CC-12 L4-CC-19 L4-DR-03 L4-56-Q1 L4-MCQ-38 |  |
 | L4 | 57 | Feature Engineering: First Taste | full | yes | 2 | L4-57-Q1 L4-MCQ-39 |  |
 | L4 | 58 | Pipeline Building | full | yes | 1 | L4-58-Q1 |  |
 | L4 | 59 | The Reproducible Pipeline | full | yes | 4 | L4-CC-08 L4-CC-15 L4-59-Q1 L4-MCQ-40 |  |
@@ -364,9 +364,9 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L5 | 5 | The CTA's New Role: You Direct, It Implements, You Evaluate | full | yes | 0 |  |  |
 | L5 | 6 | Regression Answers the Question of "How Much" | full | yes | 2 | L5-6-Q1 L5-MCQ-01 |  |
 | L5 | 7 | Best-fitting line illustration | full | yes | 1 | L5-7-Q1 |  |
-| L5 | 8 | The Prediction Equation | full | yes | 5 | L5-CC-01 L5-CC-15 L5-CC-16 L5-8-Q1 L5-MCQ-02 |  |
+| L5 | 8 | The Prediction Equation | full | yes | 6 | L5-CC-01 L5-CC-15 L5-CC-16 L5-DR-02 L5-8-Q1 L5-MCQ-02 |  |
 | L5 | 9 | Residuals Measure How Far Each Prediction Misses | full | yes | 3 | L5-CC-03 L5-9-Q1 L5-MCQ-03 |  |
-| L5 | 10 | OLS Finds the Line That Minimizes Total Squared Error | full | yes | 4 | L5-CC-02 L5-CC-20 L5-10-Q1 L5-MCQ-04 |  |
+| L5 | 10 | OLS Finds the Line That Minimizes Total Squared Error | full | yes | 4 | L5-CC-20 L5-DR-01 L5-10-Q1 L5-MCQ-04 |  |
 | L5 | 11 | CTA Demo — Does the choice of error measure matter? | full | yes | 0 |  |  |
 | L5 | 12 | Squared Errors Penalize Large Mistakes More Heavily | full | yes | 2 | L5-12-Q1 L5-MCQ-05 |  |
 | L5 | 13 | Multiple Regression Uses Several Features Simultaneously | full | yes | 2 | L5-13-Q1 L5-MCQ-06 |  |
@@ -379,21 +379,21 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L5 | 20 | Session 1 Summary: Regression Finds Relationships, Coefficients Tell | full | yes | 0 |  |  |
 | L5 | 21 | From Building Models to Judging Them (divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
 | L5 | 22 | Multicollinearity Means Predictors Share Information | full | yes | 3 | L5-CC-08 L5-22-Q1 L5-MCQ-14 |  |
-| L5 | 23 | Diagnose Multicollinearity with Correlation Matrices and VIF | full | yes | 4 | L5-CC-13 L5-CC-18 L5-23-Q1 L5-MCQ-15 |  |
+| L5 | 23 | Diagnose Multicollinearity with Correlation Matrices and VIF | full | yes | 5 | L5-CC-13 L5-CC-18 L5-DR-06 L5-23-Q1 L5-MCQ-15 |  |
 | L5 | 24 | When Multicollinearity is a Problem and When It isn't | full | yes | 3 | L5-CC-24 L5-24-Q1 L5-MCQ-16 |  |
 | L5 | 25 | A Model That Memorizes Noise Has Overfit | full | yes | 1 | L5-25-Q1 |  |
 | L5 | 26 | Train/Test Split Separates Learning from Evaluation | full | yes | 3 | L5-CC-07 L5-26-Q1 L5-MCQ-17 |  |
-| L5 | 27 | R² Measures the Fraction of Variance Your Model Explains | full | yes | 4 | L5-CC-04 L5-CC-17 L5-27-Q1 L5-MCQ-18 |  |
+| L5 | 27 | R² Measures the Fraction of Variance Your Model Explains | full | yes | 5 | L5-CC-04 L5-CC-17 L5-DR-03 L5-27-Q1 L5-MCQ-18 |  |
 | L5 | 28 | R² has Limitations: High R² Does Not Guarantee a Good Model | full | yes | 3 | L5-CC-06 L5-28-Q1 L5-MCQ-19 |  |
 | L5 | 29 | Residual Plots Reveal What Metrics Cannot | full | yes | 2 | L5-29-Q1 L5-MCQ-20 |  |
 | L5 | 30 | Four Residual Patterns and What They Diagnose | full | yes | 2 | L5-CC-14 L5-30-Q1 |  |
 | L5 | 31 | CTA Demo — Complete model evaluation workflow | full | yes | 0 |  |  |
 | L5 | 32 | The CTA Computes Quickly - But Interpreting Residuals Requires You | full | yes | 0 |  |  |
-| L5 | 33 | The Bias-Variance Tradeoff: The Dartboard Analogy | full | yes | 3 | L5-CC-09 L5-33-Q1 L5-MCQ-21 |  |
+| L5 | 33 | The Bias-Variance Tradeoff: The Dartboard Analogy | full | yes | 4 | L5-CC-09 L5-DR-05 L5-33-Q1 L5-MCQ-21 |  |
 | L5 | 34 | Underfitting, Good Fit, and Overfitting Visualized | full | yes | 2 | L5-34-Q1 L5-MCQ-22 |  |
 | L5 | 35 | More Complex Models Are Not Always Better | full | yes | 2 | L5-35-Q1 L5-MCQ-23 |  |
 | L5 | 36 | Real Cars: More Coefficients, More Flexible Fits | full | yes | 1 | L5-MCQ-24 |  |
-| L5 | 37 | Training Error Falls, but Test Error Can Rise | full | yes | 4 | L5-CC-05 L5-CC-22 L5-CC-23 L5-37-Q1 |  |
+| L5 | 37 | Training Error Falls, but Test Error Can Rise | full | yes | 5 | L5-CC-05 L5-CC-22 L5-CC-23 L5-DR-04 L5-37-Q1 |  |
 | L5 | 38 | Pause and Think: Why Does Training R² Never Decrease with More | full | yes | 2 | L5-38-Q1 L5-MCQ-26 |  |
 | L5 | 39 | Session 2 Summary: Good Models Generalize, Not Just Memorize | full | yes | 0 |  |  |
 | L5 | 40 | Constraining Models to Improve Them (divider) | partial | yes | 0 |  | Short extraction (divider/administrative or figure slide) — image provided. |
@@ -403,10 +403,10 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L5 | 44 | Lasso Regression Can Eliminate Features Entirely | full | yes | 2 | L5-44-Q1 L5-MCQ-30 |  |
 | L5 | 45 | Feature Scaling is Required Before Regularization | full | yes | 3 | L5-CC-12 L5-45-Q1 L5-MCQ-31 |  |
 | L5 | 46 | CTA Demo — Coefficient paths as penalty increases | full | yes | 0 |  |  |
-| L5 | 47 | Lasso Coefficients Hit Zero at Different Penalty Strengths | full | yes | 2 | L5-47-Q1 L5-MCQ-32 |  |
-| L5 | 48 | Why Does Lasso Produce Exact Zeros but Ridge Doesn't? | full | yes | 2 | L5-48-Q1 L5-MCQ-33 |  |
+| L5 | 47 | Lasso Coefficients Hit Zero at Different Penalty Strengths | full | yes | 1 | L5-47-Q1 |  |
+| L5 | 48 | Why Does Lasso Produce Exact Zeros but Ridge Doesn't? | full | yes | 1 | L5-48-Q1 |  |
 | L5 | 49 | The Geometric Intuition: Diamond Meets Ellipse | full | yes | 1 | L5-49-Q1 |  |
-| L5 | 50 | Ridge vs. Lasso: Choosing the Right Regularization | full | yes | 3 | L5-CC-19 L5-50-Q1 L5-MCQ-34 |  |
+| L5 | 50 | Ridge vs. Lasso: Choosing the Right Regularization | full | yes | 2 | L5-CC-19 L5-50-Q1 |  |
 | L5 | 51 | Selecting the Penalty Strength: Try, Evaluate, Pick the Best | full | yes | 2 | L5-51-Q1 L5-MCQ-35 |  |
 | L5 | 52 | The Complete Regression Workflow | full | yes | 1 | L5-52-Q1 |  |
 | L5 | 53 | Summary: Seven Key Takeaways | full | yes | 0 |  |  |
@@ -425,26 +425,26 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L6 | 8 | [Opening Question] Can We Just Use Linear Regression to Predict | full | yes | 0 |  |  |
 | L6 | 9 | CTA Demo 1 — Linear regression on a binary target | full | yes | 0 |  |  |
 | L6 | 10 | Linear Regression Can Predict Outside [0,1] — Invalid as Probabilities | full | yes | 3 | L6-CC-02 L6-10-Q1 L6-MCQ-04 |  |
-| L6 | 11 | The Sigmoid Function Maps Any Finite Input Between 0 and 1 | full | yes | 3 | L6-CC-01 L6-11-Q1 L6-MCQ-05 |  |
+| L6 | 11 | The Sigmoid Function Maps Any Finite Input Between 0 and 1 | full | yes | 2 | L6-11-Q1 L6-MCQ-05 |  |
 | L6 | 12 | Logistic Regression Wraps a Linear Model Inside a Sigmoid — That Is | full | yes | 2 | L6-12-Q1 L6-MCQ-06 |  |
 | L6 | 13 | The Logistic Regression Equation: Two Equivalent Forms, Two Ways to | full | yes | 3 | L6-CC-03 L6-13-Q1 L6-MCQ-07 |  |
-| L6 | 14 | A Coefficient of −0.89 for Contract Type — What Does That Mean? | full | yes | 1 | L6-14-Q1 |  |
+| L6 | 14 | A Coefficient of −0.89 for Contract Type — What Does That Mean? | full | yes | 0 |  |  |
 | L6 | 15 | CTA Demo 2: Interpreting the Fitted Churn Model in Plain Business | full | yes | 0 |  |  |
-| L6 | 16 | The Translation We Need: Log-Odds → Odds Ratio → Plain Language | full | yes | 4 | L6-CC-04 L6-CC-21 L6-16-Q1 L6-MCQ-08 |  |
+| L6 | 16 | The Translation We Need: Log-Odds → Odds Ratio → Plain Language | full | yes | 5 | L6-CC-04 L6-CC-21 L6-DR-06 L6-16-Q1 L6-MCQ-08 |  |
 | L6 | 17 | Illustrative Coefficients: How Does Each Feature Multiply the Odds? | full | yes | 3 | L6-17-Q1 L6-MCQ-09 L6-MCQ-10 |  |
 | L6 | 18 | Predicting and Explaining Are Different Goals — Coefficients Are Not | full | yes | 3 | L6-CC-05 L6-18-Q1 L6-MCQ-11 |  |
 | L6 | 19 | Session 1 Summary: Logistic Regression Gives Us Probability Estimates | full | yes | 0 |  |  |
 | L6 | 20 | Mid-term Exam (Nov. 21 – in-class 1.5~2h) | full | yes | 0 |  |  |
 | L6 | 21 | Session 2 divider — From probabilities to decisions | full | yes | 0 |  |  |
 | L6 | 22 | [Opening Question] We Have a Predicted Probability for Every | full | yes | 2 | L6-22-Q1 L6-MCQ-13 |  |
-| L6 | 23 | The Confusion Matrix: Four Outcomes, Four Consequences, One | full | yes | 4 | L6-CC-15 L6-CC-23 L6-23-Q1 L6-MCQ-14 |  |
-| L6 | 24 | Precision: When We Flag a Churner, How Often Are We Right? | full | yes | 4 | L6-CC-06 L6-CC-16 L6-24-Q1 L6-MCQ-15 |  |
-| L6 | 25 | Recall: Of All Customers Who Will Churn, How Many Did We Catch? | full | yes | 3 | L6-CC-07 L6-25-Q1 L6-MCQ-16 |  |
+| L6 | 23 | The Confusion Matrix: Four Outcomes, Four Consequences, One | full | yes | 5 | L6-CC-15 L6-CC-23 L6-DR-01 L6-23-Q1 L6-MCQ-14 |  |
+| L6 | 24 | Precision: When We Flag a Churner, How Often Are We Right? | full | yes | 4 | L6-CC-06 L6-CC-16 L6-DR-02 L6-MCQ-15 |  |
+| L6 | 25 | Recall: Of All Customers Who Will Churn, How Many Did We Catch? | full | yes | 3 | L6-CC-07 L6-DR-03 L6-MCQ-16 |  |
 | L6 | 26 | An Illustrative Worked Example: Computing Precision and Recall | full | yes | 3 | L6-CC-17 L6-26-Q1 L6-MCQ-17 |  |
-| L6 | 27 | CTA Demo 3: Thresholds and Hypothetical Business Utility | full | yes | 2 | L6-CC-12 L6-27-Q1 |  |
+| L6 | 27 | CTA Demo 3: Thresholds and Hypothetical Business Utility | full | yes | 3 | L6-CC-12 L6-DR-07 L6-27-Q1 |  |
 | L6 | 28 | The Precision–Recall Curve Shows the Available Threshold Tradeoffs | full | yes | 2 | L6-28-Q1 L6-MCQ-19 |  |
 | L6 | 29 | Threshold Selection Is a Business Decision — the Model Cannot Choose | full | yes | 3 | L6-CC-20 L6-29-Q1 L6-MCQ-20 |  |
-| L6 | 30 | F1 Score Penalises Models That Sacrifice One Side of the Precision- | full | yes | 4 | L6-CC-08 L6-CC-22 L6-30-Q1 L6-MCQ-21 |  |
+| L6 | 30 | F1 Score Penalises Models That Sacrifice One Side of the Precision- | full | yes | 5 | L6-CC-08 L6-CC-22 L6-DR-04 L6-30-Q1 L6-MCQ-21 |  |
 | L6 | 31 | [Opening Question] We Have Precision, Recall, and F1 — Would | full | yes | 1 | L6-31-Q1 |  |
 | L6 | 32 | CTA Demo 4: About 73.5% Accuracy Without Predicting Any Churn | full | yes | 0 |  |  |
 | L6 | 33 | Accuracy Is a Warning Sign on Imbalanced Data — Not a Performance | full | yes | 3 | L6-CC-11 L6-33-Q1 L6-MCQ-22 |  |
@@ -452,8 +452,8 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 | L6 | 35 | Session 2 Summary: Decisions Need a Threshold; Curves Sweep All | full | yes | 0 |  |  |
 | L6 | 36 | Session 3 divider — Threshold-free evaluation and model selection | full | yes | 0 |  |  |
 | L6 | 37 | [Opening Question] Can We Summarise Ranking Without Choosing a | full | yes | 1 | L6-37-Q1 |  |
-| L6 | 38 | Two Rates Drive the ROC Curve: True Positive Rate and False Positive | full | yes | 6 | L6-CC-09 L6-CC-13 L6-CC-18 L6-CC-25 L6-38-Q1 L6-MCQ-24 |  |
-| L6 | 39 | The ROC Curve Sweeps Every Threshold and Plots TPR Against FPR | full | yes | 3 | L6-CC-14 L6-39-Q1 L6-MCQ-25 |  |
+| L6 | 38 | Two Rates Drive the ROC Curve: True Positive Rate and False Positive | full | yes | 6 | L6-CC-09 L6-CC-13 L6-CC-18 L6-DR-05 L6-38-Q1 L6-MCQ-24 |  |
+| L6 | 39 | The ROC Curve Sweeps Every Threshold and Plots TPR Against FPR | full | yes | 2 | L6-CC-14 L6-39-Q1 |  |
 | L6 | 40 | AUC: The Area Under the ROC Curve Summarises Classifier Ranking | full | yes | 4 | L6-CC-10 L6-CC-19 L6-40-Q1 L6-MCQ-26 |  |
 | L6 | 41 | CTA Demo 5 Setup: Can We Verify the Probabilistic Meaning of AUC | full | yes | 0 |  |  |
 | L6 | 42 | CTA Demo 5: Empirical Verification of AUC via Random Pair Sampling | full | yes | 0 |  |  |
@@ -487,18 +487,18 @@ Status legend: **full** = complete text extracted; **partial** = short/heading-o
 |---|---|
 | Every page represented (L1 73, L2 80, L3 56, L4 66, L5 58, L6 55, Midterm 7 = 395) | ✅ verified programmatically |
 | All midterm subparts covered (20 parts) | ✅ reproduced with worked solutions + linked bank questions |
-| Concepts-only policy enforced | ✅ scan for slide/demo/session/lecture/module/course/part/takeaway/roadmap wording in prompts returns 0 meta hits (2 matches are the mathematical "regularized objective" term) |
-| Deep clean performed this round | ✅ 52 meta/trivia questions removed (incl. “opening question of Session 1”), 19+ prompts rewritten from slide-framing to concept phrasing, all remaining prompts de-slided, answer/solution session references removed, 64 new self-contained concept questions added; L6-14 odds-ratio interpretation rewritten as a pure concept question |
-| MCQ sets still complete | ✅ objective pool = 404 ≥ 400; bank total = 584 |
-| Solutions hidden by default | ✅ checked on load for bank, slides, concept view, mock, midterm |
-| Midterm LaTeX + crops | ✅ verified (matrices, EVR, vectors; six high-res figure crops full-width) |
-| Combined concept review + auto-advance | ✅ mark concept → next concept, chains across lectures; anchor scroll lands after MathJax reflow |
+| Duplicate questions removed | ✅ 49 duplicate/subset items deleted (identical prompts like Cov(X,X) twice, min-max with the same numbers twice, TPR chain twice, ROC corner twice, β = −0.89 twice, etc.); programmatic re-scan: 0 exact-prompt duplicates, 0 same-topic pairs with answer similarity ≥ 0.8 |
+| Fresh replacement drills | ✅ 45 new number-variant drills with new data (no content duplication); objective pool 405 ≥ 400 |
+| Concepts-only policy | ✅ no slide/demo/session/lecture/module/course/part wording in any prompt |
+| Auto-saved results + wrong-answer retry | ✅ answer → result stored (correct/wrong); wrong questions persist in the retry list until answered correctly (Dashboard, Stats, Practice) |
+| Self-grade buttons removed | ✅ none remain in any view |
+| Double-click reveal | ✅ greens the correct choice, reds a wrong pick, opens the solution |
+| Combined concept review + auto-advance | ✅ mark concept → next concept (chains across lectures) |
+| Midterm LaTeX + figure crops | ✅ verified |
 | localStorage save / export / import | ✅ round-trip verified |
 | Console errors · mobile layout | ✅ zero errors; 390×844 clean |
 | Data integrity | ✅ no duplicate ids, all objective answers valid, concepts cover every page |
-| Double-click reveal on choices | ✅ double-clicking any MCQ/TF option greens the correct choice, reds a wrong pick, and auto-opens the solution (verified in browser; screenshot-checked) |
-| Self-grade buttons removed | ✅ all Correct/Partially/Wrong buttons deleted from every view (bank, slides, concept view, practice, mock result, midterm) |
-| Auto-saved results | ✅ answering an MCQ/TF stores `questionProgress.result` (correct/wrong) immediately; stored results re-display when the question loads |
-| Wrong-answer retry list | ✅ wrong objective questions persist across sessions in a retry list (Dashboard card + panel, Stats card + button, Practice button); retry runs show a live counter and clear each question automatically once answered correctly (verified: wrong → saved, retry → correct → cleared) |
-| Mock exam without self-grades | ✅ submit shows “Auto-scored a/b objective correct” + “open questions answered x/y (compare with the model answers)” |
+| No auto-reveal on choose | ✅ selecting an option shows only “Answer saved — double-click a choice to check it.” (result stored silently); correctness, green/red colours and the solution appear exclusively on double-click; stored answers re-confirm neutrally on load (verified in browser) |
+
+| Compact exam-context + bigger slide preview | ✅ slide image enlarged (≈766px wide, up to 87vh tall; concept-view images up to 70vh); “Exam context” is now a one-line collapsible showing a relevance preview + pitfall count — auto-collapsed when a page has no pitfalls (empty “None listed” rows removed; side column shrinks to ~270px instead of blank space) |
 

@@ -10,20 +10,8 @@
     ex: "Robust statistics (median) describe skewed/outlier-heavy data better than the mean.",
     mt: "Computing the median as the middle of the unsorted list." });
 
-  Q({ id: "L1-CC-02", lec: 1, pg: [38], tp: "Preprocessing", sb: "Min-max computation", df: "easy", ty: "calc", so: "lecture",
-    pr: "Min-max normalise x = 30 given min = 10 and max = 50.",
-    at: "x_norm = (30 − 10)/(50 − 10) = 20/40 = 0.5.",
-    sl: "x_norm = (x − min)/(max − min) = 0.5.",
-    ex: "Min-max maps the training range onto [0, 1]; new values outside the training range can exceed these bounds.",
-    mt: "Subtracting max instead of min, or forgetting the correction of the range." });
-
-  Q({ id: "L1-CC-03", lec: 1, pg: [38], tp: "Preprocessing", sb: "Z-score computation", df: "easy", ty: "calc", so: "lecture",
-    pr: "Standardise x = 30 given sample mean = 20 and std = 5.",
-    at: "z = (30 − 20)/5 = 2.",
-    sl: "z = (x − mean)/std = 10/5 = 2 — the value lies 2 standard deviations above the mean.",
-    ex: "Z-scores are unit-free, which is why they are used to compare features on different scales.",
-    mt: "Dividing by variance instead of std." });
-
+  
+  
   Q({ id: "L1-CC-04", lec: 1, pg: [41], tp: "Descriptive stats", sb: "IQR computation", df: "medium", ty: "calc", so: "lecture",
     pr: "A dataset has Q1 = 12 and Q3 = 28. Compute the IQR and the range beyond which points are flagged as outliers (1.5×IQR rule).",
     at: "IQR = 28 − 12 = 16. Outlier fences: 12 − 1.5(16) = −12 and 28 + 1.5(16) = 52.",
@@ -80,14 +68,7 @@
     mt: "Inferring a causal mechanism from r alone." });
 
   /* ---------------- Lecture 2 — distances, covariance, PCA ---------------- */
-  Q({ id: "L2-CC-01", lec: 2, pg: [15], tp: "Distances", sb: "Euclidean properties", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which property does Euclidean distance NOT have?",
-    op: ["Non-negativity", "Symmetry d(x,y) = d(y,x)", "Scale invariance", "d(x,y) = 0 only when x = y"],
-    an: 2, at: "Euclidean distance is NOT scale-invariant — rescaling a vector changes distances (cosine similarity is the scale-invariant one).",
-    sl: "Euclidean: ≥ 0; symmetric; identity only when equal; sensitive to scale.",
-    ex: "This is why Euclidean suits physical measurements, not length-confounded text counts.",
-    mt: "Confusing cosine's scale invariance with Euclidean." });
-
+  
   Q({ id: "L2-CC-02", lec: 2, pg: [17], tp: "Distances", sb: "Cosine range mapping", df: "easy", ty: "mcq", so: "lecture",
     pr: "Match cosine values to geometry: +1, 0, −1",
     op: ["+1 same direction, 0 perpendicular, −1 opposite", "+1 opposite, 0 same, −1 perpendicular", "+1 perpendicular, 0 opposite, −1 same", "+1 = 0 degrees only in 2D"],
@@ -118,14 +99,7 @@
     ex: "The canonical demo: a document repeated 3× has cos = 1 but a larger Euclidean distance.",
     mt: "Claiming Euclidean is scale-invariant." });
 
-  Q({ id: "L2-CC-06", lec: 2, pg: [26], tp: "Covariance", sb: "Bessel correction", df: "hard", ty: "mcq", so: "lecture",
-    pr: "Why does the sample variance divide by n − 1 rather than n?",
-    op: ["To make the result larger", "Because the deviations are taken from the estimated mean, which uses one degree of freedom — n−1 corrects the bias", "Because n is always odd", "To convert variance into standard deviation"],
-    an: 1, at: "Bessel's correction: the mean was estimated from the same data (1 constraint), so n−1 degrees of freedom remain; dividing by n would underestimate population variance on average.",
-    sl: "E[Σ(xᵢ−x̄)²] = (n−1)σ² — dividing by n−1 makes the estimator unbiased.",
-    ex: "np.cov() uses n−1 by default.",
-    mt: "Saying n−1 corrects the mean rather than the variance estimate." });
-
+  
   Q({ id: "L2-CC-07", lec: 2, pg: [28], tp: "Covariance", sb: "Sign computation", df: "hard", ty: "calc", so: "lecture",
     pr: "Data: (1, 5), (2, 3), (3, 1). Compute x̄, ȳ and the sign of the covariance (no need to finish dividing).",
     at: "x̄ = 2, ȳ = 3. Deviations: (−1, 2), (0, 0), (1, −2). Products: −2, 0, −2 → sum negative → Cov < 0.",
@@ -141,14 +115,7 @@
     ex: "This is why covariance-matrix diagonals hold the variances.",
     mt: "Answering 0." });
 
-  Q({ id: "L2-CC-09", lec: 2, pg: [31], tp: "Covariance matrix", sb: "Required properties", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which pair of properties must every covariance matrix satisfy?",
-    op: ["Symmetric and positive semidefinite", "Diagonal and invertible", "Triangular and full rank", "All entries positive"],
-    an: 0, at: "Symmetric (Σij = Σji) and positive semidefinite (all eigenvalues ≥ 0).",
-    sl: "Symmetry from Cov(X,Y) = Cov(Y,X); PSD because variances can't be negative.",
-    ex: "Off-diagonal entries may be negative — only variances (diagonal) cannot.",
-    mt: "Requiring all entries to be positive." });
-
+  
   Q({ id: "L2-CC-10", lec: 2, pg: [31], tp: "Covariance matrix", sb: "Validity test", df: "hard", ty: "mcq", so: "lecture",
     pr: "Which 2×2 matrix CANNOT be a covariance matrix?",
     op: ["[[4, 2], [2, 1]]", "[[2, 0.5], [0.5, 3]]", "[[2, 1], [0, 3]]", "[[1, −0.3], [−0.3, 1]]"],
@@ -173,14 +140,7 @@
     ex: "λ = 0 is impossible to be negative but perfectly allowed as zero.",
     mt: "Calling the matrix invalid — PSD allows zero eigenvalues." });
 
-  Q({ id: "L2-CC-13", lec: 2, pg: [55], tp: "PCA algorithm", sb: "Step order", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which sequence is the correct PCA algorithm?",
-    op: ["Project → centre → eigen → covariance", "Centre → covariance → eigenvectors sorted by eigenvalue → project onto top-k", "Covariance → centre → project → sort", "Eigen → centre → covariance → project"],
-    an: 1, at: "Centre the data, compute the covariance matrix, compute/sort eigenvectors, project onto the top-k eigenvectors.",
-    sl: "Centring is required because covariance is defined around the mean.",
-    ex: "Projection Z = X_centered · W_k reduces n×p to n×k.",
-    mt: "Projecting before centring." });
-
+  
   Q({ id: "L2-CC-14", lec: 2, pg: [67], tp: "PCA selection", sb: "EVR computation", df: "medium", ty: "calc", so: "lecture",
     pr: "Eigenvalues λ = (6, 3, 1). Compute EVR₁, EVR₂, and the cumulative share of the first two components.",
     at: "Total = 10. EVR₁ = 0.6 (60%), EVR₂ = 0.3 (30%), cumulative = 0.9 (90%).",
@@ -268,14 +228,7 @@
     ex: "The exponential is memoryless and always right-skewed.",
     mt: "Reporting the mean as λ instead of 1/λ." });
 
-  Q({ id: "L3-CC-11", lec: 3, pg: [38], tp: "Confidence intervals", sb: "Critical values", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which critical values produce 95% and 99% confidence intervals for a mean (large-sample z)?",
-    op: ["1.96 and 2.58", "0.95 and 0.99", "2.00 and 3.00", "1.645 and 1.96"],
-    an: 0, at: "z* = 1.96 (95%) and 2.58 (99%).",
-    sl: "Higher confidence ⇒ larger z* ⇒ wider interval.",
-    ex: "1.645 corresponds to 90% one-sided/90% two-sided boundaries.",
-    mt: "Using the confidence level itself as the multiplier." });
-
+  
   Q({ id: "L3-CC-12", lec: 3, pg: [38], tp: "Confidence intervals", sb: "Width drivers", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which change makes a confidence interval NARROWER?",
     op: ["Increasing the confidence level", "Increasing the sample size n", "Increasing the sample standard deviation", "Increasing the critical value z*"],
@@ -293,14 +246,7 @@
     mt: "Flipping the conditional to P(H₀ | data)." });
 
   /* ---------------- Lecture 4 — wrangling concepts ---------------- */
-  Q({ id: "L4-CC-01", lec: 4, pg: [29], tp: "Quality assessment", sb: "Four-check protocol", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which set names the four quality checks in the correct grouping?",
-    op: ["Structural (dimensions/dtypes), completeness (missingness), validity (ranges/duplicates/inconsistencies), distributional (shapes/summaries)", "Mean, median, mode, range", "Collect, clean, model, deploy", "Train, validate, test, deploy"],
-    an: 0, at: "Structural, completeness, validity, distributional — the four-check protocol.",
-    sl: "Assess systematically before changing anything; the output is a quality report.",
-    ex: "Missingness also needs a sentinel-value check (blanks, 'N/A', −999).",
-    mt: "Treating modelling steps as quality checks." });
-
+  
   Q({ id: "L4-CC-02", lec: 4, pg: [31], tp: "Quality assessment", sb: "Missingness thresholds", df: "medium", ty: "mcq", so: "lecture",
     pr: "According to the common rules of thumb, when should you start considering dropping a column for missingness?",
     op: ["More than 5% missing", "More than 10% missing", "More than 30% missing", "Any missing value"],
@@ -317,14 +263,7 @@
     ex: "Mechanism determines which cleaning strategy is valid; it cannot be proven from data alone.",
     mt: "Treating MAR as 'completely random'." });
 
-  Q({ id: "L4-CC-04", lec: 4, pg: [41], tp: "Missingness", sb: "Strategy validity", df: "hard", ty: "mcq", so: "lecture",
-    pr: "Under which mechanism is listwise deletion broadly safe from bias?",
-    op: ["MCAR", "MAR", "MNAR", "None of them"],
-    an: 0, at: "Deletion is unbiased under MCAR (though it wastes data); under MAR use conditional imputation; MNAR has no simple fix.",
-    sl: "If missingness is unrelated to everything (MCAR), removed rows are a random subset.",
-    ex: "With MAR, deletion can bias estimates because missingness correlates with observed variables.",
-    mt: "Assuming deletion is safe under MAR." });
-
+  
   Q({ id: "L4-CC-05", lec: 4, pg: [42], tp: "Cleaning", sb: "Imputation validity", df: "hard", ty: "mcq", so: "lecture",
     pr: "Why is mean imputation problematic even when it keeps the variable's mean unchanged?",
     op: ["It changes the mean", "It artificially reduces variance and weakens relationships with other variables", "It requires no assumptions", "It only works for categorical data"],
@@ -397,14 +336,7 @@
     ex: "In multiple regression the coefficient is a partial effect (holding other predictors fixed).",
     mt: "Swapping the roles of intercept and slope." });
 
-  Q({ id: "L5-CC-02", lec: 5, pg: [10], tp: "OLS", sb: "Objective concept", df: "medium", ty: "mcq", so: "lecture",
-    pr: "What does ordinary least squares (OLS) minimise?",
-    op: ["The sum of residuals", "The sum of squared residuals Σ(yᵢ − ŷᵢ)²", "The sum of absolute residuals", "The number of misclassified points"],
-    an: 1, at: "OLS minimises the sum of squared residuals — large errors are penalised disproportionately.",
-    sl: "Squaring makes all contributions positive and emphasises big misses.",
-    ex: "Absolute-error regression (LAD) is the less outlier-sensitive alternative.",
-    mt: "Confusing OLS with least absolute deviations." });
-
+  
   Q({ id: "L5-CC-03", lec: 5, pg: [9], tp: "Regression", sb: "Residual sign", df: "easy", ty: "mcq", so: "lecture",
     pr: "For one observation, y = 8 and the model predicts ŷ = 6.5. What is the residual and its meaning?",
     op: ["+1.5 — the model under-predicted this point", "−1.5 — the model over-predicted", "+1.5 — the model over-predicted", "0 — no error"],
@@ -484,14 +416,7 @@
     mt: "Skipping scaling because 'the penalty will figure it out'." });
 
   /* ---------------- Lecture 6 — classification concepts ---------------- */
-  Q({ id: "L6-CC-01", lec: 6, pg: [11], tp: "Sigmoid", sb: "Basic properties", df: "easy", ty: "mcq", so: "lecture",
-    pr: "Which is true of the sigmoid function σ(z) = 1/(1+e⁻ᶻ)?",
-    op: ["Output range is (−∞, ∞)", "Output range is (0, 1) and σ(0) = 0.5", "It is linear in z", "It returns 0 or 1 exactly"],
-    an: 1, at: "The sigmoid maps any real input into (0, 1); σ(0) = 0.5, with asymptotes at 0 and 1 (never reached).",
-    sl: "Range (0,1) makes outputs interpretable as probabilities; symmetry at 0.5.",
-    ex: "Range does not guarantee calibration — check predicted vs observed frequencies.",
-    mt: "Claiming outputs of exactly 0 or 1." });
-
+  
   Q({ id: "L6-CC-02", lec: 6, pg: [10], tp: "Logistic regression", sb: "Why not linear", df: "medium", ty: "mcq", so: "lecture",
     pr: "Why is linear regression inappropriate for a binary target?",
     op: ["It cannot fit the mean", "Its predictions are unbounded and can fall outside [0, 1], so they cannot be probabilities", "It always overfits", "It requires categorical predictors"],
@@ -637,14 +562,7 @@
     ex: "Simulations of 20 intervals typically show ~19 covering µ.",
     mt: "Assigning 95% probability to a fixed parameter." });
 
-  Q({ id: "L3-CC-16", lec: 3, pg: [22], tp: "Distributions", sb: "PMF vs PDF", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which statement about PMF and PDF is correct?",
-    op: ["PMF values can exceed 1", "A PDF gives probabilities of exact points", "For a discrete variable, PMF gives P(X = x); for a continuous variable, probabilities are areas under the PDF", "PMF applies to continuous variables"],
-    an: 2, at: "Discrete → point probabilities via PMF; continuous → interval probabilities via PDF areas (exact-point probability is 0).",
-    sl: "Match the description of the random variable to the right function.",
-    ex: "PMF probabilities sum to 1; PDF integrates to 1 over the support.",
-    mt: "Reading PDF heights as point probabilities." });
-
+  
   Q({ id: "L4-CC-13", lec: 4, pg: [39], tp: "Missingness", sb: "Scenario classification", df: "hard", ty: "mcq", so: "lecture",
     pr: "A sensor fails and loses readings at random times, unrelated to the values themselves. Which mechanism is this?",
     op: ["MCAR — missingness unrelated to observed or unobserved values", "MAR", "MNAR", "Not missing data"],
@@ -1104,14 +1022,7 @@
     ex: "Knowing the taxonomy keeps cleaning and modelling concerns separate.",
     mt: "Filing multicollinearity under data cleaning." });
 
-  Q({ id: "L2-CC-30", lec: 2, pg: [20], tp: "Distances", sb: "Property matching", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which pairing is correct?",
-    op: ["Euclidean — scale-invariant; cosine — sensitive to magnitude", "Euclidean — sensitive to magnitude; cosine — scale-invariant", "Both scale-invariant", "Both sensitive to magnitude"],
-    an: 1, at: "Euclidean uses raw magnitudes (scale-sensitive); cosine divides them out (invariant to positive rescaling).",
-    sl: "Doubling a vector changes Euclidean distances but leaves cosine unchanged.",
-    ex: "Metric choice is a modelling decision about what 'similar' means.",
-    mt: "Swapping the properties." });
-
+  
   Q({ id: "L2-CC-31", lec: 2, pg: [72], tp: "PCA limitations", sb: "Unsupervised meaning", df: "hard", ty: "mcq", so: "lecture",
     pr: "What does it mean that PCA is 'unsupervised'?",
     op: ["It requires no data", "It never uses label information — directions are chosen by variance alone, which may not match the classification task", "It cannot be validated", "It selects features by their names"],
@@ -1176,12 +1087,5 @@
     ex: "F1 when both matter; the PR curve when costs differ.",
     mt: "Optimising recall when false alarms are the expensive error." });
 
-  Q({ id: "L6-CC-25", lec: 6, pg: [38], tp: "ROC", sb: "Term equivalences", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which equality chain is correct?",
-    op: ["TPR = Recall = Sensitivity", "TPR = Precision", "FPR = Recall", "Specificity = FPR"],
-    an: 0, at: "TPR (true positive rate) = recall = sensitivity — of actual positives, the fraction flagged.",
-    sl: "FPR = 1 − specificity is the other ROC axis.",
-    ex: "These medical/security aliases appear side by side in exam questions.",
-    mt: "Equating TPR with precision — different denominators." });
-
+  
 })();

@@ -208,30 +208,9 @@
     ex: "StandardScaler before Ridge/Lasso always.",
     mt: "Fitting the scaler on the full dataset." });
 
-  Q({ id: "L5-MCQ-32", lec: L, pg: [47], tp: "Lasso", sb: "Path order", df: "hard", ty: "mcq", so: "lecture",
-    pr: "As regularization strengthens, which coefficients hit zero first?",
-    op: ["The most important ones", "The least important ones", "Random ones", "The intercept"],
-    an: 1, at: "Less important features hit zero first; at large α only the strongest predictors survive.",
-    sl: "Slide 47 coefficient-path observation.",
-    ex: "The intercept is typically not penalized in sklearn.",
-    mt: "Thinking the order is arbitrary." });
-
-  Q({ id: "L5-MCQ-33", lec: L, pg: [48], tp: "Geometry", sb: "Constraint shapes", df: "hard", ty: "mcq", so: "lecture",
-    pr: "Which constraint shapes match Lasso and Ridge?",
-    op: ["Lasso circle; Ridge diamond", "Lasso diamond (L1 ball); Ridge circle (L2 ball)", "Both circles", "Both diamonds"],
-    an: 1, at: "Lasso = diamond (corners on axes); Ridge = circle (smooth) — 'corners produce zeros'.",
-    sl: "Slide 48: OLS loss contours are ellipses; the first contact point with the constraint decides the solution shape.",
-    ex: "Diamond corners ⇒ some β = 0; circle tangency ⇒ typically β ≠ 0.",
-    mt: "Swapping the shapes." });
-
-  Q({ id: "L5-MCQ-34", lec: L, pg: [50], tp: "Ridge vs Lasso", sb: "Choosing", df: "medium", ty: "mcq", so: "lecture",
-    pr: "When is Ridge the better choice per the comparison table?",
-    op: ["When many features are irrelevant", "When many features all contribute, especially correlated ones", "When you want feature selection", "When you want exact zeros"],
-    an: 1, at: "Ridge: many features all contribute; correlated features; stable shrinkage. Lasso: many features, few relevant; want sparse model.",
-    sl: "Slide 50 comparison + Elastic Net (λ₁Σ|βj| + λ₂Σβj²) + Lasso-multicollinearity caveat.",
-    ex: "With highly correlated features, Lasso picks arbitrarily — Ridge/Elastic Net are more stable.",
-    mt: "Choosing Lasso for correlated feature groups." });
-
+  
+  
+  
   Q({ id: "L5-MCQ-35", lec: L, pg: [51], tp: "Regularization", sb: "Alpha selection", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which sklearn classes automate α selection?",
     op: ["LassoCV and RidgeCV", "GridSearchSVM", "PCA and KMeans", "LinearRegression and LogisticRegression"],

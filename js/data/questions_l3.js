@@ -270,13 +270,7 @@
     mt: "Answering 99% (sensitivity) — that is P(+|D), not P(D|+).",
     mr: null });
 
-  Q({ id: "L3-35-Q1", lec: L, pg: [35], tp: "Bayes", sb: "Base rate reveal", df: "medium", ty: "short", so: "lecture",
-    pr: "State the full counting calculation for the medical test and the key insight about the low base rate.",
-    at: "100 with disease (1% of 10,000); 9,900 without. Of the 100: 99 test positive. Of the 9,900: 495 test positive (5%). Total positives 594. P(disease | positive) = 99/594 ≈ 16.7%. Key insight: a 99% accurate test gives only ~17% confidence — the low base rate means most positive tests are false positives; there are simply far more healthy people generating false alarms.",
-    sl: "Slide 35 bullet computation + key insight box.",
-    ex: "This is the classic '1-in-6' medical test result — memorize the arithmetic.",
-    mt: "Forgetting that 5% of 9,900 = 495 (the healthy populating dominates)." });
-
+  
   
   Q({ id: "L3-37-Q1", lec: L, pg: [37], tp: "Confidence intervals", sb: "Point vs interval", df: "easy", ty: "mcq", so: "lecture",
     pr: "What is the problem with point estimates, and what do intervals add?",

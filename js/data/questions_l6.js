@@ -54,15 +54,7 @@
     ex: "The two forms are mathematically equivalent; the log-odds form makes coefficients plain-language interpretable.",
     mt: "Computing log(0.75) instead of log-odds log(3) — the log-odds is log(p/(1−p))." });
 
-  Q({ id: "L6-14-Q1", lec: 6, pg: [14], tp: "Coefficients", sb: "Log-odds interpretation", df: "medium", ty: "mcq", so: "lecture",
-    pr: "A logistic regression fitted on churn data gives β = −0.89 for long-term contract (1) vs month-to-month (0). Which interpretation is correct?",
-    op: ["It proves long-term contracts reduce churn risk", "e^β ≈ 0.41 — long-term contract customers have roughly 59% lower odds of churning, holding other features fixed (an association)", "It is a coding error", "It means contract type is irrelevant"],
-    an: 1,
-    at: "β = −0.89 is a log-odds coefficient: odds ratio = e^{−0.89} ≈ 0.41, so the odds of churning are multiplied by ≈0.41 (about 59% lower) for long-term vs month-to-month customers, all else held fixed. Association — not a causal guarantee.",
-    sl: "Translation chain: log-odds coefficient → exponentiate for the odds ratio → plain language. 0.41 ⇒ ≈59% lower odds.",
-    ex: "Acting on it (moving customers to long-term contracts) goes beyond the model's evidence — self-selection may explain the pattern.",
-    mt: "Jumping from an association coefficient to a guaranteed intervention effect." });
-
+  
   
   Q({ id: "L6-16-Q1", lec: L, pg: [16], tp: "Odds ratios", sb: "Translation chain", df: "hard", ty: "calc", so: "lecture",
     pr: "Translate β = −0.89 (long-term contract) through the three-step chain: log-odds → odds ratio → plain language.",
@@ -120,20 +112,8 @@
     mt: "Flipping which errors are FP vs FN; forgetting which class is positive.",
     mr: null });
 
-  Q({ id: "L6-24-Q1", lec: L, pg: [24], tp: "Precision", sb: "Definition", df: "medium", ty: "calc", so: "lecture",
-    pr: "Define precision, interpret high vs low values, and compute it for TP = 180, FP = 120.",
-    at: "Precision = TP/(TP+FP) — of all flagged customers, the fraction that actually churn. Computation: 180/(180+120) = 0.60. High precision: most flags are real churners — retention budget spent efficiently, few wasted discounts. Low precision: many flagged customers are loyal — campaign wastes budget. TP = correctly flagged churners; FP = loyal customers incorrectly flagged.",
-    sl: "Slide 24 formula + high/low interpretation + component notes.",
-    ex: "The midterm-style 2,000-customer matrix gives precision 0.60 at θ=0.5 under the illustrative read.",
-    mt: "Using TN in the precision denominator — it is TP+FP only." });
-
-  Q({ id: "L6-25-Q1", lec: L, pg: [25], tp: "Recall", sb: "Definition", df: "medium", ty: "calc", so: "lecture",
-    pr: "Define recall, interpret high vs low values, compute it for TP = 180, FN = 220, and state its other names.",
-    at: "Recall = TP/(TP+FN) — of all customers who actually churn, the fraction caught. Computation: 180/(180+220) = 0.45. High recall: most would-be churners flagged — fewer slip through, lost revenue minimized. Low recall: many real churners missed — each is lost subscription revenue. Recall = TPR (true positive rate) = sensitivity — the same quantity used in ROC.",
-    sl: "Slide 25 formula + high/low interpretation + note (Recall = TPR = Sensitivity).",
-    ex: "The recall-denominator is the actual positive count (400 in the example cohort).",
-    mt: "Using FP in the recall denominator — it is TP+FN." });
-
+  
+  
   Q({ id: "L6-26-Q1", lec: L, pg: [26], tp: "Confusion matrix", sb: "Worked example", df: "hard", ty: "calc", so: "lecture",
     pr: "Illustrative cohort: 2,000 customers including 400 churners; at θ=0.5: TP=180, FN=220, FP=120, TN=1,480. Compute precision and recall and interpret.",
     at: "Precision = 180/(180+120) = 180/300 = 0.60 (60% of flagged customers actually churn). Recall = 180/(180+220) = 180/400 = 0.45 (we catch 45% of actual churners). At threshold 0.5 we catch fewer than half of all churners — whether that is acceptable depends on the cost of missing them.",

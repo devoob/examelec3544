@@ -166,14 +166,7 @@
     ex: "FPR = 1 − specificity.",
     mt: "Using predicted positives in the FPR denominator." });
 
-  Q({ id: "L6-MCQ-25", lec: L, pg: [39], tp: "ROC", sb: "Perfect corner", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Which ROC point represents a perfect classifier?",
-    op: ["(0, 1)", "(1, 0)", "(1, 1)", "(0, 0)"],
-    an: 0, at: "(FPR, TPR) = (0, 1) — catches every churner with zero false alarms.",
-    sl: "Slide 39: top-left perfect; diagonal random; top-right everyone flagged.",
-    ex: "A perfectly separated test set reaches (0,1).",
-    mt: "Choosing the top-right corner." });
-
+  
   Q({ id: "L6-MCQ-26", lec: L, pg: [40], tp: "AUC", sb: "Ties", df: "hard", ty: "mcq", so: "lecture",
     pr: "How are ties handled in the probabilistic AUC definition?",
     op: ["Counted as 1", "Counted as ½", "Counted as 0", "Excluded"],

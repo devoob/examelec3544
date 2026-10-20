@@ -68,14 +68,7 @@
     ex: "Mean + std dev are the outlier-sensitive pair.",
     mt: "Calling IQR the full range (that's max − min)." });
 
-  Q({ id: "L3-MCQ-11", lec: L, pg: [14], tp: "Covariance/correlation", sb: "Sign statement", df: "medium", ty: "mcq", so: "lecture",
-    pr: "Negative covariance means?",
-    op: ["When X is above its mean, Y tends to be above its mean", "When X is above its mean, Y tends to be below its mean", "X causes Y to decrease", "The variables are independent"],
-    an: 1, at: "X above its mean ↔ Y tends below its mean — opposite-side deviations.",
-    sl: "Slide 14 covariance sign interpretations + warning to use 1/(n−1).",
-    ex: "Magnitude depends on units — so correlation standardizes it.",
-    mt: "Reading a sign as a causal claim." });
-
+  
   Q({ id: "L3-MCQ-12", lec: L, pg: [15], tp: "Correlation", sb: "Curved relationship", df: "hard", ty: "mcq", so: "lecture",
     pr: "A perfect curved (nonlinear) relationship can have r ≈ 0 because?",
     op: ["Correlation measures only linear association", "Curved data has no variance", "r requires equal sample sizes", "Correlation cannot be computed for curves"],

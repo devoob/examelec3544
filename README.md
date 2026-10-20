@@ -14,7 +14,7 @@ An offline-friendly revision website built from the seven source PDFs:
 
 All 395 pages are represented page-by-page with extracted slide content, an embedded slide
 image (shown large at the top of each slide), midterm relevance, common mistakes, and linked
-questions. The question bank contains **584 questions** (lecture, midterm-linked, variants,
+questions. The question bank contains **580 questions** (lecture, midterm-linked, variants,
 integrated, plus concept MCQs), each with a model answer, step-by-step solution,
 explanation, common mistakes and a source page reference.
 
@@ -40,9 +40,9 @@ Key extras:
 * **Review by concept, not only per slide.** All 388 lecture pages are grouped into **38 concepts**
   (lecture → concept → page in the sidebar). A concept and all its pages can be marked reviewed
   as one unit.
-* **Double-click to reveal (MCQ/True-False):** double-click any choice and the correct option turns
-  green (✓) while your wrong pick turns red (✗) and the solution opens automatically — instant
-  feedback without hunting for the button.
+* **Double-click to reveal (MCQ/True-False):** choosing an option never reveals the answer — it only
+  confirms “Answer saved”. Double-click any choice to reveal: the correct option turns green (✓),
+  your wrong pick turns red (✗), the verdict appears and the solution opens automatically.
 * **Automatic results + wrong-answer retry:** answering an objective question saves the result
   (correct/wrong) immediately — no self-grading buttons. Wrong questions stay in a persistent
   "retry list" (Dashboard, Stats, Practice) until you answer them correctly, whenever that happens.
@@ -53,7 +53,7 @@ Key extras:
   `← →` or `n / p` switch concept. Clicking a **marked** concept unmarks it and stays put
   (the auto-advance only happens when you *mark* it), so the flow is: read → Shift+B → next.
 * **MCQ Sets** (`MCQ Sets` page): objective sets of **50 / 100 / 150 / 200 / 300 / 400** drawn
-  from a 404-question objective pool in one deterministic shuffled order (so a 100-set contains
+  from a 405-question objective pool in one deterministic shuffled order (so a 100-set contains
   its first 50-set). When every question in a set is answered it gets a **✓ completion mark with
   date — while remaining fully answerable afterwards** (the mark stays even if you change answers).
   Live progress shows answered/correct counts per set; “Reshuffle” draws a fresh order.
@@ -98,7 +98,7 @@ You can also disable math rendering in Settings.
 3. **Slide viewer** — large slide image at top (click for full size), structured formula/table/callout blocks in LaTeX, concept panel with progress, "Midterm relevance", "Common mistakes / pitfalls", linked questions, collapsible raw slide text (small), notes box, bookmark, mark reviewed / mark whole concept (or press `b` / `Shift+B`), prev/next.
 4. **Question Bank** — 639 questions filterable by lecture, topic, difficulty, type, source; full-text search; paginated 40/page. Solutions hidden by default.
 5. **MCQ Sets** — objective sets of 50/100/150/200/300/400 with live progress, sticky completion marks, reshuffle.
-6. **Practice Mode** — one question at a time, instant feedback, automatic result saving, and a **Retry wrong** run that keeps missed questions until answered correctly.
+6. **Practice Mode** — one question at a time, silent automatic result saving (answers are only revealed on double-click), and a **Retry wrong** run that keeps missed questions until answered correctly.
 7. **Mock Exam Mode** — random set by lecture, optional timer, answer collection, submit → auto-score for objective types + open answers compared against model answers, attempt history saved.
 8. **Midterm Examples** — every question and subpart from the example exam PDF reproduced with page references and full worked solutions (hidden by default).
 9. **Formula Sheet** — curated formulas plus every formula block stored on the slides, grouped by lecture with page links.

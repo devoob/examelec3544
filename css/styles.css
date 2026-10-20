@@ -153,12 +153,24 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .slide-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 1rem; align-items: start; }
 @media (max-width: 1000px) { .slide-grid { grid-template-columns: 1fr; } }
 /* ratio-aware slide layout: wide (16:9) image left, content beside it */
-.slide-grid2 { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(340px, 1fr); gap: 1rem; align-items: start; }
+.slide-grid2 { display: grid; grid-template-columns: minmax(0, 2.1fr) minmax(290px, 1fr); gap: 1rem; align-items: start; }
 .slide-grid2.no-media { grid-template-columns: minmax(0, 1fr); }
 @media (max-width: 1150px) { .slide-grid2 { grid-template-columns: 1fr; } }
-.sg-media { padding: .45rem; position: sticky; top: 76px; }
-.sg-media img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.sg-media { padding: .4rem; position: sticky; top: 72px; }
+.sg-media img { display: block; width: 100%; height: auto; max-height: 87vh; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
 .sg-side > .blocks > .block:first-child { margin-top: 0; }
+
+/* compact collapsible exam-context panel */
+.meta-panel { padding: .45rem .6rem; }
+.exam-context summary { cursor: pointer; font-size: .86rem; line-height: 1.4; }
+.exam-context summary::-webkit-details-marker { display: none; }
+.exam-context summary::before { content: '▸ '; color: var(--muted); }
+.exam-context[open] summary::before { content: '▾ '; }
+.ec-preview { color: var(--muted); font-weight: 400; }
+.exam-context[open] .ec-preview { display: none; }
+.ec-count { font-size: .74rem; color: var(--muted); white-space: nowrap; }
+.meta-panel .meta-row { font-size: .84rem; margin: .3rem 0; }
+.meta-panel .meta-row ul { margin: .25rem 0 0 1rem; }
 .kbd-hint { color: var(--muted); font-size: .78rem; margin-left: auto; align-self: center; }
 .concept-chip { background: var(--code-bg); border: 1px solid var(--border); border-radius: 999px; padding: .05rem .5rem; font-size: .76rem; }
 .concept-panel.concept-done { border-left: 4px solid var(--ok); }
@@ -177,10 +189,10 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .cv-meta p { margin: .2rem 0; }
 .cv-meta ul { margin: .25rem 0 .1rem 1rem; padding: 0; }
 /* ratio-aware split inside each concept page: wide image left, context right */
-.cv-split { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: .8rem; align-items: start; margin-top: .4rem; }
+.cv-split { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1fr); gap: .8rem; align-items: start; margin-top: .4rem; }
 .cv-split.no-media { grid-template-columns: 1fr; }
 @media (max-width: 1000px) { .cv-split { grid-template-columns: 1fr; } }
-.cv-media img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
+.cv-media img { display: block; width: 100%; height: auto; max-height: 70vh; object-fit: contain; background: #fff; border: 1px solid var(--border); border-radius: 8px; }
 .cv-side { min-width: 0; }
 .cv-questions > summary, .cv-notes > summary { cursor: pointer; font-size: .85rem; color: var(--accent); margin: .4rem 0; }
 .cv-notes textarea { width: 100%; }
