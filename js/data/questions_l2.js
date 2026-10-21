@@ -67,7 +67,7 @@
     ex: "The entire linear algebra toolkit becomes available after this transformation.",
     mt: "Listing only 'reduce dimensions' — all three capabilities matter." });
 
-  Q({ id: "L2-15-Q1", lec: L, pg: [15], tp: "Distances", sb: "Euclidean", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-15-Q1", el: "Q1(a)", lec: L, pg: [15], tp: "Distances", sb: "Euclidean", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which property set correctly describes Euclidean distance?",
     op: [
       "Always ≥ 0; zero only when x = y; symmetric; sensitive to scale",
@@ -159,7 +159,7 @@
     ex: "The n vs n−1 distinction returns in Demo 2 (np.cov uses n−1) — 'this isn't a technicality — it affects statistical inference.'",
     mt: "Saying n−1 'corrects' the mean; it corrects the variance estimate's bias caused by using the sample mean." });
 
-  Q({ id: "L2-28-Q1", lec: L, pg: [28], tp: "Covariance", sb: "Definition and signs", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-28-Q1", el: "Q1(b)", lec: L, pg: [28], tp: "Covariance", sb: "Definition and signs", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which interpretation of covariance sign is correct?",
     op: [
       "Cov > 0: X above mean → Y tends below mean",
@@ -181,7 +181,7 @@
     mt: "Treating the zero-covariance panel as 'independent variables'.", mr: "MT-1b-i" });
 
   
-  Q({ id: "L2-31-Q1", lec: L, pg: [31], tp: "Covariance matrix", sb: "Structure/properties", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-31-Q1", el: "Q1(b)", lec: L, pg: [31], tp: "Covariance matrix", sb: "Structure/properties", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which property set of the covariance matrix Σ is correct?",
     op: [
       "Diagonal = covariances; off-diagonal = variances; not symmetric",
@@ -262,7 +262,7 @@
     ex: "Note: the eigenvalue equation for a symmetric Σ guarantees real λ and orthogonal v (slide 49).",
     mt: "Reading Σv = λv as 'Σ is applied to λv' — λ multiplies the vector v." });
 
-  Q({ id: "L2-47-Q1", lec: L, pg: [47], tp: "Eigen", sb: "Eigenvalue interpretation", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-47-Q1", el: "Q1(b)", lec: L, pg: [47], tp: "Eigen", sb: "Eigenvalue interpretation", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which eigenvalue interpretation is correct?",
     op: [
       "λ>1 compresses; 0<λ<1 stretches",
@@ -291,7 +291,7 @@
     mt: "Claiming orthogonality holds for any matrix — it is guaranteed for symmetric matrices like Σ.",
     mr: "MT-1b-iii" });
 
-  Q({ id: "L2-50-Q1", lec: L, pg: [50], tp: "PCA", sb: "Variance = eigenvalue", df: "hard", ty: "mcq", so: "lecture",
+  Q({ id: "L2-50-Q1", el: "Q1(c)", lec: L, pg: [50], tp: "PCA", sb: "Variance = eigenvalue", df: "hard", ty: "mcq", so: "lecture",
     pr: "State the key theorem and what it implies about eigenvalues.",
     op: [
       "Variance along any random direction equals 1",
@@ -332,7 +332,7 @@
     ex: "Uncorrelated components follow from orthogonal eigenvectors.",
     mt: "Saying original features are uncorrelated — that's exactly what PCA fixes." });
 
-  Q({ id: "L2-55-Q1", lec: L, pg: [55], tp: "PCA algorithm", sb: "Four steps", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-55-Q1", el: "Q1(c)", lec: L, pg: [55], tp: "PCA algorithm", sb: "Four steps", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which sequence is the four-step PCA algorithm?",
     op: [
       "Project → center → eigen → covariance",
@@ -415,7 +415,7 @@
     ex: "Meta-lesson: confusion is valuable data — fix misconceptions early before they compound.",
     mt: "Confusing PCA (feature construction) with Lasso (feature selection, L5)." });
 
-  Q({ id: "L2-67-Q1", lec: L, pg: [67], tp: "PCA selection", sb: "EVR definition", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-67-Q1", el: "Q1(c)", lec: L, pg: [67], tp: "PCA selection", sb: "EVR definition", df: "medium", ty: "mcq", so: "lecture",
     pr: "What is the explained variance ratio and its key properties?",
     op: [
       "The raw eigenvalue of component i; sums to the number of features",
@@ -443,7 +443,7 @@
     mt: "Confusing elbow selection with the 90% rule — both are heuristics used together." });
 
   
-  Q({ id: "L2-70-Q1", lec: L, pg: [70], tp: "PCA selection", sb: "90% rule", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L2-70-Q1", el: "Q1(c)", lec: L, pg: [70], tp: "PCA selection", sb: "90% rule", df: "medium", ty: "mcq", so: "lecture",
     pr: "State the 90% rule of thumb and its caution.",
     op: [
       "Keep all components; 90% is the maximum allowed",

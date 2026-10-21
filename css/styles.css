@@ -249,6 +249,7 @@ code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospac
 .tag-lec { color: var(--accent); border-color: var(--accent); }
 .tag-mt { color: var(--warn); border-color: var(--warn); }
 .tag-int { color: var(--ok); border-color: var(--ok); }
+.tag-exam { color: var(--warn); border-color: var(--warn); font-weight: 600; }
 .q-prompt { font-size: .95rem; margin-bottom: .6rem; }
 .options { display: flex; flex-direction: column; gap: .3rem; margin: .4rem 0; }
 .option { display: flex; gap: .5rem; align-items: flex-start; padding: .35rem .5rem; border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: .9rem; }

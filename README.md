@@ -150,6 +150,12 @@ long), `difficulty`, `topic`, `subtopic`, `source` (lecture / midterm example / 
 source page reference. Midterm-linked and variant questions reference their exam part id
 (`MT-…`).
 
+**Exam-close labelling:** midterm-linked questions now show a gold **★ MT &lt;part&gt;** badge on
+the card (e.g. `★ MT 1a-ii`), and questions that closely mirror the example-exam style carry an
+`examLike` tag (`el: "Q1(c)"`, `el: "Q2(f)"`, `el: "Q1 mock"` …) rendered as a **★ exam** badge.
+The Question Bank **Source** filter has a **“★ Exam-like only”** option that narrows the bank to
+every question with either link (`midterm` or `examLike`) — 65 questions at the moment.
+
 ## Project layout
 
 ```

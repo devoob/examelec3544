@@ -176,7 +176,7 @@ N\!:&\ f(x)=\tfrac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}\\
 \text{Exp}\!:&\ f(x)=\lambda e^{-\lambda x},\ x\ge0
 \end{aligned}\]
 }
-\item \fn{CI} $\bar x\pm z^*\,s/\sqrt n$ (SE $=s/\sqrt n$; $z^*=1.96$ for 95\%, $2.58$ for 99\%). Correct reading: 95\% of intervals from repeated sampling cover $\mu$ \sep NOT ``$P(\mu\in\text{interval})=0.95$'' (exam-revealed: 18/20 intervals captured $\mu$). Wider: higher confidence, smaller $n$.
+\item \fn{CI} $\bar x\pm z^*\,s/\sqrt n$ (SE $=s/\sqrt n$; $z^*=1.96$ for 95\%, $2.58$ for 99\%). Correct reading: 95\% of intervals from repeated sampling cover $\mu$ \sep NOT ``$P(\mu\in\text{interval})=0.95$'' (simulation: 18/20 intervals captured $\mu$). Wider: higher confidence, smaller $n$.
 \item Test: $H_0$ default/no effect; \textbf{$p=P(\text{data this extreme}\mid H_0)$ \sep probability about the DATA (not $H_0$, not replication)}; $p<\alpha$ reject, else \textbf{fail to reject ($\ne$ accept)}. Procedure: state $H_0/H_1$ → choose $\alpha$ (0.05) → compute $T$ → $p$-value → decide. Significant $\ne$ important $\Rightarrow$ effect size \fn{Cohen's $d$}: $0.2/0.5/0.8$ small/med/large.
 \item \fn{Anscombe}: identical stats ($\bar x\approx9.0$, $r\approx0.816$), completely different plots (I linear, II quadratic, III $+$outlier, IV vertical$+$point) $\Rightarrow$ always visualize. Mean+SD sensitive to outliers; median+\fn{IQR} robust ($IQR=Q3-Q1$; fences $\pm1.5\,IQR$).
 \end{ul}

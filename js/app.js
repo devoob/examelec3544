@@ -411,7 +411,9 @@
       '<span class="tag">' + esc(DIFF_LABEL[q.difficulty] || q.difficulty) + '</span>' +
       (q.topic ? '<span class="tag tag-topic">' + esc(q.topic) + '</span>' : '') +
       (q.source === 'midterm example' ? '<span class="tag tag-mt">Midterm-linked</span>' : '') +
-      (q.source === 'integrated' ? '<span class="tag tag-int">Integrated</span>' : '');
+      (q.source === 'integrated' ? '<span class="tag tag-int">Integrated</span>' : '') +
+      (q.midterm && q.source !== 'midterm example' ? '<span class="tag tag-exam">★ MT ' + esc(String(q.midterm).replace(/^MT-/, '')) + '</span>' : '') +
+      (q.examLike ? '<span class="tag tag-exam">★ exam' + (q.examLike === true ? '' : ': ' + esc(q.examLike)) + '</span>' : '');
     card.appendChild(head);
     card.appendChild(el('div', 'q-prompt', esc(q.prompt)));
     card.appendChild(renderAnswerWidget(q, {}));
@@ -1074,7 +1076,7 @@
     filters.appendChild(pair('Topic', sel('topic', [{ v: '', t: 'All' }].concat(topicList().map(function (t) { return { v: t, t: t }; })), f.topic)));
     filters.appendChild(pair('Difficulty', sel('diff', [{ v: '', t: 'All' }, { v: 'easy', t: 'Easy' }, { v: 'medium', t: 'Medium' }, { v: 'hard', t: 'Hard' }], f.diff)));
     filters.appendChild(pair('Type', sel('type', [{ v: '', t: 'All' }, { v: 'mcq', t: 'MCQ' }, { v: 'tf', t: 'True/False' }, { v: 'short', t: 'Short' }, { v: 'calc', t: 'Calculation' }, { v: 'long', t: 'Long' }], f.type)));
-    filters.appendChild(pair('Source', sel('source', [{ v: '', t: 'All' }, { v: 'lecture', t: 'Lecture' }, { v: 'midterm example', t: 'Midterm example' }, { v: 'integrated', t: 'Integrated' }], f.source)));
+    filters.appendChild(pair('Source', sel('source', [{ v: '', t: 'All' }, { v: 'lecture', t: 'Lecture' }, { v: 'midterm example', t: 'Midterm example' }, { v: 'integrated', t: 'Integrated' }, { v: 'examlike', t: '★ Exam-like only' }], f.source)));
     var search = document.createElement('input');
     search.type = 'search';
     search.className = 'search-input';
@@ -1095,7 +1097,8 @@
         if (f.topic && q.topic !== f.topic) return false;
         if (f.diff && q.difficulty !== f.diff) return false;
         if (f.type && q.type !== f.type) return false;
-        if (f.source && q.source !== f.source) return false;
+        if (f.source === 'examlike') { if (!(q.midterm || q.examLike)) return false; }
+        else if (f.source && q.source !== f.source) return false;
         if (f.q) {
           var t = (q.prompt + ' ' + q.topic + ' ' + q.subtopic + ' ' + q.answer).toLowerCase();
           if (t.indexOf(f.q.toLowerCase()) === -1) return false;

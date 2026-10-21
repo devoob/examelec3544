@@ -26,6 +26,7 @@ function Q(o) {
     mistakes: o.mt || '',
     variantOf: o.vo || null,
     midterm: o.mr || null,
+    examLike: o.el || null,
     ref: o.ref || ('Lecture ' + o.lec + ', p. ' + (pg.length ? pg.join(', p. ') : '—'))
   };
   window.DSFM_QUESTIONS.push(q);

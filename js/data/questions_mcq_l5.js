@@ -10,7 +10,7 @@
     ex: "Regression = 'how much'; classification = 'which category'.",
     mt: "Classifying price prediction as classification." });
 
-  Q({ id: "L5-MCQ-02", lec: L, pg: [8], tp: "Regression", sb: "Slope meaning", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L5-MCQ-02", el: "Q2(b)", lec: L, pg: [8], tp: "Regression", sb: "Slope meaning", df: "medium", ty: "mcq", so: "lecture",
     pr: "If β₁ = 0.8, what happens to ŷ for each 1-unit increase in x?",
     op: ["ŷ increases by 0.8 units", "ŷ stays constant", "ŷ doubles", "ŷ decreases by 0.8"],
     an: 0, at: "ŷ changes by β₁ = 0.8 units per one-unit increase in x.",

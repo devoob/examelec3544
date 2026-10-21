@@ -19,7 +19,7 @@
     ex: "The how-much/which distinction is a likely MCQ.",
     mt: "Classifying 'number of units sold' as classification — it's a continuous count prediction here." });
 
-  Q({ id: "L5-8-Q1", lec: L, pg: [8], tp: "Regression", sb: "Equation symbols", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L5-8-Q1", el: "Q2(b)", lec: L, pg: [8], tp: "Regression", sb: "Equation symbols", df: "medium", ty: "mcq", so: "lecture",
     pr: "Which symbol interpretation is correct for ŷ = β₀ + β₁x?",
     op: [
       "β₀ = slope; β₁ = intercept",
@@ -33,7 +33,7 @@
     mt: "Swapping intercept and slope roles.",
     mr: "MT-2b" });
 
-  Q({ id: "L5-9-Q1", lec: L, pg: [9], tp: "Regression", sb: "Residuals", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L5-9-Q1", el: "Q2(c)", lec: L, pg: [9], tp: "Regression", sb: "Residuals", df: "medium", ty: "mcq", so: "lecture",
     pr: "How are residuals defined and interpreted?",
     op: [
       "eᵢ = ŷᵢ − yᵢ; positive means over-predicted",
@@ -170,7 +170,7 @@
     ex: "The transition line: 'a model can look great on training data and fail on new data. This is overfitting.'",
     mt: "Assuming high R² immunizes against multicollinearity's interpretation issues." });
 
-  Q({ id: "L5-25-Q1", lec: L, pg: [25], tp: "Overfitting", sb: "Definition", df: "easy", ty: "mcq", so: "lecture",
+  Q({ id: "L5-25-Q1", el: "Q2(f)", lec: L, pg: [25], tp: "Overfitting", sb: "Definition", df: "easy", ty: "mcq", so: "lecture",
     pr: "What is overfitting, and what analogy is used?",
     op: [
       "A model that performs well on training data but poorly on new data — it captured noise rather than signal. Analogy: memorizing past exam answers vs understanding the material",
@@ -196,7 +196,7 @@
     ex: "random_state fixes reproducibility; test_size=0.2 gives 80/20.",
     mt: "Splitting after preprocessing that uses the full dataset (leakage) — a mistake the slide's 'not leaked' note forbids." });
 
-  Q({ id: "L5-27-Q1", lec: L, pg: [27], tp: "Metrics", sb: "R²", df: "medium", ty: "calc", so: "lecture",
+  Q({ id: "L5-27-Q1", el: "Q2(d)", lec: L, pg: [27], tp: "Metrics", sb: "R²", df: "medium", ty: "calc", so: "lecture",
     pr: "Define R² and interpret R² = 0.7. What counts as a 'good' R²? If SSres = 0.4 and SStot = 26, compute R².",
     at: "R² = 1 − SSres/SStot (fraction of variance in y explained). R² = 0.7 means the model explains 70% of the variance in y. R² = 0: no better than predicting the mean; 0.5: half the variance; 1: perfect prediction (suspicious — likely overfit!). Good depends on domain (stock prices: 0.05 may be valuable; physics: 0.95 expected). Computation: R² = 1 − 0.4/26 ≈ 0.9846.",
     sl: "Slide 27 R² formula (unexplained variance SSres; total variance SStot) + interpretation guide + domain note.",
@@ -204,7 +204,7 @@
     mt: "Declaring R² = 1 desirable — 'suspicious — likely overfit!' per the slide.",
     mr: "MT-2d" });
 
-  Q({ id: "L5-28-Q1", lec: L, pg: [28], tp: "Metrics", sb: "R² limitations", df: "hard", ty: "mcq", so: "lecture",
+  Q({ id: "L5-28-Q1", el: "Q2(e)", lec: L, pg: [28], tp: "Metrics", sb: "R² limitations", df: "hard", ty: "mcq", so: "lecture",
     pr: "State the three limitations of R².",
     op: [
       "R² can only decrease with features; detects wrong patterns; comparable across datasets",
@@ -258,7 +258,7 @@
     ex: "The expected-error decomposition (bias² + variance + noise) is a potential formula question.",
     mt: "Swapping bias (systematic offset) and variance (spread across training sets)." });
 
-  Q({ id: "L5-34-Q1", lec: L, pg: [34], tp: "Overfitting", sb: "Polynomial illustration", df: "medium", ty: "mcq", so: "lecture",
+  Q({ id: "L5-34-Q1", el: "Q2(f)", lec: L, pg: [34], tp: "Overfitting", sb: "Polynomial illustration", df: "medium", ty: "mcq", so: "lecture",
     pr: "Describe the underfit/good/overfit polynomial comparison.",
     op: [
       "Degree 1 underfits (too simple, misses the pattern); degree 4 fits well (captures pattern without memorizing noise); degree 15 overfits (memorizes training data, fails on new data); degree 15 has the lowest training error but the highest test error",
@@ -272,7 +272,7 @@
     mt: "Choosing degree 15 for lowest training error.",
     mr: "MT-2f-i" });
 
-  Q({ id: "L5-35-Q1", lec: L, pg: [35], tp: "Bias-variance", sb: "Most important figure", df: "hard", ty: "mcq", so: "lecture",
+  Q({ id: "L5-35-Q1", el: "Q2(f)", lec: L, pg: [35], tp: "Bias-variance", sb: "Most important figure", df: "hard", ty: "mcq", so: "lecture",
     pr: "As model complexity (number of fitted coefficients) increases, how do training error and test error typically behave, and what is the generalization gap?",
     op: ["Both fall monotonically", "Training error keeps falling while test error first falls then rises; the gap between the two curves is the generalization gap", "Test error always lies below training error", "Both curves are flat"], an: 1,
     at: "Training error is weakly decreasing in complexity; test error is U-shaped — falling while underfitting, rising as variance/overfitting takes over. The distance between the curves is the generalization gap; operate at the test-error minimum.",
@@ -282,14 +282,14 @@
     mr: "MT-2f-i" });
 
   
-  Q({ id: "L5-37-Q1", lec: L, pg: [37], tp: "Metrics", sb: "RMSE vs complexity", df: "medium", ty: "short", so: "lecture",
+  Q({ id: "L5-37-Q1", el: "Q2", lec: L, pg: [37], tp: "Metrics", sb: "RMSE vs complexity", df: "medium", ty: "short", so: "lecture",
     pr: "Define RMSE and explain why training error can keep falling while test error rises as more coefficients are added.",
     at: "RMSE = √(Σeᵢ²/n) — the average prediction error in the target's units. More coefficients always improve the training fit, but excess flexibility fits sample noise, so test RMSE eventually rises — the overfitting signature (e.g., a polynomial study: training RMSE fell ~6% from 3→16 coefficients while test RMSE rose ~54%).",
     sl: "RMSE = sqrt(MSE); the monotone-fall vs U-shape contrast is the bias–variance tradeoff — pick complexity by validation error.",
     ex: "RMSE units (mpg) make the degradation interpretable — mirror of the midterm's kg example.",
     mt: "Mixing up which curve falls and which rises." });
 
-  Q({ id: "L5-38-Q1", lec: L, pg: [38], tp: "Metrics", sb: "Random feature puzzle", df: "hard", ty: "mcq", so: "lecture",
+  Q({ id: "L5-38-Q1", el: "Q2(f)", lec: L, pg: [38], tp: "Metrics", sb: "Random feature puzzle", df: "hard", ty: "mcq", so: "lecture",
     pr: "Why can't training R² decrease when adding a completely random feature, and what happens to test R²?",
     op: [
       "Random features are always rejected by OLS; test R² unchanged",
